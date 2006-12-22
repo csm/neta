@@ -1,0 +1,34 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            CLASS = NADocument; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                loadingProgress = NSProgressIndicator; 
+                loadingProgressPanel = NSPanel; 
+                mainWindow = NSWindow; 
+                packetDetail = NSOutlineView; 
+                packetHex = NSTextView; 
+                packetsTable = NSTableView; 
+                statusLine = NSTextField; 
+            }; 
+            SUPERCLASS = NSDocument; 
+        }, 
+        {CLASS = NAPCAPFilterView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {
+            CLASS = NAPCAPFilterViewContainer; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                add = NSButton; 
+                op = NSPopUpButton; 
+                remove = NSButton; 
+                test = NSPopUpButton; 
+                value = NSTextField; 
+                view = NAPCAPFilterView; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}
