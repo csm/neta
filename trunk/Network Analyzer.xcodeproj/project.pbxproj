@@ -1,0 +1,556 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		70303E790B3A03CF0034D4FA /* NAController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70303E720B3A03CF0034D4FA /* NAController.m */; };
+		70303E7A0B3A03CF0034D4FA /* NAInternetAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 70303E740B3A03CF0034D4FA /* NAInternetAddress.m */; };
+		70303E7B0B3A03CF0034D4FA /* NANetworkDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 70303E760B3A03CF0034D4FA /* NANetworkDevice.m */; };
+		70303E7C0B3A03CF0034D4FA /* NAUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 70303E780B3A03CF0034D4FA /* NAUtils.m */; };
+		70303E8E0B3A07BD0034D4FA /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70303E8D0B3A07BD0034D4FA /* SenTestingKit.framework */; };
+		70303E9D0B3A07E30034D4FA /* NAUtilsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 70303E920B3A07E30034D4FA /* NAUtilsTest.m */; };
+		70303E9E0B3A07E30034D4FA /* NAUtilsTest2.m in Sources */ = {isa = PBXBuildFile; fileRef = 70303E940B3A07E30034D4FA /* NAUtilsTest2.m */; };
+		70303E9F0B3A07E30034D4FA /* NAUtilsTest3.m in Sources */ = {isa = PBXBuildFile; fileRef = 70303E960B3A07E30034D4FA /* NAUtilsTest3.m */; };
+		70303EA00B3A07E30034D4FA /* NAUtilsTest4.m in Sources */ = {isa = PBXBuildFile; fileRef = 70303E980B3A07E30034D4FA /* NAUtilsTest4.m */; };
+		70303EA30B3A08120034D4FA /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 70303EA20B3A08120034D4FA /* AppIcon.icns */; };
+		70303EA90B3A09CB0034D4FA /* NAUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 70303E780B3A03CF0034D4FA /* NAUtils.m */; };
+		70303EB70B3A19900034D4FA /* CapFile.icns in Resources */ = {isa = PBXBuildFile; fileRef = 70303EB60B3A19900034D4FA /* CapFile.icns */; };
+		70303F560B3A547A0034D4FA /* NACaptureSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 70303F550B3A547A0034D4FA /* NACaptureSession.m */; };
+		70303FEE0B3B145F0034D4FA /* NAPCAPFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70303FED0B3B145F0034D4FA /* NAPCAPFilterView.m */; };
+		703040290B3B199F0034D4FA /* SubviewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 703040260B3B199F0034D4FA /* SubviewTableViewCell.m */; };
+		7030402A0B3B199F0034D4FA /* SubviewTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 703040280B3B199F0034D4FA /* SubviewTableViewController.m */; };
+		7030406C0B3B2EC30034D4FA /* ToolbarCapture.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 7030406B0B3B2EC30034D4FA /* ToolbarCapture.tiff */; };
+		703040C20B3B3D6A0034D4FA /* NACapturedPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 703040C10B3B3D6A0034D4FA /* NACapturedPacket.m */; };
+		703041C30B3B58A00034D4FA /* PanelsAndViews.nib in Resources */ = {isa = PBXBuildFile; fileRef = 703041C20B3B58A00034D4FA /* PanelsAndViews.nib */; };
+		7030429C0B3B827D0034D4FA /* FilterView.nib in Resources */ = {isa = PBXBuildFile; fileRef = 7030429B0B3B827D0034D4FA /* FilterView.nib */; };
+		7030429F0B3B844B0034D4FA /* NAPCAPFilterViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7030429E0B3B844B0034D4FA /* NAPCAPFilterViewContainer.m */; };
+		8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
+		8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
+		8D15AC2E0486D014006FF6A4 /* NADocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B4FDCFA73011CA2CEA /* NADocument.nib */; };
+		8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
+		8D15AC310486D014006FF6A4 /* NADocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* NADocument.m */; settings = {ATTRIBUTES = (); }; };
+		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		089C1660FE840EACC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		13E42FBA07B3F13500E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		2A37F4ACFDCFA73011CA2CEA /* NADocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NADocument.m; sourceTree = "<group>"; };
+		2A37F4AEFDCFA73011CA2CEA /* NADocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NADocument.h; sourceTree = "<group>"; };
+		2A37F4B0FDCFA73011CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2A37F4B5FDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/NADocument.nib; sourceTree = "<group>"; };
+		2A37F4B7FDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		2A37F4BAFDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
+		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		32DBCF750370BD2300C91783 /* Network Analyzer_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Network Analyzer_Prefix.pch"; sourceTree = "<group>"; };
+		70303E700B3A03CF0034D4FA /* NAConstants.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NAConstants.h; sourceTree = "<group>"; };
+		70303E710B3A03CF0034D4FA /* NAController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NAController.h; sourceTree = "<group>"; };
+		70303E720B3A03CF0034D4FA /* NAController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NAController.m; sourceTree = "<group>"; };
+		70303E730B3A03CF0034D4FA /* NAInternetAddress.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NAInternetAddress.h; sourceTree = "<group>"; };
+		70303E740B3A03CF0034D4FA /* NAInternetAddress.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NAInternetAddress.m; sourceTree = "<group>"; };
+		70303E750B3A03CF0034D4FA /* NANetworkDevice.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NANetworkDevice.h; sourceTree = "<group>"; };
+		70303E760B3A03CF0034D4FA /* NANetworkDevice.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NANetworkDevice.m; sourceTree = "<group>"; };
+		70303E770B3A03CF0034D4FA /* NAUtils.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NAUtils.h; sourceTree = "<group>"; };
+		70303E780B3A03CF0034D4FA /* NAUtils.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NAUtils.m; sourceTree = "<group>"; };
+		70303E880B3A07820034D4FA /* Unit Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Unit Tests.octest"; path = "build/Debug/Unit Tests.octest"; sourceTree = "<group>"; };
+		70303E890B3A07820034D4FA /* Unit Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Unit Tests-Info.plist"; sourceTree = "<group>"; };
+		70303E8D0B3A07BD0034D4FA /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = /System/Library/Frameworks/SenTestingKit.framework; sourceTree = "<absolute>"; };
+		70303E910B3A07E30034D4FA /* NAUtilsTest.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NAUtilsTest.h; sourceTree = "<group>"; };
+		70303E920B3A07E30034D4FA /* NAUtilsTest.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NAUtilsTest.m; sourceTree = "<group>"; };
+		70303E930B3A07E30034D4FA /* NAUtilsTest2.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NAUtilsTest2.h; sourceTree = "<group>"; };
+		70303E940B3A07E30034D4FA /* NAUtilsTest2.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NAUtilsTest2.m; sourceTree = "<group>"; };
+		70303E950B3A07E30034D4FA /* NAUtilsTest3.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NAUtilsTest3.h; sourceTree = "<group>"; };
+		70303E960B3A07E30034D4FA /* NAUtilsTest3.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NAUtilsTest3.m; sourceTree = "<group>"; };
+		70303E970B3A07E30034D4FA /* NAUtilsTest4.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NAUtilsTest4.h; sourceTree = "<group>"; };
+		70303E980B3A07E30034D4FA /* NAUtilsTest4.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NAUtilsTest4.m; sourceTree = "<group>"; };
+		70303E990B3A07E30034D4FA /* NAUtilsTestData.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NAUtilsTestData.h; sourceTree = "<group>"; };
+		70303E9A0B3A07E30034D4FA /* NAUtilsTestData2.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NAUtilsTestData2.h; sourceTree = "<group>"; };
+		70303E9B0B3A07E30034D4FA /* NAUtilsTestData3.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NAUtilsTestData3.h; sourceTree = "<group>"; };
+		70303E9C0B3A07E30034D4FA /* NAUtilsTestData4.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NAUtilsTestData4.h; sourceTree = "<group>"; };
+		70303EA20B3A08120034D4FA /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
+		70303EB60B3A19900034D4FA /* CapFile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = CapFile.icns; sourceTree = "<group>"; };
+		70303F540B3A547A0034D4FA /* NACaptureSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NACaptureSession.h; sourceTree = "<group>"; };
+		70303F550B3A547A0034D4FA /* NACaptureSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NACaptureSession.m; sourceTree = "<group>"; };
+		70303FEC0B3B145F0034D4FA /* NAPCAPFilterView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NAPCAPFilterView.h; sourceTree = "<group>"; };
+		70303FED0B3B145F0034D4FA /* NAPCAPFilterView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NAPCAPFilterView.m; sourceTree = "<group>"; };
+		703040250B3B199F0034D4FA /* SubviewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = SubviewTableViewCell.h; sourceTree = "<group>"; };
+		703040260B3B199F0034D4FA /* SubviewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = SubviewTableViewCell.m; sourceTree = "<group>"; };
+		703040270B3B199F0034D4FA /* SubviewTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = SubviewTableViewController.h; sourceTree = "<group>"; };
+		703040280B3B199F0034D4FA /* SubviewTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = SubviewTableViewController.m; sourceTree = "<group>"; };
+		7030406B0B3B2EC30034D4FA /* ToolbarCapture.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = ToolbarCapture.tiff; sourceTree = "<group>"; };
+		703040C00B3B3D6A0034D4FA /* NACapturedPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NACapturedPacket.h; sourceTree = "<group>"; };
+		703040C10B3B3D6A0034D4FA /* NACapturedPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NACapturedPacket.m; sourceTree = "<group>"; };
+		703041C20B3B58A00034D4FA /* PanelsAndViews.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = PanelsAndViews.nib; sourceTree = "<group>"; };
+		703042880B3B68A80034D4FA /* NAProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAProtocols.h; sourceTree = "<group>"; };
+		7030429B0B3B827D0034D4FA /* FilterView.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = FilterView.nib; sourceTree = "<group>"; };
+		7030429D0B3B844B0034D4FA /* NAPCAPFilterViewContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAPCAPFilterViewContainer.h; sourceTree = "<group>"; };
+		7030429E0B3B844B0034D4FA /* NAPCAPFilterViewContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAPCAPFilterViewContainer.m; sourceTree = "<group>"; };
+		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8D15AC370486D014006FF6A4 /* Network Analyzer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Network Analyzer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		70303E850B3A07820034D4FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70303E8E0B3A07BD0034D4FA /* SenTestingKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D15AC330486D014006FF6A4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				70303E8D0B3A07BD0034D4FA /* SenTestingKit.framework */,
+				1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A8FEA54F5311CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */,
+				13E42FBA07B3F13500E4EEF1 /* CoreData.framework */,
+				2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FB0FE9D524F11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D15AC370486D014006FF6A4 /* Network Analyzer.app */,
+				70303E880B3A07820034D4FA /* Unit Tests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2A37F4AAFDCFA73011CA2CEA /* Network Analyzer */ = {
+			isa = PBXGroup;
+			children = (
+				70303E800B3A07680034D4FA /* Unit Tests */,
+				2A37F4ABFDCFA73011CA2CEA /* Classes */,
+				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
+				2A37F4B8FDCFA73011CA2CEA /* Resources */,
+				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
+				19C28FB0FE9D524F11CA2CBB /* Products */,
+				70303E890B3A07820034D4FA /* Unit Tests-Info.plist */,
+				703041C20B3B58A00034D4FA /* PanelsAndViews.nib */,
+				7030429B0B3B827D0034D4FA /* FilterView.nib */,
+			);
+			name = "Network Analyzer";
+			sourceTree = "<group>";
+		};
+		2A37F4ABFDCFA73011CA2CEA /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				703040250B3B199F0034D4FA /* SubviewTableViewCell.h */,
+				703040260B3B199F0034D4FA /* SubviewTableViewCell.m */,
+				703040270B3B199F0034D4FA /* SubviewTableViewController.h */,
+				703040280B3B199F0034D4FA /* SubviewTableViewController.m */,
+				70303E700B3A03CF0034D4FA /* NAConstants.h */,
+				70303E710B3A03CF0034D4FA /* NAController.h */,
+				70303E720B3A03CF0034D4FA /* NAController.m */,
+				70303E730B3A03CF0034D4FA /* NAInternetAddress.h */,
+				70303E740B3A03CF0034D4FA /* NAInternetAddress.m */,
+				70303E750B3A03CF0034D4FA /* NANetworkDevice.h */,
+				70303E760B3A03CF0034D4FA /* NANetworkDevice.m */,
+				70303E770B3A03CF0034D4FA /* NAUtils.h */,
+				70303E780B3A03CF0034D4FA /* NAUtils.m */,
+				2A37F4AEFDCFA73011CA2CEA /* NADocument.h */,
+				2A37F4ACFDCFA73011CA2CEA /* NADocument.m */,
+				70303F540B3A547A0034D4FA /* NACaptureSession.h */,
+				70303F550B3A547A0034D4FA /* NACaptureSession.m */,
+				70303FEC0B3B145F0034D4FA /* NAPCAPFilterView.h */,
+				70303FED0B3B145F0034D4FA /* NAPCAPFilterView.m */,
+				703040C00B3B3D6A0034D4FA /* NACapturedPacket.h */,
+				703040C10B3B3D6A0034D4FA /* NACapturedPacket.m */,
+				703042880B3B68A80034D4FA /* NAProtocols.h */,
+				7030429D0B3B844B0034D4FA /* NAPCAPFilterViewContainer.h */,
+				7030429E0B3B844B0034D4FA /* NAPCAPFilterViewContainer.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		2A37F4AFFDCFA73011CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32DBCF750370BD2300C91783 /* Network Analyzer_Prefix.pch */,
+				2A37F4B0FDCFA73011CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7030406B0B3B2EC30034D4FA /* ToolbarCapture.tiff */,
+				70303EB60B3A19900034D4FA /* CapFile.icns */,
+				70303EA20B3A08120034D4FA /* AppIcon.icns */,
+				2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */,
+				2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */,
+				2A37F4B4FDCFA73011CA2CEA /* NADocument.nib */,
+				8D15AC360486D014006FF6A4 /* Info.plist */,
+				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */,
+				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		70303E800B3A07680034D4FA /* Unit Tests */ = {
+			isa = PBXGroup;
+			children = (
+				70303E910B3A07E30034D4FA /* NAUtilsTest.h */,
+				70303E920B3A07E30034D4FA /* NAUtilsTest.m */,
+				70303E930B3A07E30034D4FA /* NAUtilsTest2.h */,
+				70303E940B3A07E30034D4FA /* NAUtilsTest2.m */,
+				70303E950B3A07E30034D4FA /* NAUtilsTest3.h */,
+				70303E960B3A07E30034D4FA /* NAUtilsTest3.m */,
+				70303E970B3A07E30034D4FA /* NAUtilsTest4.h */,
+				70303E980B3A07E30034D4FA /* NAUtilsTest4.m */,
+				70303E990B3A07E30034D4FA /* NAUtilsTestData.h */,
+				70303E9A0B3A07E30034D4FA /* NAUtilsTestData2.h */,
+				70303E9B0B3A07E30034D4FA /* NAUtilsTestData3.h */,
+				70303E9C0B3A07E30034D4FA /* NAUtilsTestData4.h */,
+			);
+			name = "Unit Tests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		70303E870B3A07820034D4FA /* Unit Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 70303E8A0B3A07830034D4FA /* Build configuration list for PBXNativeTarget "Unit Tests" */;
+			buildPhases = (
+				70303E830B3A07820034D4FA /* Resources */,
+				70303E840B3A07820034D4FA /* Sources */,
+				70303E850B3A07820034D4FA /* Frameworks */,
+				70303E860B3A07820034D4FA /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Unit Tests";
+			productName = "Unit Tests";
+			productReference = 70303E880B3A07820034D4FA /* Unit Tests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+		8D15AC270486D014006FF6A4 /* Network Analyzer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C05733C708A9546B00998B17 /* Build configuration list for PBXNativeTarget "Network Analyzer" */;
+			buildPhases = (
+				8D15AC2B0486D014006FF6A4 /* Resources */,
+				8D15AC300486D014006FF6A4 /* Sources */,
+				8D15AC330486D014006FF6A4 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Network Analyzer";
+			productInstallPath = "$(HOME)/Applications";
+			productName = "Network Analyzer";
+			productReference = 8D15AC370486D014006FF6A4 /* Network Analyzer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C05733CB08A9546B00998B17 /* Build configuration list for PBXProject "Network Analyzer" */;
+			hasScannedForEncodings = 1;
+			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* Network Analyzer */;
+			projectDirPath = "";
+			targets = (
+				8D15AC270486D014006FF6A4 /* Network Analyzer */,
+				70303E870B3A07820034D4FA /* Unit Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		70303E830B3A07820034D4FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D15AC2B0486D014006FF6A4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */,
+				8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */,
+				8D15AC2E0486D014006FF6A4 /* NADocument.nib in Resources */,
+				8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */,
+				70303EA30B3A08120034D4FA /* AppIcon.icns in Resources */,
+				70303EB70B3A19900034D4FA /* CapFile.icns in Resources */,
+				7030406C0B3B2EC30034D4FA /* ToolbarCapture.tiff in Resources */,
+				703041C30B3B58A00034D4FA /* PanelsAndViews.nib in Resources */,
+				7030429C0B3B827D0034D4FA /* FilterView.nib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		70303E860B3A07820034D4FA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		70303E840B3A07820034D4FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70303E9D0B3A07E30034D4FA /* NAUtilsTest.m in Sources */,
+				70303E9E0B3A07E30034D4FA /* NAUtilsTest2.m in Sources */,
+				70303E9F0B3A07E30034D4FA /* NAUtilsTest3.m in Sources */,
+				70303EA00B3A07E30034D4FA /* NAUtilsTest4.m in Sources */,
+				70303EA90B3A09CB0034D4FA /* NAUtils.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D15AC300486D014006FF6A4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D15AC310486D014006FF6A4 /* NADocument.m in Sources */,
+				8D15AC320486D014006FF6A4 /* main.m in Sources */,
+				70303E790B3A03CF0034D4FA /* NAController.m in Sources */,
+				70303E7A0B3A03CF0034D4FA /* NAInternetAddress.m in Sources */,
+				70303E7B0B3A03CF0034D4FA /* NANetworkDevice.m in Sources */,
+				70303E7C0B3A03CF0034D4FA /* NAUtils.m in Sources */,
+				70303F560B3A547A0034D4FA /* NACaptureSession.m in Sources */,
+				70303FEE0B3B145F0034D4FA /* NAPCAPFilterView.m in Sources */,
+				703040290B3B199F0034D4FA /* SubviewTableViewCell.m in Sources */,
+				7030402A0B3B199F0034D4FA /* SubviewTableViewController.m in Sources */,
+				703040C20B3B3D6A0034D4FA /* NACapturedPacket.m in Sources */,
+				7030429F0B3B844B0034D4FA /* NAPCAPFilterViewContainer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		089C165FFE840EACC02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C1660FE840EACC02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		2A37F4B4FDCFA73011CA2CEA /* NADocument.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A37F4B5FDCFA73011CA2CEA /* English */,
+			);
+			name = NADocument.nib;
+			sourceTree = "<group>";
+		};
+		2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A37F4B7FDCFA73011CA2CEA /* English */,
+			);
+			name = MainMenu.nib;
+			sourceTree = "<group>";
+		};
+		2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A37F4BAFDCFA73011CA2CEA /* English */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		70303E8B0B3A07830034D4FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "Unit Tests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "Unit Tests";
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Debug;
+		};
+		70303E8C0B3A07830034D4FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "Unit Tests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "Unit Tests";
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		C05733C808A9546B00998B17 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-lpcap",
+					"$(inherited)",
+				);
+				PRODUCT_NAME = "Network Analyzer";
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		C05733C908A9546B00998B17 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = "Network Analyzer";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C05733CC08A9546B00998B17 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Debug;
+		};
+		C05733CD08A9546B00998B17 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		70303E8A0B3A07830034D4FA /* Build configuration list for PBXNativeTarget "Unit Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70303E8B0B3A07830034D4FA /* Debug */,
+				70303E8C0B3A07830034D4FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C05733C708A9546B00998B17 /* Build configuration list for PBXNativeTarget "Network Analyzer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C05733C808A9546B00998B17 /* Debug */,
+				C05733C908A9546B00998B17 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C05733CB08A9546B00998B17 /* Build configuration list for PBXProject "Network Analyzer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C05733CC08A9546B00998B17 /* Debug */,
+				C05733CD08A9546B00998B17 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+}

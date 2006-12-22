@@ -1,0 +1,21 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            CLASS = NADocument; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                loadingProgress = NSProgressIndicator; 
+                loadingProgressPanel = NSPanel; 
+                mainWindow = NSWindow; 
+                packetDetail = NSOutlineView; 
+                packetHex = NSTextView; 
+                packetsTable = NSTableView; 
+                statusLine = NSTextField; 
+            }; 
+            SUPERCLASS = NSDocument; 
+        }, 
+        {CLASS = NAPCAPFilterView; LANGUAGE = ObjC; SUPERCLASS = NSView; }
+    ); 
+    IBVersion = 1; 
+}
