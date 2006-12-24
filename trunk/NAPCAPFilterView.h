@@ -6,4 +6,7 @@
 {
   NSColor *backgroundColor;
 }
+
+- (void) setBackground: (NSColor *) aColor;
+
 @end

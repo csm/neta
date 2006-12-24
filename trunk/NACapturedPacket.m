@@ -16,8 +16,7 @@
 {
   if ((self = [super init]) != nil)
   {
-    date = [[NSDate alloc] initWithTimeInterval: theHeader->ts.tv_sec
-                                      sinceDate: [NSDate dateWithTimeIntervalSince1970: 0]];
+    seconds = theHeader->ts.tv_sec + (theHeader->ts.tv_usec / 1000000.0);
     packet = [[NSData alloc] initWithBytes: theBytes
                                     length: theHeader->caplen];
     length = theHeader->len;
@@ -26,9 +25,9 @@
   return self;
 }
 
-- (NSDate *) date
+- (double) seconds
 {
-  return date;
+  return seconds;
 }
 
 - (NSData *) packet
@@ -43,13 +42,12 @@
 
 - (NSString *) description
 {
-  return [NSString stringWithFormat: @"Capture @ %@, %d bytes captured, %d on wire.",
-    date, [packet length], length];
+  return [NSString stringWithFormat: @"Capture @ %lf, %d bytes captured, %d on wire.",
+    seconds, [packet length], length];
 }
 
 - (void) dealloc
 {
-  [date release];
   [packet release];
   [super dealloc];
 }

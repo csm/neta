@@ -13,7 +13,7 @@
 
 @interface NACapturedPacket : NSObject
 {
-  NSDate *date;
+  double seconds;
   NSData *packet;
   unsigned length;
 }
@@ -21,7 +21,7 @@
 - (id) initWithPacketHeader: (const struct pcap_pkthdr *) theHeader
                 packetBytes: (const u_char *) theBytes;
 
-- (NSDate *) date;
+- (double) seconds;
 - (NSData *) packet;
 - (unsigned) length;
 

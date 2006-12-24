@@ -108,16 +108,23 @@
         (unsigned) address[2] & 0xFF, (unsigned) address[3] & 0xFF];
       
     case IPv6:
-      return [NSString stringWithFormat:
-                                 @"%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x",
-        (unsigned) address[ 0] & 0xFF, (unsigned) address[ 1] & 0xFF,
-        (unsigned) address[ 2] & 0xFF, (unsigned) address[ 3] & 0xFF,
-        (unsigned) address[ 4] & 0xFF, (unsigned) address[ 5] & 0xFF,
-        (unsigned) address[ 6] & 0xFF, (unsigned) address[ 7] & 0xFF,
-        (unsigned) address[ 8] & 0xFF, (unsigned) address[ 9] & 0xFF,
-        (unsigned) address[10] & 0xFF, (unsigned) address[11] & 0xFF,
-        (unsigned) address[12] & 0xFF, (unsigned) address[13] & 0xFF,
-        (unsigned) address[14] & 0xFF, (unsigned) address[15] & 0xFF];
+    {
+      NSMutableString *s = [NSMutableString string];
+      int i;
+      for (i = 0; i < 16; i++)
+      {
+        unsigned x = address[i] & 0xFF;
+        if (!(i & 1) || i == 15)
+        {
+          [s appendFormat: @"%02x", x];
+        }
+        else
+        {
+          [s appendFormat: @"%02x:", x];
+        }        
+      }
+      return s;
+    }
   }
   
   return @""; // NOT REACHED.

@@ -38,4 +38,7 @@
 // \return A list of NAInternetAddress objects associated with this interface.
 - (NSArray *) addresses;
 
+- (BOOL) hasAddress;
+- (BOOL) isLoopback;
+
 @end

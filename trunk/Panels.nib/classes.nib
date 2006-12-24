@@ -1,0 +1,46 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {
+                cancelCaptureSheet = id; 
+                selectInterface = id; 
+                selectMaxPackets = id; 
+                selectSnapLength = id; 
+                selectUseFilter = id; 
+                showCaptureSheet = id; 
+                startCapture = id; 
+            }; 
+            CLASS = NADocument; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                allOrAny = NSPopUpButton; 
+                cancelButton = NSButton; 
+                captureButton = NSButton; 
+                capturePanel = NSPanel; 
+                filterEnabled = NSButton; 
+                filterTable = NSTableView; 
+                filterTableColumn = NSTableColumn; 
+                interfaceAddress = NSTextField; 
+                interfaceAddress6 = NSTextField; 
+                interfaceDescription = NSTextField; 
+                interfaces = NSPopUpButton; 
+                loadingProgress = NSProgressIndicator; 
+                loadingProgressPanel = NSPanel; 
+                mainWindow = NSWindow; 
+                numPackets = NSTextField; 
+                numPacketsEnabled = NSButton; 
+                packetDetail = NSOutlineView; 
+                packetHex = NSTextView; 
+                packetsTable = NSTableView; 
+                promiscuous = NSButton; 
+                snapLength = NSTextField; 
+                snapLengthEnabled = NSButton; 
+                statusLine = NSTextField; 
+            }; 
+            SUPERCLASS = NSDocument; 
+        }, 
+        {CLASS = NAPCAPFilterView; LANGUAGE = ObjC; SUPERCLASS = NSView; }
+    ); 
+    IBVersion = 1; 
+}
