@@ -17,15 +17,18 @@
         }, 
         {CLASS = NAPCAPFilterView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
         {
+            ACTIONS = {add = id; remove = id; }; 
             CLASS = NAPCAPFilterViewContainer; 
             LANGUAGE = ObjC; 
             OUTLETS = {
                 add = NSButton; 
+                document = id; 
                 op = NSPopUpButton; 
                 remove = NSButton; 
                 test = NSPopUpButton; 
                 value = NSTextField; 
                 view = NAPCAPFilterView; 
+                who = NSPopUpButton; 
             }; 
             SUPERCLASS = NSObject; 
         }

@@ -8,33 +8,36 @@
 
 #import "NANetworkDevice.h"
 
+#import <sys/types.h>
+#import <sys/socket.h>
+#import <ifaddrs.h>
 #import <netinet/in.h>
-#import <pcap.h>
+//#import <pcap.h>
 
 @implementation NANetworkDevice
 
 - (id) initWithName: (NSString *) devName
-        description: (NSString *) aDescription
+//        description: (NSString *) aDescription
           addresses: (NSArray *) anArray
 {
   if ((self = [super init]) != nil)
   {
     name = [[NSString alloc] initWithString: devName];
-    if (aDescription == nil)
-    {
+//    if (aDescription == nil)
+//    {
       description = nil;
-    }
-    else
-    {
-      description = [[NSString alloc] initWithString: aDescription];
-    }
+//    }
+//    else
+//    {
+//      description = [[NSString alloc] initWithString: aDescription];
+//    }
     addresses = [[NSArray alloc] initWithArray: anArray];
   }
   
   return self;
 }
 
-+ (NSArray *) devices
+/*+ (NSArray *) devices
 {
   pcap_if_t *ifaces, *i;
   char errbuf[PCAP_ERRBUF_SIZE];
@@ -80,9 +83,9 @@
   }
   
   return [NSArray arrayWithArray: devs];
-}
+}*/
 
-/*+ (NSArray *) devices
++ (NSArray *) devices
 {
   struct ifaddrs *ifap, *i;
 
@@ -135,8 +138,10 @@
     [a addObject: dev];
   }
   
+  NSLog(@"created devices %@", a);
+  
   return [NSArray arrayWithArray: a];
-}*/
+}
 
 - (NSString *) name
 {
@@ -153,8 +158,22 @@
   return [NSArray arrayWithArray: addresses];
 }
 
+- (BOOL) hasAddress
+{
+  return [addresses count] > 0;
+}
+
+- (BOOL) isLoopback
+{
+  return [name isEqual: @"lo0"];
+}
+
 - (void) dealloc
 {
+  if (description != nil)
+  {
+    [description release];
+  }
   [name release];
   [addresses release];
   [super dealloc];
