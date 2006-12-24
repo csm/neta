@@ -15,9 +15,9 @@
 {
   if ((self = [super init]) != nil)
   {
-    if (![NSBundle loadNibNamed: @"PanelsAndViews" owner: self])
+    if (![NSBundle loadNibNamed: @"Panels" owner: self])
     {
-      NSLog (@"loading nib PanelsAndViews failed.");
+      NSLog (@"loading nib Panels failed.");
     }
     else
     {
@@ -25,6 +25,10 @@
              loadingProgressPanel, loadingProgress);
       [loadingProgressPanel setAlphaValue: 0.9];
     }
+    filterPredicates = [[NSMutableArray alloc] init];
+    filterTableController = [[SubviewTableViewController controllerWithViewColumn: filterTableColumn] 
+      retain];
+    [filterTableController setDelegate: self];
   }
   return self;
 }
@@ -96,13 +100,73 @@
 - (void) beginOfflineSheet: (id) arg
 {
 #pragma unused(arg)
-  NSLog(@"loadingProgressPanel is %@", loadingProgressPanel);
-  NSLog(@"mainWindow is %@", mainWindow);
+//  NSLog(@"loadingProgressPanel is %@", loadingProgressPanel);
+//  NSLog(@"mainWindow is %@", mainWindow);
   [NSApp beginSheet: loadingProgressPanel
      modalForWindow: mainWindow
       modalDelegate: nil
      didEndSelector: nil
         contextInfo: nil];  
+}
+
+- (void) showCaptureSheet: (id) sender
+{
+  captureDevices = [NANetworkDevice devices];
+  [captureDevices retain];
+  [interfaces removeAllItems];
+  int i;
+  for (i = 0; i < [captureDevices count]; i++)
+  {
+    NANetworkDevice *d = [captureDevices objectAtIndex: i];
+    [interfaces addItemWithTitle: [d name]];
+  }
+  
+  if ([captureDevices count] > 0)
+  {
+    NANetworkDevice *device = nil;
+    for (i = 0; i < [captureDevices count]; i++)
+    {
+      NANetworkDevice *d = [captureDevices objectAtIndex: i];
+      if ([d hasAddress] && ![d isLoopback])
+      {
+        [interfaces selectItemAtIndex: i];
+        device = d;
+        break;
+      }
+      if ([d hasAddress]) // grab loopback if no other suitable address
+      {
+        [interfaces selectItemAtIndex: i];
+        device = d;
+      }
+    }
+    if (device == nil)
+    {
+      [interfaces selectItemAtIndex: 0];
+      device = [captureDevices objectAtIndex: 0];
+    }
+    NSArray *addrs = [device addresses];
+    [interfaceAddress setStringValue: @"Address:"];
+    [interfaceAddress6 setStringValue: @"IPv6 Address:"];
+    for (i = 0; i < [addrs count]; i++)
+    {
+      NAInternetAddress *addr = [addrs objectAtIndex: i];
+      if ([addr type] == IPv4)
+      {
+        [interfaceAddress setStringValue: [NSString stringWithFormat:
+          @"Address: %@", addr]];
+      }
+      if ([addr type] == IPv6)
+      {
+        [interfaceAddress6 setStringValue: [NSString stringWithFormat:
+          @"IPv6 Address: %@", addr]];
+      }
+    }
+  }
+  [NSApp beginSheet: capturePanel
+     modalForWindow: mainWindow
+      modalDelegate: nil
+     didEndSelector: nil
+        contextInfo: nil];
 }
 
 // Notifications
@@ -118,8 +182,158 @@
   }
   else
   {
-    [[ts mutableString] setString: @""];
+    [[ts mutableString] setString: @" "];
   }
+}
+
+// Actions
+
+- (IBAction) startCapture: (id) sender;
+{
+  
+}
+
+- (IBAction) cancelCaptureSheet: (id) sender
+{
+  [NSApp endSheet: capturePanel];
+  [capturePanel orderOut: self];
+  [captureDevices release];
+}
+
+- (IBAction) selectInterface: (id) sender
+{
+  int i = [interfaces indexOfSelectedItem];
+  NANetworkDevice *d = [captureDevices objectAtIndex: i];
+  NSString *desc = [d ifDescription];
+  if (desc != nil)
+  {
+    [interfaceDescription setStringValue: desc];
+  }
+  NSArray *addrs = [d addresses];
+  i = 0;
+  [interfaceAddress setStringValue: @"Address:"];
+  [interfaceAddress6 setStringValue: @"IPv6 Address:"];
+  for (i = 0; i < [addrs count]; i++)
+  {
+    NAInternetAddress *addr = [addrs objectAtIndex: i];
+    if ([addr type] == IPv4)
+    {
+      [interfaceAddress setStringValue: [NSString stringWithFormat:
+        @"Address: %@", addr]];
+    }
+    if ([addr type] == IPv6)
+    {
+      [interfaceAddress6 setStringValue: [NSString stringWithFormat:
+        @"IPv6 Address: %@", addr]];
+    }
+  }
+}
+
+- (IBAction) selectSnapLength: (id) sender
+{
+  if ([snapLengthEnabled state] == NSOnState)
+  {
+    [snapLength setEnabled: YES];
+  }
+  else
+  {
+    [snapLength setStringValue: @""];
+    [snapLength setEnabled: NO];
+  }
+}
+
+- (IBAction) selectMaxPackets: (id) sender
+{
+  if ([numPacketsEnabled state] == NSOnState)
+  {
+    [numPackets setEnabled: YES];
+  }
+  else
+  {
+    [numPackets setStringValue: @""];
+    [numPackets setEnabled: NO];
+  }
+}
+
+- (IBAction) selectUseFilter: (id) sender
+{
+  if ([filterEnabled state] == NSOnState)
+  {
+    [allOrAny setEnabled: YES];
+    if ([filterPredicates count] == 0)
+    {
+      NAPCAPFilterViewContainer *c = [[NAPCAPFilterViewContainer alloc] initWithDocument: self];
+      [filterPredicates addObject: [c autorelease]];
+      [self colorizeFilterViews];
+    }
+    
+    int i;
+    for (i = 0; i < [filterPredicates count]; i++)
+    {
+      NAPCAPFilterViewContainer *c = [filterPredicates objectAtIndex: i];
+      [c setEnabled: YES];
+      [c setCanRemove: [filterPredicates count] > 1];
+    }
+  }
+  else
+  {
+    [allOrAny setEnabled: NO];
+    int i;
+    for (i = 0; i < [filterPredicates count]; i++)
+    {
+      [[filterPredicates objectAtIndex: i] setEnabled: NO];
+    }
+  }
+  [filterTableController reloadTableView];
+}
+
+// Delegated filter view actions
+
+- (void) colorizeFilterViews
+{
+  NSColor *color1 = [NSColor colorWithCalibratedRed: 239.0 / 255.0
+                                              green: 247.0 / 255.0
+                                               blue: 1.0
+                                              alpha: 1.0];
+  NSColor *color2 = [NSColor whiteColor];
+  
+  int i;
+  for (i = 0; i < [filterPredicates count]; i++)
+  {
+    NAPCAPFilterViewContainer *c = [filterPredicates objectAtIndex: i];
+    if (i & 1)
+    {
+      [c setBackground: color2];
+    }
+    else
+    {
+      [c setBackground: color1];
+    }
+    [c setCanRemove: [filterPredicates count] > 1];
+  }
+}
+
+- (void) addFilterPredicateAfter: (NAPCAPFilterViewContainer *) aContainer
+{
+  int i = [filterPredicates indexOfObject: aContainer];
+  NAPCAPFilterViewContainer *c = [[NAPCAPFilterViewContainer alloc] initWithDocument: self];
+  if (i > 0)
+  {
+    [filterPredicates insertObject: [c autorelease] atIndex: i + 1];
+  }
+  else
+  {
+    [filterPredicates addObject: [c autorelease]];
+  }
+  [self colorizeFilterViews];
+  [filterTableController reloadTableView];
+}
+
+- (void) removeFilterPredicate: (NAPCAPFilterViewContainer *) aContainer
+{
+  [filterPredicates removeObject: aContainer];
+  [self colorizeFilterViews];
+  [filterTableController reloadTableView];
 }
 
 // Toolbars
@@ -143,6 +357,10 @@
   {
     [item setLabel: @"Capture"];
     [item setPaletteLabel: @"Capture" ];
+    [item setTarget: self];
+    [item setAction: @selector(showCaptureSheet:)];
+    [item setImage: [NSImage imageNamed: @"ToolbarCapture"]];
+    [item setEnabled: YES];
   }
   else if ([itemIdentifier isEqual: NAToolbarSaveIdentifier])
   {
@@ -170,10 +388,20 @@
     NSToolbarFlexibleSpaceItemIdentifier, nil ];
 }
 
+- (BOOL) validateToolbarItem: (NSToolbarItem *) anItem
+{
+  return YES;
+}
+
 // NSTableViewDataSource protocol
 
 - (int) numberOfRowsInTableView: (NSTableView *) aTableView
 {
+  if (aTableView == filterTable)
+  {
+    return [filterPredicates count];
+  }
+
   int ret;
   if (captureSession == nil)
   {
@@ -203,7 +431,7 @@
   }
   if ([@"time" isEqual: identifier])
   {
-    return [packet date];
+    return [NSNumber numberWithDouble: [packet seconds]];
   }
   if ([@"length" isEqual: identifier])
   {
@@ -284,7 +512,14 @@
                                               NSModalPanelRunLoopMode, nil]];      
     }
   }
-  
+}
+
+// SubviewTableViewControllerDataSourceProtocol
+
+- (NSView *) tableView: (NSTableView *) tableView
+            viewForRow: (int) row
+{
+  return [[filterPredicates objectAtIndex: row] view];
 }
 
 @end
