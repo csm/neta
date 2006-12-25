@@ -14,7 +14,7 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>CapFile</string>
 			<key>CFBundleTypeName</key>
-			<string>PcapFile</string>
+			<string>PCAP File</string>
 			<key>CFBundleTypeOSTypes</key>
 			<array>
 				<string>????</string>

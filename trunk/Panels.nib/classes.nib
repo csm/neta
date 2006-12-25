@@ -10,6 +10,7 @@
                 selectUseFilter = id; 
                 showCaptureSheet = id; 
                 startCapture = id; 
+                stopCapture = id; 
             }; 
             CLASS = NADocument; 
             LANGUAGE = ObjC; 
@@ -18,11 +19,16 @@
                 cancelButton = NSButton; 
                 captureButton = NSButton; 
                 capturePanel = NSPanel; 
+                capturingNumber = NSTextField; 
+                capturingPanel = NSPanel; 
+                capturingProgress = NSProgressIndicator; 
+                capturingStop = NSButton; 
                 filterEnabled = NSButton; 
-                filterTable = NSTableView; 
-                filterTableColumn = NSTableColumn; 
+                filtersBox = NSBox; 
+                filtersView = NAFiltersView; 
                 interfaceAddress = NSTextField; 
                 interfaceAddress6 = NSTextField; 
+                interfaceBox = NSBox; 
                 interfaceDescription = NSTextField; 
                 interfaces = NSPopUpButton; 
                 loadingProgress = NSProgressIndicator; 
@@ -40,6 +46,7 @@
             }; 
             SUPERCLASS = NSDocument; 
         }, 
+        {CLASS = NAFiltersView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
         {CLASS = NAPCAPFilterView; LANGUAGE = ObjC; SUPERCLASS = NSView; }
     ); 
     IBVersion = 1; 

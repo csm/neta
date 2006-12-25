@@ -15,73 +15,48 @@
 
 @implementation NACaptureSession
 
-- (id) initWithDevice: (NANetworkDevice *) aDevice
-           snapLength: (unsigned) theSnapLength
-          promiscuous: (BOOL) bePromiscuous
-                error: (NSError **) outError
+- (id) initWithPipe: (FILE *) aPipe
+         maxCapture: (int) theMaxCapture
 {
   if ((self = [super init]) != nil)
   {
+    maxCapture = theMaxCapture;
     offline = NO;
     finished = NO;
     device = NULL;
     dumper = NULL;
-    tmpfiledes = -1;
-    tmpfile = NULL;
-    strcpy (tmpfilename, "/tmp/NACaptureSession.XXXXXXXX");
+    pipefile = aPipe;
+    captured = 0;
+    state = RUNNING_HELPER;
 
+    char c;
+    char errbuf[PCAP_ERRBUF_SIZE];
+    int n = fscanf (pipefile, "%c %[^\n\r]", &c, errbuf);
+    if (n == EOF)
+    {
+      [self release];
+      return nil;
+    }
+    NSLog (@"child message: %c %s", c, errbuf);
+    if (c == '-')
+    {
+      NSLog (@"Helper program returned error: %s", errbuf);
+      [self release];
+      return nil;
+    }
+    else if (c == '+')
+    {
+      strcpy (tmpfilename, errbuf);
+    }
+    else
+    {
+      NSLog (@"bad reply %c", c);
+      [self release];
+      return nil;
+    }
     packets = [[NSMutableArray alloc] init];
     if (packets == nil)
     {
-      [self release];
-      return nil;
-    }
-    
-    char errbuf[PCAP_ERRBUF_SIZE];
-    errbuf[0] = '\0';
-    captured = 0;
-    device = pcap_open_live ([[aDevice name] cStringUsingEncoding: NSISOLatin1StringEncoding],
-                             theSnapLength, bePromiscuous, 100,
-                             errbuf);
-    if (device == NULL)
-    {
-      NSLog (@"pcap_open_live: %s", errbuf);
-      [self release];
-      *outError = [[NSError alloc] initWithDomain: NSCocoaErrorDomain
-                                             code: NSFileWriteUnknownError
-                                         userInfo: nil];
-      return nil;
-    }
-    
-    tmpfiledes = mkstemp (tmpfilename);
-    if (tmpfiledes == -1)
-    {
-      NSLog (@"mkstemp: %s", strerror (errno));
-      [self release];
-      *outError = [[NSError alloc] initWithDomain: NSPOSIXErrorDomain
-                                             code: errno
-                                         userInfo: nil];
-      return nil;
-    }
-    tmpfile = fdopen (tmpfiledes, "w");
-    if (tmpfile == NULL)
-    {
-      NSLog (@"fdopen: %s", strerror (errno));
-      [self release];
-      *outError = [[NSError alloc] initWithDomain: NSPOSIXErrorDomain
-                                             code: errno
-                                         userInfo: nil];
-      return nil;
-    }
-    
-    dumper = pcap_dump_fopen (device, tmpfile);
-    if (dumper == NULL)
-    {
-      char *err = pcap_geterr (device);
-      NSLog (@"pcap_dumper_fopen: %s", err);
-      *outError = [[NSError alloc] initWithDomain: NSCocoaErrorDomain
-                                             code: NSFileWriteUnknownError
-                                         userInfo: nil];
       [self release];
       return nil;
     }
@@ -95,12 +70,12 @@
 {
   if ((self = [super init]) != nil)
   {
+    maxCapture = -1;
     offline = YES;
     finished = NO;
     device = NULL;
     dumper = NULL;
-    tmpfiledes = -1;
-    tmpfile = NULL;
+    state = READING_PCAP_FILE;
     
     packets = [[NSMutableArray alloc] init];
     if (packets == nil)
@@ -152,7 +127,7 @@
 
 - (double) percentThroughSavefile
 {
-  if (!offline || device == NULL)
+  if (device == NULL)
   {
     return 0.0;
   }
@@ -168,7 +143,21 @@
 
 - (BOOL) isFinished
 {
-  return finished;
+  return (state == FINISHED);
+}
+
+- (void) stopLiveCapture
+{
+  if (pipefile != NULL)
+  {
+    fprintf (pipefile, "x\n");
+    fflush (pipefile);
+  }
+}
+
+- (BOOL) liveCaptureFinished
+{
+  return (state != RUNNING_HELPER);
 }
 
 // C-to-ObjC hoop to jump through.
@@ -182,19 +171,61 @@ session_do_loop (u_char *user, const struct pcap_pkthdr *h,
 
 - (void) loop: (id) argument
 {
+  if (state == RUNNING_HELPER)
+  {
+    int num;
+    fprintf (pipefile, "n\n");
+    fflush (pipefile);
+    int n = fscanf (pipefile, "n %d", &num);
+    if (n > 0)
+    {
+      captured = num;
+    }
+    else
+    {
+      NSLog (@"helper reply scan returned %d (%s)", n, strerror (errno));
+      return;
+    }
+    
+    num = 0;
+    fprintf (pipefile, "r\n");
+    n = fscanf (pipefile, "r %d", &num);
+    if (n > 0)
+    {
+      if (num == 0)
+      {
+        state = FINISHED_HELPER;
+      }
+    }
+    else
+    {
+      NSLog (@"helper reply scan returned %d (%s)", n, strerror (errno));
+      return;
+    }
+    return;
+  }
+
   if (device == NULL)
   {
     return;
   }
-
-  NSLog(@"calling pcap_dispatch...");
-  int n = pcap_dispatch (device, 10, session_do_loop, (u_char *) self);
-  NSLog(@"pcap_dispatch returned %d", n);
-  if (n == 0 && offline)
+  
+  if (maxCapture > 0 && [packets count] >= maxCapture)
   {
-    finished = YES;
+    state = FINISHED;
+    [argument packetsCaptured: self];
+    return;
   }
-  NSLog(@"finished? %d", finished);
+
+  //NSLog(@"calling pcap_dispatch...");
+  int n = 10;
+  n = pcap_dispatch (device, n, session_do_loop, (u_char *) self);
+  //NSLog(@"pcap_dispatch returned %d", n);
+  if (n == 0)
+  {
+    state = FINISHED;
+  }
+  //NSLog(@"finished? %d", finished);
   if (argument != nil
       && [argument conformsToProtocol: @protocol(NACaptureSessionCallback)])
   {
@@ -215,14 +246,35 @@ session_do_loop (u_char *user, const struct pcap_pkthdr *h,
   }
 }
 
+- (int) maxCapture
+{
+  return maxCapture;
+}
+
 - (unsigned) captured
 {
+  if (state == RUNNING_HELPER)
+  {
+    return captured;
+  }
   return [packets count];
 }
 
 - (NACapturedPacket *) capturedPacketForIndex: (int) index
 {
   return [packets objectAtIndex: index];
+}
+
+- (void) loadTempFile
+{
+  char errbuf[PCAP_ERRBUF_SIZE];
+  device = pcap_open_offline (tmpfilename, errbuf);
+  if (device == NULL)
+  {
+    NSLog (@"pcap_open_offline: %s", errbuf);
+    return;
+  }
+  state = READING_PCAP_FILE;
 }
 
 - (void) saveToURL: (NSURL *) anUrl
@@ -290,16 +342,6 @@ session_do_loop (u_char *user, const struct pcap_pkthdr *h,
   if (device != NULL)
   {
     pcap_close (device);
-  }
-  if (tmpfile != NULL)
-  {
-    fclose (tmpfile);
-    unlink (tmpfilename);
-    tmpfiledes = -1;
-  }
-  if (tmpfiledes != -1)
-  {
-    close (tmpfiledes);
   }
   [super dealloc];
 }
