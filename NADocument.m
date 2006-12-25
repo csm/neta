@@ -65,7 +65,7 @@
               ofType: (NSString *) aType
                error: (NSError **) outError
 {
-  if (![aType isEqual: @"PcapFile"] || ![anUrl isFileURL])
+  if (![anUrl isFileURL])
   {
     return NO;
   }
