@@ -70,13 +70,13 @@
 - (NSString *) predicate
 {
   NSMutableString *str = [NSMutableString string];
-  NSString *x = [test stringValue];
+  NSString *x = [[test selectedItem] title];
   if ([x isEqual: @"is not"])
   {
-    [str appendString: "not "];
+    [str appendString: @"not "];
   }
     
-  x = [who stringValue];
+  x = [[who selectedItem] title];
   if ([x isEqual: @"Source"])
   {
     [str appendString: @"src "];
@@ -86,7 +86,7 @@
     [str appendString: @"dst "];
   }
   
-  x = [test stringValue];
+  x = [[test selectedItem] title];
   if ([x isEqual: @"Port"])
   {
     [str appendString: @"port "];
@@ -96,7 +96,8 @@
     [str appendString: @"host "];
   }
   
-  NSMutableString *s = [NSMutableString stringWithString: [value stringValue]];
+  NSMutableString *s = [NSMutableString string];
+  [s appendString: [value stringValue]];
   if ([s length] == 0)
   {
     return nil;
@@ -106,8 +107,7 @@
                         options: 0
                           range: NSMakeRange(0, [s length])];
   [str appendString: s];
-  
-  return [s stringWithString: str];
+  return [NSString stringWithString: str];
 }
 
 @end

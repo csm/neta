@@ -8,11 +8,12 @@
 
 
 #import <Cocoa/Cocoa.h>
+#import <Security/Authorization.h>
 #import "NACaptureSession.h"
-#import "SubviewTableViewController.h"
 #import "NAPCAPFilterViewContainer.h"
+#import "NAFiltersView.h"
 
-@interface NADocument : NSDocument < NACaptureSessionCallback, SubviewTableViewControllerDataSourceProtocol, NAFilterCallback >
+@interface NADocument : NSDocument < NACaptureSessionCallback, NAFilterCallback >
 {
   IBOutlet NSOutlineView *packetDetail;
   IBOutlet NSTextView *packetHex;
@@ -34,20 +35,30 @@
   IBOutlet NSButton *numPacketsEnabled;
   IBOutlet NSTextField *numPackets;
   IBOutlet NSPopUpButton *allOrAny;
-  IBOutlet NSTableView *filterTable;
-  IBOutlet NSTableColumn *filterTableColumn;
+  //IBOutlet NSTableView *filterTable;
+  //IBOutlet NSTableColumn *filterTableColumn;
   IBOutlet NSButton *filterEnabled;
   IBOutlet NSButton *cancelButton;
   IBOutlet NSButton *captureButton;
-  
+  IBOutlet NAFiltersView *filtersView;
+  IBOutlet NSBox *filtersBox;
+  IBOutlet NSBox *interfaceBox;
+
+  IBOutlet NSPanel *capturingPanel;
+  IBOutlet NSTextField *capturingNumber;
+  IBOutlet NSProgressIndicator *capturingProgress;
+  IBOutlet NSButton *capturingStop;
+
   NACaptureSession *captureSession;
-  SubviewTableViewController *filterTableController;
+  //SubviewTableViewController *filterTableController;
   NSArray *captureDevices;
   NSMutableArray *filterPredicates;
+  AuthorizationRef pcapAuth;
 }
 
 // Actions.
 
+- (IBAction) stopCapture: (id) sender;
 - (IBAction) startCapture: (id) sender;
 - (IBAction) cancelCaptureSheet: (id) sender;
 - (IBAction) selectInterface: (id) sender;
@@ -57,8 +68,8 @@
 
 // Delegated filter view actions.
 
-// Re-calculate the alternating filter row colors.
-- (void) colorizeFilterViews;
+// Re-calculate the filter views.
+- (void) redoFilterViews;
 
 // Adds a new filter view, after the specified filter view (or at the end if
 // the given filter view is nil or not in the list).
@@ -76,6 +87,9 @@
 - (void) beginOfflineSheet: (id) arg;
 - (void) packetsTableNotify: (NSNotification *) n;
 - (void) showCaptureSheet: (id) sender;
+
+// Live capture loop method.
+- (void) captureLoop: (id) arg;
 
 // Toolbars
 
