@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		70303E790B3A03CF0034D4FA /* NAController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70303E720B3A03CF0034D4FA /* NAController.m */; };
+		700BD6360B4AE97B006D9F18 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = 700BD6350B4AE97B006D9F18 /* COPYING */; };
 		70303E7A0B3A03CF0034D4FA /* NAInternetAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 70303E740B3A03CF0034D4FA /* NAInternetAddress.m */; };
 		70303E7B0B3A03CF0034D4FA /* NANetworkDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 70303E760B3A03CF0034D4FA /* NANetworkDevice.m */; };
 		70303E7C0B3A03CF0034D4FA /* NAUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 70303E780B3A03CF0034D4FA /* NAUtils.m */; };
@@ -44,7 +44,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 70E719DC0B3E5FAC000EC368 /* CaptureHelper */;
+			remoteGlobalIDString = 70E719DC0B3E5FAC000EC368;
 			remoteInfo = CaptureHelper;
 		};
 /* End PBXContainerItemProxy section */
@@ -62,9 +62,8 @@
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32DBCF750370BD2300C91783 /* Network Analyzer_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Network Analyzer_Prefix.pch"; sourceTree = "<group>"; };
+		700BD6350B4AE97B006D9F18 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
 		70303E700B3A03CF0034D4FA /* NAConstants.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NAConstants.h; sourceTree = "<group>"; };
-		70303E710B3A03CF0034D4FA /* NAController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NAController.h; sourceTree = "<group>"; };
-		70303E720B3A03CF0034D4FA /* NAController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NAController.m; sourceTree = "<group>"; };
 		70303E730B3A03CF0034D4FA /* NAInternetAddress.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NAInternetAddress.h; sourceTree = "<group>"; };
 		70303E740B3A03CF0034D4FA /* NAInternetAddress.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NAInternetAddress.m; sourceTree = "<group>"; };
 		70303E750B3A03CF0034D4FA /* NANetworkDevice.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NANetworkDevice.h; sourceTree = "<group>"; };
@@ -192,8 +191,6 @@
 				70303F540B3A547A0034D4FA /* NACaptureSession.h */,
 				70303F550B3A547A0034D4FA /* NACaptureSession.m */,
 				70303E700B3A03CF0034D4FA /* NAConstants.h */,
-				70303E710B3A03CF0034D4FA /* NAController.h */,
-				70303E720B3A03CF0034D4FA /* NAController.m */,
 				2A37F4AEFDCFA73011CA2CEA /* NADocument.h */,
 				2A37F4ACFDCFA73011CA2CEA /* NADocument.m */,
 				70303E730B3A03CF0034D4FA /* NAInternetAddress.h */,
@@ -225,6 +222,7 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				700BD6350B4AE97B006D9F18 /* COPYING */,
 				7030406B0B3B2EC30034D4FA /* ToolbarCapture.tiff */,
 				70303EB60B3A19900034D4FA /* CapFile.icns */,
 				70303EA20B3A08120034D4FA /* AppIcon.icns */,
@@ -369,6 +367,7 @@
 				7030406C0B3B2EC30034D4FA /* ToolbarCapture.tiff in Resources */,
 				703041C30B3B58A00034D4FA /* Panels.nib in Resources */,
 				7030429C0B3B827D0034D4FA /* FilterView.nib in Resources */,
+				700BD6360B4AE97B006D9F18 /* COPYING in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,7 +429,6 @@
 			files = (
 				8D15AC310486D014006FF6A4 /* NADocument.m in Sources */,
 				8D15AC320486D014006FF6A4 /* main.m in Sources */,
-				70303E790B3A03CF0034D4FA /* NAController.m in Sources */,
 				70303E7A0B3A03CF0034D4FA /* NAInternetAddress.m in Sources */,
 				70303E7B0B3A03CF0034D4FA /* NANetworkDevice.m in Sources */,
 				70303E7C0B3A03CF0034D4FA /* NAUtils.m in Sources */,
