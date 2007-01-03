@@ -46,6 +46,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
     [filtersView addSubview: [c view]];
     [c setEnabled: NO];
     [self redoFilterViews];
+    plugins = [NAPluginController controller];
   }
   return self;
 }

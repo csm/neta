@@ -9,6 +9,28 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>naplugin</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>PlugIn</string>
+			<key>CFBundleTypeName</key>
+			<string>Network Analyzer Plugin</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>BNDL</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+			<key>LSTypeIsPackage</key>
+			<true/>
+			<key>NSDocumentClass</key>
+			<string>NAPluginDocument</string>
+			<key>NSPersistentStoreTypeKey</key>
+			<string>Binary</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
 				<string>cap</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
@@ -30,7 +52,7 @@
 	<key>CFBundleIconFile</key>
 	<string>AppIcon</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.metastatic.Network Analyzer</string>
+	<string>net.unmodern.NetworkAnalyzer</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

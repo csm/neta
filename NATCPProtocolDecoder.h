@@ -1,5 +1,5 @@
-/* NAUtils.h -- utility methods.
-   Copyright (C) 2006, 2007  Casey Marshall <casey.s.marshall@gmail.com>
+/* NATCPProtocolDecoder.h -- decoder protocol for layers above TCP.
+   Copyright (C) 2007  Casey Marshall <casey.s.marshall@gmail.com>
 
 This file is a part of Network Analyzer.
 
@@ -42,22 +42,16 @@ which carries forward this exception.  */
 
 
 #import <Cocoa/Cocoa.h>
+#import "NAProtocolDecoder.h"
 
+@protocol NATCPProtocolDecoder < NAProtocolDecoder >
 
-@interface NAUtils : NSObject {
+- (BOOL) matchData: (NSData *) theData
+        sourcePort: (unsigned) theSourcePort
+   destinationPort: (unsigned) theDestinationPort;
 
-}
-
-// Format the given bytes like `hexdump -C', that is, print out the
-// contents of the given memory formatted with:
-//
-//   - The offset of the bytes, in hex
-//   - Sixteen bytes, individually encoded in hexadecimal
-//   - The same sixteen bytes, as printable characters, or '.'
-//
-// on each line. Each line presents sixteen bytes, except possibly
-// the final line.
-+ (NSString *) hexdump: (char *) theBytes length: (unsigned) theLength;
-+ (NSString *) hexdump: (NSData *) theData;
+- (NSArray *) decodeData: (NSData *) theData
+              sourcePort: (unsigned) theSourcePort
+         destinationPort: (unsigned) theDestinationPort;
 
 @end
