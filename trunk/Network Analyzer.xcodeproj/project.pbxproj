@@ -8,9 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		700BD6360B4AE97B006D9F18 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = 700BD6350B4AE97B006D9F18 /* COPYING */; };
-		70303E7A0B3A03CF0034D4FA /* NAInternetAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 70303E740B3A03CF0034D4FA /* NAInternetAddress.m */; };
+		700BD6470B4AEBCD006D9F18 /* NAProtocols.h in Headers */ = {isa = PBXBuildFile; fileRef = 703042880B3B68A80034D4FA /* NAProtocols.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		700BD6850B4AEE57006D9F18 /* NAPluginDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 700BD6840B4AEE57006D9F18 /* NAPluginDocument.m */; };
+		700BD69B0B4B02F5006D9F18 /* NAProtocolDecoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 700BD69A0B4B02F5006D9F18 /* NAProtocolDecoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		700BD6A80B4B0C27006D9F18 /* NAInternetAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 70303E740B3A03CF0034D4FA /* NAInternetAddress.m */; };
+		700BD6C00B4B0E92006D9F18 /* NAPlugin.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 700BD6420B4AEB9E006D9F18 /* NAPlugin.framework */; };
+		700BD6C10B4B0EA9006D9F18 /* NAPlugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700BD6420B4AEB9E006D9F18 /* NAPlugin.framework */; };
+		700BD6D20B4B0EFB006D9F18 /* NAInternetAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 70303E730B3A03CF0034D4FA /* NAInternetAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		700BD6DE0B4B0F9F006D9F18 /* NAUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 70303E770B3A03CF0034D4FA /* NAUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		700BD6DF0B4B0FA6006D9F18 /* NAUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 70303E780B3A03CF0034D4FA /* NAUtils.m */; };
 		70303E7B0B3A03CF0034D4FA /* NANetworkDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 70303E760B3A03CF0034D4FA /* NANetworkDevice.m */; };
-		70303E7C0B3A03CF0034D4FA /* NAUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 70303E780B3A03CF0034D4FA /* NAUtils.m */; };
 		70303E8E0B3A07BD0034D4FA /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70303E8D0B3A07BD0034D4FA /* SenTestingKit.framework */; };
 		70303E9D0B3A07E30034D4FA /* NAUtilsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 70303E920B3A07E30034D4FA /* NAUtilsTest.m */; };
 		70303E9E0B3A07E30034D4FA /* NAUtilsTest2.m in Sources */ = {isa = PBXBuildFile; fileRef = 70303E940B3A07E30034D4FA /* NAUtilsTest2.m */; };
@@ -26,6 +33,21 @@
 		703041C30B3B58A00034D4FA /* Panels.nib in Resources */ = {isa = PBXBuildFile; fileRef = 703041C20B3B58A00034D4FA /* Panels.nib */; };
 		7030429C0B3B827D0034D4FA /* FilterView.nib in Resources */ = {isa = PBXBuildFile; fileRef = 7030429B0B3B827D0034D4FA /* FilterView.nib */; };
 		7030429F0B3B844B0034D4FA /* NAPCAPFilterViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7030429E0B3B844B0034D4FA /* NAPCAPFilterViewContainer.m */; };
+		70351B300B4B142E0091D42A /* NAInternetProtocolDecoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 70351B2F0B4B142E0091D42A /* NAInternetProtocolDecoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		70351B500B4B16EC0091D42A /* NetUnmodernIPProtocolDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 70351B4F0B4B16EC0091D42A /* NetUnmodernIPProtocolDecoder.m */; };
+		70351B580B4B18690091D42A /* IPDecoder.naplugin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70351B410B4B165D0091D42A /* IPDecoder.naplugin */; };
+		70351BAE0B4B21150091D42A /* NAPluginController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70351BAC0B4B21150091D42A /* NAPluginController.h */; };
+		70351BAF0B4B21150091D42A /* NAPluginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70351BAD0B4B21150091D42A /* NAPluginController.m */; };
+		70351C230B4B3ED70091D42A /* NetUnmodernTCPDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 70351C220B4B3ED70091D42A /* NetUnmodernTCPDecoder.m */; };
+		70351C340B4B407D0091D42A /* TCPDecoder.naplugin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70351C1A0B4B3E620091D42A /* TCPDecoder.naplugin */; };
+		70351C6A0B4B40ED0091D42A /* NAAbstractInternetProtocolDecoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 70351C680B4B40ED0091D42A /* NAAbstractInternetProtocolDecoder.h */; };
+		70351C6B0B4B40ED0091D42A /* NAAbstractInternetProtocolDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 70351C690B4B40ED0091D42A /* NAAbstractInternetProtocolDecoder.m */; };
+		70351CAD0B4B449F0091D42A /* NetUnmodernIPv6Decoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 70351CAC0B4B449F0091D42A /* NetUnmodernIPv6Decoder.m */; };
+		70351CBE0B4B458B0091D42A /* IPv6Decoder.naplugin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70351CA60B4B44240091D42A /* IPv6Decoder.naplugin */; };
+		70351CED0B4C3E200091D42A /* NAPlugin.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70351CEB0B4C3E200091D42A /* NAPlugin.h */; };
+		70351CEE0B4C3E200091D42A /* NAPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 70351CEC0B4C3E200091D42A /* NAPlugin.m */; };
+		70351D3A0B4C5B2D0091D42A /* PlugIn.icns in Resources */ = {isa = PBXBuildFile; fileRef = 70351D390B4C5B2D0091D42A /* PlugIn.icns */; };
+		70AEB0C70B4B139F007D1494 /* NATCPProtocolDecoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 70AEB0C60B4B139F007D1494 /* NATCPProtocolDecoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70BB753D0B3E060A00334A9E /* NAFiltersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BB753C0B3E060A00334A9E /* NAFiltersView.m */; };
 		70E7194E0B3E3C37000EC368 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70E719190B3E3C37000EC368 /* Security.framework */; };
 		70E719E40B3E6039000EC368 /* CaptureHelper in Resources */ = {isa = PBXBuildFile; fileRef = 70E719DD0B3E5FAC000EC368 /* CaptureHelper */; };
@@ -40,6 +62,55 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		700BD6A20B4B0BCF006D9F18 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 700BD6410B4AEB9E006D9F18;
+			remoteInfo = NAPlugin;
+		};
+		70351B590B4B18830091D42A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 70351B400B4B165D0091D42A /* IPDecoder */;
+			remoteInfo = IPDecoder;
+		};
+		70351B5B0B4B18870091D42A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 700BD6410B4AEB9E006D9F18 /* NAPlugin */;
+			remoteInfo = NAPlugin;
+		};
+		70351C1F0B4B3E930091D42A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 700BD6410B4AEB9E006D9F18 /* NAPlugin */;
+			remoteInfo = NAPlugin;
+		};
+		70351C350B4B40850091D42A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 70351C190B4B3E620091D42A /* TCPDecoder */;
+			remoteInfo = TCPDecoder;
+		};
+		70351CB80B4B457E0091D42A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 700BD6410B4AEB9E006D9F18 /* NAPlugin */;
+			remoteInfo = NAPlugin;
+		};
+		70351CC10B4B45930091D42A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 70351CA50B4B44240091D42A /* IPv6Decoder */;
+			remoteInfo = IPv6Decoder;
+		};
 		70E719E20B3E600F000EC368 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
@@ -48,6 +119,33 @@
 			remoteInfo = CaptureHelper;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		700BD6BE0B4B0E7C006D9F18 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				700BD6C00B4B0E92006D9F18 /* NAPlugin.framework in CopyFiles */,
+				70351BAE0B4B21150091D42A /* NAPluginController.h in CopyFiles */,
+				70351CED0B4C3E200091D42A /* NAPlugin.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70351B550B4B184B0091D42A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				70351CBE0B4B458B0091D42A /* IPv6Decoder.naplugin in CopyFiles */,
+				70351C340B4B407D0091D42A /* TCPDecoder.naplugin in CopyFiles */,
+				70351B580B4B18690091D42A /* IPDecoder.naplugin in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		089C1660FE840EACC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -63,6 +161,11 @@
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32DBCF750370BD2300C91783 /* Network Analyzer_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Network Analyzer_Prefix.pch"; sourceTree = "<group>"; };
 		700BD6350B4AE97B006D9F18 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
+		700BD6420B4AEB9E006D9F18 /* NAPlugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NAPlugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		700BD6430B4AEB9E006D9F18 /* NAPlugin-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "NAPlugin-Info.plist"; sourceTree = "<group>"; };
+		700BD6830B4AEE57006D9F18 /* NAPluginDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAPluginDocument.h; sourceTree = "<group>"; };
+		700BD6840B4AEE57006D9F18 /* NAPluginDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAPluginDocument.m; sourceTree = "<group>"; };
+		700BD69A0B4B02F5006D9F18 /* NAProtocolDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAProtocolDecoder.h; sourceTree = "<group>"; };
 		70303E700B3A03CF0034D4FA /* NAConstants.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NAConstants.h; sourceTree = "<group>"; };
 		70303E730B3A03CF0034D4FA /* NAInternetAddress.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NAInternetAddress.h; sourceTree = "<group>"; };
 		70303E740B3A03CF0034D4FA /* NAInternetAddress.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NAInternetAddress.m; sourceTree = "<group>"; };
@@ -99,6 +202,27 @@
 		7030429B0B3B827D0034D4FA /* FilterView.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = FilterView.nib; sourceTree = "<group>"; };
 		7030429D0B3B844B0034D4FA /* NAPCAPFilterViewContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAPCAPFilterViewContainer.h; sourceTree = "<group>"; };
 		7030429E0B3B844B0034D4FA /* NAPCAPFilterViewContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAPCAPFilterViewContainer.m; sourceTree = "<group>"; };
+		70351B2F0B4B142E0091D42A /* NAInternetProtocolDecoder.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NAInternetProtocolDecoder.h; sourceTree = "<group>"; };
+		70351B410B4B165D0091D42A /* IPDecoder.naplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IPDecoder.naplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		70351B420B4B165D0091D42A /* IPDecoder-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "IPDecoder-Info.plist"; sourceTree = "<group>"; };
+		70351B4E0B4B16EC0091D42A /* NetUnmodernIPProtocolDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetUnmodernIPProtocolDecoder.h; sourceTree = "<group>"; };
+		70351B4F0B4B16EC0091D42A /* NetUnmodernIPProtocolDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetUnmodernIPProtocolDecoder.m; sourceTree = "<group>"; };
+		70351BAC0B4B21150091D42A /* NAPluginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAPluginController.h; sourceTree = "<group>"; };
+		70351BAD0B4B21150091D42A /* NAPluginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAPluginController.m; sourceTree = "<group>"; };
+		70351C1A0B4B3E620091D42A /* TCPDecoder.naplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TCPDecoder.naplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		70351C1B0B4B3E620091D42A /* TCPDecoder-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "TCPDecoder-Info.plist"; sourceTree = "<group>"; };
+		70351C210B4B3ED70091D42A /* NetUnmodernTCPDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetUnmodernTCPDecoder.h; sourceTree = "<group>"; };
+		70351C220B4B3ED70091D42A /* NetUnmodernTCPDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetUnmodernTCPDecoder.m; sourceTree = "<group>"; };
+		70351C680B4B40ED0091D42A /* NAAbstractInternetProtocolDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAAbstractInternetProtocolDecoder.h; sourceTree = "<group>"; };
+		70351C690B4B40ED0091D42A /* NAAbstractInternetProtocolDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAAbstractInternetProtocolDecoder.m; sourceTree = "<group>"; };
+		70351CA60B4B44240091D42A /* IPv6Decoder.naplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IPv6Decoder.naplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		70351CA70B4B44240091D42A /* IPv6Decoder-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "IPv6Decoder-Info.plist"; sourceTree = "<group>"; };
+		70351CAB0B4B449F0091D42A /* NetUnmodernIPv6Decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetUnmodernIPv6Decoder.h; sourceTree = "<group>"; };
+		70351CAC0B4B449F0091D42A /* NetUnmodernIPv6Decoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetUnmodernIPv6Decoder.m; sourceTree = "<group>"; };
+		70351CEB0B4C3E200091D42A /* NAPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAPlugin.h; sourceTree = "<group>"; };
+		70351CEC0B4C3E200091D42A /* NAPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAPlugin.m; sourceTree = "<group>"; };
+		70351D390B4C5B2D0091D42A /* PlugIn.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlugIn.icns; sourceTree = "<group>"; };
+		70AEB0C60B4B139F007D1494 /* NATCPProtocolDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NATCPProtocolDecoder.h; sourceTree = "<group>"; };
 		70BB753B0B3E060A00334A9E /* NAFiltersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAFiltersView.h; sourceTree = "<group>"; };
 		70BB753C0B3E060A00334A9E /* NAFiltersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAFiltersView.m; sourceTree = "<group>"; };
 		70E719190B3E3C37000EC368 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
@@ -109,11 +233,39 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		700BD6400B4AEB9E006D9F18 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		70303E850B3A07820034D4FA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				70303E8E0B3A07BD0034D4FA /* SenTestingKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70351B3F0B4B165D0091D42A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70351C180B4B3E620091D42A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70351CA40B4B44240091D42A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +280,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				700BD6C10B4B0EA9006D9F18 /* NAPlugin.framework in Frameworks */,
 				8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */,
 				70E7194E0B3E3C37000EC368 /* Security.framework in Frameworks */,
 			);
@@ -162,6 +315,10 @@
 				8D15AC370486D014006FF6A4 /* Network Analyzer.app */,
 				70303E880B3A07820034D4FA /* Unit Tests.octest */,
 				70E719DD0B3E5FAC000EC368 /* CaptureHelper */,
+				700BD6420B4AEB9E006D9F18 /* NAPlugin.framework */,
+				70351B410B4B165D0091D42A /* IPDecoder.naplugin */,
+				70351C1A0B4B3E620091D42A /* TCPDecoder.naplugin */,
+				70351CA60B4B44240091D42A /* IPv6Decoder.naplugin */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -169,6 +326,10 @@
 		2A37F4AAFDCFA73011CA2CEA /* Network Analyzer */ = {
 			isa = PBXGroup;
 			children = (
+				70351CA10B4B43FD0091D42A /* IPv6Decoder */,
+				70351C150B4B3E3E0091D42A /* TCPDecoder */,
+				70351B4D0B4B16AC0091D42A /* IPDecoder Classes */,
+				700BD6910B4AEF97006D9F18 /* PlugIn Support */,
 				70E719EB0B3E6060000EC368 /* Capture Helper */,
 				70303E800B3A07680034D4FA /* Unit Tests */,
 				2A37F4ABFDCFA73011CA2CEA /* Classes */,
@@ -179,6 +340,10 @@
 				70303E890B3A07820034D4FA /* Unit Tests-Info.plist */,
 				703041C20B3B58A00034D4FA /* Panels.nib */,
 				7030429B0B3B827D0034D4FA /* FilterView.nib */,
+				700BD6430B4AEB9E006D9F18 /* NAPlugin-Info.plist */,
+				70351B420B4B165D0091D42A /* IPDecoder-Info.plist */,
+				70351C1B0B4B3E620091D42A /* TCPDecoder-Info.plist */,
+				70351CA70B4B44240091D42A /* IPv6Decoder-Info.plist */,
 			);
 			name = "Network Analyzer";
 			sourceTree = "<group>";
@@ -193,19 +358,20 @@
 				70303E700B3A03CF0034D4FA /* NAConstants.h */,
 				2A37F4AEFDCFA73011CA2CEA /* NADocument.h */,
 				2A37F4ACFDCFA73011CA2CEA /* NADocument.m */,
-				70303E730B3A03CF0034D4FA /* NAInternetAddress.h */,
-				70303E740B3A03CF0034D4FA /* NAInternetAddress.m */,
 				70303E750B3A03CF0034D4FA /* NANetworkDevice.h */,
 				70303E760B3A03CF0034D4FA /* NANetworkDevice.m */,
 				70303FEC0B3B145F0034D4FA /* NAPCAPFilterView.h */,
 				70303FED0B3B145F0034D4FA /* NAPCAPFilterView.m */,
 				7030429D0B3B844B0034D4FA /* NAPCAPFilterViewContainer.h */,
 				7030429E0B3B844B0034D4FA /* NAPCAPFilterViewContainer.m */,
-				703042880B3B68A80034D4FA /* NAProtocols.h */,
-				70303E770B3A03CF0034D4FA /* NAUtils.h */,
-				70303E780B3A03CF0034D4FA /* NAUtils.m */,
 				70BB753B0B3E060A00334A9E /* NAFiltersView.h */,
 				70BB753C0B3E060A00334A9E /* NAFiltersView.m */,
+				700BD6830B4AEE57006D9F18 /* NAPluginDocument.h */,
+				700BD6840B4AEE57006D9F18 /* NAPluginDocument.m */,
+				70351BAC0B4B21150091D42A /* NAPluginController.h */,
+				70351BAD0B4B21150091D42A /* NAPluginController.m */,
+				70351CEB0B4C3E200091D42A /* NAPlugin.h */,
+				70351CEC0B4C3E200091D42A /* NAPlugin.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -222,6 +388,7 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				70351D390B4C5B2D0091D42A /* PlugIn.icns */,
 				700BD6350B4AE97B006D9F18 /* COPYING */,
 				7030406B0B3B2EC30034D4FA /* ToolbarCapture.tiff */,
 				70303EB60B3A19900034D4FA /* CapFile.icns */,
@@ -244,6 +411,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		700BD6910B4AEF97006D9F18 /* PlugIn Support */ = {
+			isa = PBXGroup;
+			children = (
+				70351B2F0B4B142E0091D42A /* NAInternetProtocolDecoder.h */,
+				700BD69A0B4B02F5006D9F18 /* NAProtocolDecoder.h */,
+				70303E730B3A03CF0034D4FA /* NAInternetAddress.h */,
+				70303E740B3A03CF0034D4FA /* NAInternetAddress.m */,
+				703042880B3B68A80034D4FA /* NAProtocols.h */,
+				70303E770B3A03CF0034D4FA /* NAUtils.h */,
+				70303E780B3A03CF0034D4FA /* NAUtils.m */,
+				70AEB0C60B4B139F007D1494 /* NATCPProtocolDecoder.h */,
+				70351C680B4B40ED0091D42A /* NAAbstractInternetProtocolDecoder.h */,
+				70351C690B4B40ED0091D42A /* NAAbstractInternetProtocolDecoder.m */,
+			);
+			name = "PlugIn Support";
+			sourceTree = "<group>";
+		};
 		70303E800B3A07680034D4FA /* Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -263,6 +447,33 @@
 			name = "Unit Tests";
 			sourceTree = "<group>";
 		};
+		70351B4D0B4B16AC0091D42A /* IPDecoder Classes */ = {
+			isa = PBXGroup;
+			children = (
+				70351B4E0B4B16EC0091D42A /* NetUnmodernIPProtocolDecoder.h */,
+				70351B4F0B4B16EC0091D42A /* NetUnmodernIPProtocolDecoder.m */,
+			);
+			name = "IPDecoder Classes";
+			sourceTree = "<group>";
+		};
+		70351C150B4B3E3E0091D42A /* TCPDecoder */ = {
+			isa = PBXGroup;
+			children = (
+				70351C210B4B3ED70091D42A /* NetUnmodernTCPDecoder.h */,
+				70351C220B4B3ED70091D42A /* NetUnmodernTCPDecoder.m */,
+			);
+			name = TCPDecoder;
+			sourceTree = "<group>";
+		};
+		70351CA10B4B43FD0091D42A /* IPv6Decoder */ = {
+			isa = PBXGroup;
+			children = (
+				70351CAB0B4B449F0091D42A /* NetUnmodernIPv6Decoder.h */,
+				70351CAC0B4B449F0091D42A /* NetUnmodernIPv6Decoder.m */,
+			);
+			name = IPv6Decoder;
+			sourceTree = "<group>";
+		};
 		70E719EB0B3E6060000EC368 /* Capture Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,7 +484,42 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		700BD63D0B4AEB9E006D9F18 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				700BD6470B4AEBCD006D9F18 /* NAProtocols.h in Headers */,
+				700BD69B0B4B02F5006D9F18 /* NAProtocolDecoder.h in Headers */,
+				700BD6D20B4B0EFB006D9F18 /* NAInternetAddress.h in Headers */,
+				700BD6DE0B4B0F9F006D9F18 /* NAUtils.h in Headers */,
+				70AEB0C70B4B139F007D1494 /* NATCPProtocolDecoder.h in Headers */,
+				70351B300B4B142E0091D42A /* NAInternetProtocolDecoder.h in Headers */,
+				70351C6A0B4B40ED0091D42A /* NAAbstractInternetProtocolDecoder.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		700BD6410B4AEB9E006D9F18 /* NAPlugin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 700BD6440B4AEB9F006D9F18 /* Build configuration list for PBXNativeTarget "NAPlugin" */;
+			buildPhases = (
+				700BD63D0B4AEB9E006D9F18 /* Headers */,
+				700BD63E0B4AEB9E006D9F18 /* Resources */,
+				700BD63F0B4AEB9E006D9F18 /* Sources */,
+				700BD6400B4AEB9E006D9F18 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NAPlugin;
+			productName = NAPlugin;
+			productReference = 700BD6420B4AEB9E006D9F18 /* NAPlugin.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		70303E870B3A07820034D4FA /* Unit Tests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 70303E8A0B3A07830034D4FA /* Build configuration list for PBXNativeTarget "Unit Tests" */;
@@ -290,6 +536,60 @@
 			name = "Unit Tests";
 			productName = "Unit Tests";
 			productReference = 70303E880B3A07820034D4FA /* Unit Tests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+		70351B400B4B165D0091D42A /* IPDecoder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 70351B430B4B165E0091D42A /* Build configuration list for PBXNativeTarget "IPDecoder" */;
+			buildPhases = (
+				70351B3D0B4B165D0091D42A /* Resources */,
+				70351B3E0B4B165D0091D42A /* Sources */,
+				70351B3F0B4B165D0091D42A /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				70351B5C0B4B18870091D42A /* PBXTargetDependency */,
+			);
+			name = IPDecoder;
+			productName = IPDecoder;
+			productReference = 70351B410B4B165D0091D42A /* IPDecoder.naplugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+		70351C190B4B3E620091D42A /* TCPDecoder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 70351C1C0B4B3E630091D42A /* Build configuration list for PBXNativeTarget "TCPDecoder" */;
+			buildPhases = (
+				70351C160B4B3E620091D42A /* Resources */,
+				70351C170B4B3E620091D42A /* Sources */,
+				70351C180B4B3E620091D42A /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				70351C200B4B3E930091D42A /* PBXTargetDependency */,
+			);
+			name = TCPDecoder;
+			productName = TCPDecoder;
+			productReference = 70351C1A0B4B3E620091D42A /* TCPDecoder.naplugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+		70351CA50B4B44240091D42A /* IPv6Decoder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 70351CA80B4B44240091D42A /* Build configuration list for PBXNativeTarget "IPv6Decoder" */;
+			buildPhases = (
+				70351CA20B4B44240091D42A /* Resources */,
+				70351CA30B4B44240091D42A /* Sources */,
+				70351CA40B4B44240091D42A /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				70351CB90B4B457E0091D42A /* PBXTargetDependency */,
+			);
+			name = IPv6Decoder;
+			productName = IPv6Decoder;
+			productReference = 70351CA60B4B44240091D42A /* IPv6Decoder.naplugin */;
 			productType = "com.apple.product-type.bundle";
 		};
 		70E719DC0B3E5FAC000EC368 /* CaptureHelper */ = {
@@ -314,13 +614,19 @@
 			buildPhases = (
 				8D15AC2B0486D014006FF6A4 /* Resources */,
 				8D15AC300486D014006FF6A4 /* Sources */,
+				700BD6BE0B4B0E7C006D9F18 /* CopyFiles */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
 				70E71D300B3FCDC5000EC368 /* ShellScript */,
+				70351B550B4B184B0091D42A /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				70E719E30B3E600F000EC368 /* PBXTargetDependency */,
+				700BD6A30B4B0BCF006D9F18 /* PBXTargetDependency */,
+				70351B5A0B4B18830091D42A /* PBXTargetDependency */,
+				70351C360B4B40850091D42A /* PBXTargetDependency */,
+				70351CC20B4B45930091D42A /* PBXTargetDependency */,
 			);
 			name = "Network Analyzer";
 			productInstallPath = "$(HOME)/Applications";
@@ -341,12 +647,44 @@
 				8D15AC270486D014006FF6A4 /* Network Analyzer */,
 				70303E870B3A07820034D4FA /* Unit Tests */,
 				70E719DC0B3E5FAC000EC368 /* CaptureHelper */,
+				700BD6410B4AEB9E006D9F18 /* NAPlugin */,
+				70351B400B4B165D0091D42A /* IPDecoder */,
+				70351C190B4B3E620091D42A /* TCPDecoder */,
+				70351CA50B4B44240091D42A /* IPv6Decoder */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		700BD63E0B4AEB9E006D9F18 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		70303E830B3A07820034D4FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70351B3D0B4B165D0091D42A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70351C160B4B3E620091D42A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70351CA20B4B44240091D42A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -368,6 +706,7 @@
 				703041C30B3B58A00034D4FA /* Panels.nib in Resources */,
 				7030429C0B3B827D0034D4FA /* FilterView.nib in Resources */,
 				700BD6360B4AE97B006D9F18 /* COPYING in Resources */,
+				70351D3A0B4C5B2D0091D42A /* PlugIn.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,6 +742,16 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		700BD63F0B4AEB9E006D9F18 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				700BD6A80B4B0C27006D9F18 /* NAInternetAddress.m in Sources */,
+				700BD6DF0B4B0FA6006D9F18 /* NAUtils.m in Sources */,
+				70351C6B0B4B40ED0091D42A /* NAAbstractInternetProtocolDecoder.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		70303E840B3A07820034D4FA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -412,6 +761,30 @@
 				70303E9F0B3A07E30034D4FA /* NAUtilsTest3.m in Sources */,
 				70303EA00B3A07E30034D4FA /* NAUtilsTest4.m in Sources */,
 				70303EA90B3A09CB0034D4FA /* NAUtils.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70351B3E0B4B165D0091D42A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70351B500B4B16EC0091D42A /* NetUnmodernIPProtocolDecoder.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70351C170B4B3E620091D42A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70351C230B4B3ED70091D42A /* NetUnmodernTCPDecoder.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70351CA30B4B44240091D42A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70351CAD0B4B449F0091D42A /* NetUnmodernIPv6Decoder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,20 +802,56 @@
 			files = (
 				8D15AC310486D014006FF6A4 /* NADocument.m in Sources */,
 				8D15AC320486D014006FF6A4 /* main.m in Sources */,
-				70303E7A0B3A03CF0034D4FA /* NAInternetAddress.m in Sources */,
 				70303E7B0B3A03CF0034D4FA /* NANetworkDevice.m in Sources */,
-				70303E7C0B3A03CF0034D4FA /* NAUtils.m in Sources */,
 				70303F560B3A547A0034D4FA /* NACaptureSession.m in Sources */,
 				70303FEE0B3B145F0034D4FA /* NAPCAPFilterView.m in Sources */,
 				703040C20B3B3D6A0034D4FA /* NACapturedPacket.m in Sources */,
 				7030429F0B3B844B0034D4FA /* NAPCAPFilterViewContainer.m in Sources */,
 				70BB753D0B3E060A00334A9E /* NAFiltersView.m in Sources */,
+				700BD6850B4AEE57006D9F18 /* NAPluginDocument.m in Sources */,
+				70351BAF0B4B21150091D42A /* NAPluginController.m in Sources */,
+				70351CEE0B4C3E200091D42A /* NAPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		700BD6A30B4B0BCF006D9F18 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 700BD6410B4AEB9E006D9F18 /* NAPlugin */;
+			targetProxy = 700BD6A20B4B0BCF006D9F18 /* PBXContainerItemProxy */;
+		};
+		70351B5A0B4B18830091D42A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 70351B400B4B165D0091D42A /* IPDecoder */;
+			targetProxy = 70351B590B4B18830091D42A /* PBXContainerItemProxy */;
+		};
+		70351B5C0B4B18870091D42A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 700BD6410B4AEB9E006D9F18 /* NAPlugin */;
+			targetProxy = 70351B5B0B4B18870091D42A /* PBXContainerItemProxy */;
+		};
+		70351C200B4B3E930091D42A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 700BD6410B4AEB9E006D9F18 /* NAPlugin */;
+			targetProxy = 70351C1F0B4B3E930091D42A /* PBXContainerItemProxy */;
+		};
+		70351C360B4B40850091D42A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 70351C190B4B3E620091D42A /* TCPDecoder */;
+			targetProxy = 70351C350B4B40850091D42A /* PBXContainerItemProxy */;
+		};
+		70351CB90B4B457E0091D42A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 700BD6410B4AEB9E006D9F18 /* NAPlugin */;
+			targetProxy = 70351CB80B4B457E0091D42A /* PBXContainerItemProxy */;
+		};
+		70351CC20B4B45930091D42A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 70351CA50B4B44240091D42A /* IPv6Decoder */;
+			targetProxy = 70351CC10B4B45930091D42A /* PBXContainerItemProxy */;
+		};
 		70E719E30B3E600F000EC368 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 70E719DC0B3E5FAC000EC368 /* CaptureHelper */;
@@ -486,6 +895,60 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		700BD6450B4AEB9F006D9F18 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "NAPlugin-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = NAPlugin;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		700BD6460B4AEB9F006D9F18 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "NAPlugin-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = NAPlugin;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		70303E8B0B3A07830034D4FA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -538,6 +1001,164 @@
 			};
 			name = Release;
 		};
+		70351B440B4B165E0091D42A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "IPDecoder-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+					"-framework",
+					NAPlugin,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = IPDecoder;
+				WRAPPER_EXTENSION = naplugin;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		70351B450B4B165E0091D42A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "IPDecoder-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+					"-framework",
+					NAPlugin,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = IPDecoder;
+				WRAPPER_EXTENSION = naplugin;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		70351C1D0B4B3E630091D42A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "TCPDecoder-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+					"-framework",
+					NAPlugin,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = TCPDecoder;
+				WRAPPER_EXTENSION = naplugin;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		70351C1E0B4B3E630091D42A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "TCPDecoder-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+					"-framework",
+					NAPlugin,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = TCPDecoder;
+				WRAPPER_EXTENSION = naplugin;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		70351CA90B4B44240091D42A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "IPv6Decoder-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = IPv6Decoder;
+				WRAPPER_EXTENSION = naplugin;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		70351CAA0B4B44240091D42A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "IPv6Decoder-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = IPv6Decoder;
+				WRAPPER_EXTENSION = naplugin;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		70E719E00B3E5FCB000EC368 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -580,6 +1201,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/build/Debug\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -604,6 +1230,11 @@
 					ppc,
 					i386,
 				);
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/build/Debug\"";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
@@ -637,11 +1268,47 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		700BD6440B4AEB9F006D9F18 /* Build configuration list for PBXNativeTarget "NAPlugin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				700BD6450B4AEB9F006D9F18 /* Debug */,
+				700BD6460B4AEB9F006D9F18 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		70303E8A0B3A07830034D4FA /* Build configuration list for PBXNativeTarget "Unit Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				70303E8B0B3A07830034D4FA /* Debug */,
 				70303E8C0B3A07830034D4FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		70351B430B4B165E0091D42A /* Build configuration list for PBXNativeTarget "IPDecoder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70351B440B4B165E0091D42A /* Debug */,
+				70351B450B4B165E0091D42A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		70351C1C0B4B3E630091D42A /* Build configuration list for PBXNativeTarget "TCPDecoder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70351C1D0B4B3E630091D42A /* Debug */,
+				70351C1E0B4B3E630091D42A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		70351CA80B4B44240091D42A /* Build configuration list for PBXNativeTarget "IPv6Decoder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70351CA90B4B44240091D42A /* Debug */,
+				70351CAA0B4B44240091D42A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

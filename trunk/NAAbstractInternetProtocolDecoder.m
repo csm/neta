@@ -1,5 +1,5 @@
-/* NAUtils.h -- utility methods.
-   Copyright (C) 2006, 2007  Casey Marshall <casey.s.marshall@gmail.com>
+/* NAAbstractInternetProtocolDecoder.c -- skeletal internet protocol decoder.
+   Copyright (C) 2007  Casey Marshall <casey.s.marshall@gmail.com>
 
 This file is a part of Network Analyzer.
 
@@ -41,23 +41,19 @@ this exception also makes it possible to release a modified version
 which carries forward this exception.  */
 
 
-#import <Cocoa/Cocoa.h>
+#import "NAAbstractInternetProtocolDecoder.h"
 
 
-@interface NAUtils : NSObject {
+@implementation NAAbstractInternetProtocolDecoder
 
+- (BOOL) matchData: (NSData *) theData
+{
+  return NO;
 }
 
-// Format the given bytes like `hexdump -C', that is, print out the
-// contents of the given memory formatted with:
-//
-//   - The offset of the bytes, in hex
-//   - Sixteen bytes, individually encoded in hexadecimal
-//   - The same sixteen bytes, as printable characters, or '.'
-//
-// on each line. Each line presents sixteen bytes, except possibly
-// the final line.
-+ (NSString *) hexdump: (char *) theBytes length: (unsigned) theLength;
-+ (NSString *) hexdump: (NSData *) theData;
+- (NSArray *) decodeData: (NSData *) theData
+{
+  return [NSArray array];
+}
 
 @end

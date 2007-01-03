@@ -24,6 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 #import "NACaptureSession.h"
 #import "NAPCAPFilterViewContainer.h"
 #import "NAFiltersView.h"
+#import "NAPluginController.h"
 
 @interface NADocument : NSDocument < NACaptureSessionCallback, NAFilterCallback >
 {
@@ -66,6 +67,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
   NSArray *captureDevices;
   NSMutableArray *filterPredicates;
   AuthorizationRef pcapAuth;
+  
+  NAPluginController *plugins;
 }
 
 // Actions.

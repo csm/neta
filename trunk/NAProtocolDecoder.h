@@ -1,5 +1,5 @@
-/* NAUtils.h -- utility methods.
-   Copyright (C) 2006, 2007  Casey Marshall <casey.s.marshall@gmail.com>
+/* NAProtocolDecoder.h -- protocol decoder.
+   Copyright (C) 2007  Casey Marshall <casey.s.marshall@gmail.com>
 
 This file is a part of Network Analyzer.
 
@@ -40,24 +40,38 @@ gives permission to release a modified version without this exception;
 this exception also makes it possible to release a modified version
 which carries forward this exception.  */
 
-
 #import <Cocoa/Cocoa.h>
 
+typedef NSString NAProtocolID;
 
-@interface NAUtils : NSObject {
+#define kNAProtocolIdentityIP   @"ip"
+#define kNAProtocolIdentityIPv6 @"ip6"
+#define kNAProtocolIdentityARP  @"arp"
+#define kNAProtocolIdentityTCP  @"tcp"
+#define kNAProtocolIdentityUDP  @"udp"
 
-}
+@protocol NAProtocolDecoder
 
-// Format the given bytes like `hexdump -C', that is, print out the
-// contents of the given memory formatted with:
+// Returns this protocol's identifier.
 //
-//   - The offset of the bytes, in hex
-//   - Sixteen bytes, individually encoded in hexadecimal
-//   - The same sixteen bytes, as printable characters, or '.'
+// The format of protocol identifiers is a dotted hierarchy:
 //
-// on each line. Each line presents sixteen bytes, except possibly
-// the final line.
-+ (NSString *) hexdump: (char *) theBytes length: (unsigned) theLength;
-+ (NSString *) hexdump: (NSData *) theData;
+//   ip       Is the Internet Protocol (version 4)
+//   ip.tcp   Is the Transmission Control Protocol, running on the Internet
+//            protocol.
+//   ip.tcp.http  Is the Hypertext Transfer Protocol.
+//
+// and so on. A particular decoder plugin will simply return its protocol
+// name, so an HTTP decoder returns the identifier "http", the TCP decoder
+// returns "tcp", and so on.
+//
++ (const NAProtocolID *) identifier;
+
+// Returns a list of possible parent protocol decoders. Every element of the
+// returned array must be a NAProtocolID *.
+//
+- (NSArray *) parentProtocols;
+
+- (NSArray *) decodeData: (NSData *) theData;
 
 @end

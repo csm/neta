@@ -1,5 +1,5 @@
-/* NAUtils.h -- utility methods.
-   Copyright (C) 2006, 2007  Casey Marshall <casey.s.marshall@gmail.com>
+/* NAInternetProtocolDecoder.h -- IP and IPv6 sub-protocol decoder.
+   Copyright (C) 2007  Casey Marshall <casey.s.marshall@gmail.com>
 
 This file is a part of Network Analyzer.
 
@@ -42,22 +42,26 @@ which carries forward this exception.  */
 
 
 #import <Cocoa/Cocoa.h>
+#import "NAInternetAddress.h"
+#import "NAProtocolDecoder.h"
 
+#define kNAInternetProtocolNumberTCP 6
 
-@interface NAUtils : NSObject {
+// This is a specialization of NAProtocolDecoder with additional support
+// for the Internet Protocol, version 4 or 6. If a decoder conforms to this
+// protocol, packets that have already matched the IP decoders will be matched
+// against the IP-specific methods of this protocol, instead of the generic
+// methods of the 
+@protocol NAInternetProtocolDecoder < NAProtocolDecoder >
 
-}
+// Return the protocol number this decoder is for; in IPv4, this is the
+// 'protocol' header field; in IPv6, it is the 'next header' field.
++ (int) protocolNumber;
 
-// Format the given bytes like `hexdump -C', that is, print out the
-// contents of the given memory formatted with:
-//
-//   - The offset of the bytes, in hex
-//   - Sixteen bytes, individually encoded in hexadecimal
-//   - The same sixteen bytes, as printable characters, or '.'
-//
-// on each line. Each line presents sixteen bytes, except possibly
-// the final line.
-+ (NSString *) hexdump: (char *) theBytes length: (unsigned) theLength;
-+ (NSString *) hexdump: (NSData *) theData;
+// Decode a packet.
+- (NSArray *) decodeData: (NSData *) theData
+                  source: (NAInternetAddress *) aSource
+             destination: (NAInternetAddress *) aDestination
+                 version: (NAInternetAddressType) aType;
 
 @end
