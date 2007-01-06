@@ -9,6 +9,8 @@
 #import "NetUnmodernIPProtocolDecoder.h"
 #import "NAProtocols.h"
 #import "NAInternetAddress.h"
+#import "NAPluginRegistry.h"
+#import "NADecodedItem.h"
 
 @implementation NetUnmodernIPProtocolDecoder
 
@@ -17,10 +19,10 @@
   return @"ip";
 }
 
-- (NSArray *) parentProtocols
++ (NSArray *) parentProtocols
 {
   // Has no parent protocols (link layer above).
-  return [NSArray array];
+  return nil;
 }
 
 - (NSArray *) decodeData: (NSData *) theData
@@ -32,12 +34,16 @@
                                                         bytes: &(ip->ip_dst)];
   int len = [theData length] - IP_HLEN(*ip);
   NSData *ipData = [NSData dataWithBytes: IP_GET_DATA(*ip) length: len];
+  
   return [NSArray arrayWithObjects:
-    @"ip.length", [NSNumber numberWithInt: len],
-    @"ip.checksum", [NSNumber numberWithInt: ip->ip_csum],
-    @"ip.source", src,
-    @"ip.destination", dst,
-    @"ip.payload", ipData,
+    [NADecodedItem itemWithName: @"ip.length"
+                          value: [NSNumber numberWithInt: len]],
+    [NADecodedItem itemWithName: @"ip.checksum"
+                          value: [NSNumber numberWithInt: ip->ip_csum]],
+    [NADecodedItem itemWithName: @"ip.source"
+                          value: src],
+    [NADecodedItem itemWithName: @"ip.destination"
+                          value: dst],
     nil ]; // FIXME
 }
 

@@ -202,6 +202,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
   {
     [[ts mutableString] setString: @" "];
   }
+  [packetDetail reloadData];
 }
 
 // Actions
@@ -742,18 +743,62 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
              child: (int) index
             ofItem: (id) item
 {
-  return nil;
+  if ([packetsTable selectedRow] < 0 || captureSession == nil)
+  {
+    return nil;
+  }
+  NADecodedPacket *packet = [captureSession decodedPacketAtIndex:
+    [packetsTable selectedRow]];
+  if (packet == nil)
+  {
+    return nil;
+  }
+  if (item == nil)
+  {
+    return [[packet layers] objectAtIndex: index];
+  }
+  
+  if (![item isKindOfClass: [NADecodedItem class]]
+      || ![[item value] isKindOfClass: [NSArray class]])
+  {
+    NSLog(@"warning! does not have children: %@", item);
+    return nil;
+  }
+  
+  id val = [[item value] objectAtIndex: index];
+  NSLog(@"outlineView:%@ child: %d ofItem: %@ returns %@", outlineView,
+        index, item, val);
+  return [[item value] objectAtIndex: index];
 }
 
 - (BOOL) outlineView: (NSOutlineView *) outlineView
     isItemExpandable: (id) item
 {
-  return NO;
+  return [[item value] isKindOfClass: [NSArray class]];
 }
 
 - (int) outlineView: (NSOutlineView *) outlineView
  numberOfChildrenOfItem: (id) item
 {
+  if ([packetsTable selectedRow] < 0 || captureSession == nil)
+  {
+    return 0;
+  }
+  NADecodedPacket *packet = [captureSession decodedPacketAtIndex:
+    [packetsTable selectedRow]];
+  if (packet == nil)
+  {
+    return 0;
+  }
+  if (item == nil)
+  {
+    return [[packet layers] count];
+  }
+  else if ([item isKindOfClass: [NADecodedItem class]]
+           && [[item value] isKindOfClass: [NSArray class]])
+  {
+    return [[item value] count];
+  }
   return 0;
 }
 
@@ -761,7 +806,43 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  objectValueForTableColumn: (NSTableColumn *) tableColumn
             byItem: (id) item
 {
-  return nil;
+  if ([packetsTable selectedRow] < 0 || captureSession == nil)
+  {
+    return nil;
+  }
+  if (![item isKindOfClass: [NADecodedItem class]])
+  {
+    NSLog(@"warning! invalid item object: %@", item);
+    return nil;
+  }
+
+  if ([[item value] isKindOfClass: [NSArray class]])
+  {
+    if ([[tableColumn identifier] isEqual: @"Left"])
+    {
+      return @"";
+    }
+    else if ([[tableColumn identifier] isEqual: @"Right"])
+    {
+      return [item name];
+    }
+    return @"???";
+  }
+  else
+  {
+    if ([[tableColumn identifier] isEqual: @"Left"])
+    {
+      return [item name];
+    }
+    else if ([[tableColumn identifier] isEqual: @"Right"])
+    {
+      id val = [item value];
+      if (val == nil)
+        return @"";
+      return [val description];
+    }
+    return @"???";
+  }
 }
 
 // NACaptureSessionCallback protocol.

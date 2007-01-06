@@ -8,8 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 #import "NAProtocolDecoder.h"
+#import "NAEthernetDecoder.h"
 
-@interface NetUnmodernIPv6Decoder : NSObject < NAProtocolDecoder >
+@interface NetUnmodernIPv6Decoder : NSObject < NAProtocolDecoder, NAEthernetDecoder >
 {
 }
 

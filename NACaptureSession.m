@@ -21,6 +21,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 
 #import "NACaptureSession.h"
 #import "NAConstants.h"
+#import "NAProtocols.h"
+#import "NADecodedItem.h"
 
 #import <stdio.h>
 #import <errno.h>
@@ -73,6 +75,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
       [self release];
       return nil;
     }
+    
+    decodedPackets = [[NSMutableDictionary alloc] init];
+    if (decodedPackets == nil)
+    {
+      [self release];
+      return nil;
+    }
   }
   
   return self;
@@ -97,6 +106,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
       return nil;
     }
 
+    decodedPackets = [[NSMutableDictionary alloc] init];
+    if (decodedPackets == nil)
+    {
+      [self release];
+      return nil;
+    }
+    
     if (![anUrl isFileURL])
     {
       *outError = [[NSError alloc] initWithDomain: NSURLErrorDomain
@@ -343,6 +359,115 @@ session_do_loop (u_char *user, const struct pcap_pkthdr *h,
   fflush (file);
   fclose (file);
   fclose (readtmp);
+}
+
+static NSString *
+eth2str (char *addr)
+{
+  return [NSString stringWithFormat: @"%02x:%02x:%02x:%02x:%02x:%02x",
+    (addr[0] & 0xFF), (addr[1] & 0xFF), (addr[2] & 0xFF),
+    (addr[3] & 0xFF), (addr[4] & 0xFF), (addr[5] & 0xFF)];
+}
+
+static NSString *
+ethertype (uint16_t type)
+{
+  switch (type)
+  {
+    case kNAEthernetIPProtocol:
+      return @"(IPv4)";
+      
+    case kNAEthernetARPProtocol:
+      return @"(ARP)";
+      
+    case kNAEthernetIPv6Protocol:
+      return @"(IPv6)";
+      
+    default:
+      return @"";
+  }
+}
+
+- (NADecodedPacket *) decodedPacketAtIndex: (int) index
+{
+  NADecodedPacket *packet = nil;
+  if ((packet = [decodedPackets objectForKey: [NSNumber numberWithInt: index]]) == nil)
+  {
+    NACapturedPacket *cap = [packets objectAtIndex: index];
+    NSMutableArray *dec = [NSMutableArray array];
+    NSData *capData = [cap packet];
+    na_ethernet *ethernet = (na_ethernet *) [capData bytes];
+    NSArray *etherDec = [NSArray arrayWithObjects:
+      [NADecodedItem itemWithName: @"eth.dst"
+                            value: eth2str(ethernet->ether_dst)],
+      [NADecodedItem itemWithName: @"eth.src"
+                            value: eth2str(ethernet->ether_src)],
+      [NADecodedItem itemWithName: @"eth.type"
+                            value: [NSString stringWithFormat: @"0x%04x %@",
+                              ntohs(ethernet->ether_type),
+                              ethertype(ntohs(ethernet->ether_type)) ]],
+      [NADecodedItem itemWithName: @"eth.data"
+                            value: [NSString stringWithFormat: @"(%d bytes)",
+                              [capData length] - ETHER_HEADER_LEN]],
+      nil];
+    NADecodedItem *item = [NADecodedItem itemWithName: @"Ethernet"
+                                                value: etherDec];
+    [dec addObject: item];
+    
+    switch (ntohs(ethernet->ether_type))
+    {
+      case kNAEthernetIPProtocol:
+      {
+        NAPlugin *ipplug = [[NAPluginController controller] pluginForProtocol: @"ip"];
+        NSLog(@"ipplug = %@", ipplug);
+        if (ipplug != nil)
+        {
+          id d = [ipplug newInstance];
+          NSData *ipdata = [NSData dataWithBytes: ethernet->ether_data
+                                          length: [capData length] - ETHER_HEADER_LEN];
+          NSArray *ipdec = [d decodeData: ipdata];
+          if (ipdec != nil)
+          {
+            item = [NADecodedItem itemWithName: @"Internet Protocol, version 4"
+                                         value: ipdec];
+            NSLog(@"IPv4 decoded item: %@", item);
+            [dec addObject: item];
+          }
+          [d release];
+        }
+        break;
+      }
+
+      case kNAEthernetIPv6Protocol:
+      {
+        NAPlugin *ip6plug = [[NAPluginController controller] pluginForProtocol:
+          @"ip6" ];
+        NSLog(@"ip6plug %@", ip6plug);
+        if (ip6plug != nil)
+        {
+          id d = [ip6plug newInstance];
+          NSData *ip6data = [NSData dataWithBytes: ethernet->ether_data
+                                          length: [capData length] - ETHER_HEADER_LEN];
+          NSArray *ipdec = [d decodeData: ip6data];
+          if (ipdec != nil)
+          {
+            item = [NADecodedItem itemWithName: @"Internet Protocol, version 6"
+                                         value: ipdec ];
+            NSLog(@"IPv6 decoded item %@", item);
+            [dec addObject: item];
+          }
+          [d release];
+        }
+        break;
+      }
+    }
+    NSLog(@"decoded packet layers (%d): %@", index, dec);
+    packet = [[NADecodedPacket alloc] initWithIndex: index
+                                             layers: dec];
+    [decodedPackets setObject: [packet autorelease]
+                       forKey: [NSNumber numberWithInt: index]];
+  }
+  return packet;
 }
 
 - (void) dealloc

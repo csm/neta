@@ -24,6 +24,11 @@
   return self;
 }
 
+- (Class) pluginClass
+{
+  return pluginClass;
+}
+
 - (NSString *) name
 {
   return [NSString stringWithString: name];
@@ -46,6 +51,11 @@
 - (id) newInstance
 {
   return [[pluginClass alloc] init];
+}
+
+- (NSString *) description
+{
+  return [NSString stringWithFormat: @"%@ children: %@", name, children];
 }
 
 - (void) dealloc

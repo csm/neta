@@ -70,7 +70,7 @@ typedef NSString NAProtocolID;
 // Returns a list of possible parent protocol decoders. Every element of the
 // returned array must be a NAProtocolID *.
 //
-- (NSArray *) parentProtocols;
++ (NSArray *) parentProtocols;
 
 - (NSArray *) decodeData: (NSData *) theData;
 

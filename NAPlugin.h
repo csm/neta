@@ -20,6 +20,8 @@
 - (id) initWithClass: (Class) aClass
                 name: (NSString *) aName;
 - (void) addChild: (NAPlugin *) aPlugin;
+- (Class) pluginClass;
+- (NSString *) name;
 - (NAPlugin *) childForName: (NSString *) aName;
 - (id) newInstance;
 

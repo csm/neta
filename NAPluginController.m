@@ -7,6 +7,7 @@
 //
 
 #import "NAPluginController.h"
+#import "NAEthernetDecoder.h"
 #import "NAProtocolDecoder.h"
 #import "NAInternetProtocolDecoder.h"
 #import "NAPlugin.h"
@@ -29,6 +30,7 @@ static NAPluginController *gController = nil;
   if ((self = [super init]) != nil)
   {
     NSLog(@"creating a plugin controller");
+    plugins = [[NSMutableArray alloc] init];
     NSBundle *appBundle = [NSBundle mainBundle];
     NSMutableArray *searchPaths = [NSMutableArray array];
     [searchPaths addObject: [appBundle builtInPlugInsPath]];
@@ -65,19 +67,54 @@ static NAPluginController *gController = nil;
     }
     
     NSLog(@"paths: %@", paths);
+    NSMutableDictionary *d = [NSMutableDictionary dictionary];
     e = [paths objectEnumerator];
     while ((s = [e nextObject]) != nil)
     {
-      [self loadPluginWithPath: s];
+      [self loadPluginWithPath: s intoDictionary: d];
     }
     
+    e = [[d allValues] objectEnumerator];
+    NAPlugin *p;
+    while ((p = [e nextObject]) != nil)
+    {
+      NSArray *parents = [[p pluginClass] parentProtocols];
+      if ([parents count] == 0)
+      {
+        // Root protocol (on top of ethernet); must conform to the private
+        // protocol NAEthernetDecoder
+        if ([[p pluginClass] conformsToProtocol: @protocol(NAEthernetDecoder)])
+        {
+          [plugins addObject: p];
+        }
+      }
+      
+      NSEnumerator *pe = [parents objectEnumerator];
+
+      NSString *parentName;
+      while ((parentName = [pe nextObject]) != nil)
+      {
+        NAPlugin *parent = [d objectForKey: parentName];
+        if (parent != nil)
+        {
+          [parent addChild: p];
+        }
+        else
+        {
+          NSLog(@"WARNING plugin %@ references non-existent parent %@",
+                [p name], parent);
+        }
+      }
+    }
     
+    NSLog(@"plugin tree: %@", plugins);
   }
   
   return self;
 }
 
 - (BOOL) loadPluginWithPath: (NSString *) aPath
+             intoDictionary: (NSMutableDictionary *) aDict
 {
   NSLog(@"loading bundle %@", aPath);
   NSBundle *bundle = [NSBundle bundleWithPath: aPath];
@@ -89,6 +126,15 @@ static NAPluginController *gController = nil;
     const NAProtocolID *ident = [pluginClass identifier];
     NAPlugin *plugin = [[NAPlugin alloc] initWithClass: pluginClass
                                                   name: ident];
+    if ([aDict objectForKey: ident] == nil)
+    {
+      [aDict setObject: plugin
+                forKey: ident];
+    }
+    else
+    {
+      NSLog(@"plugin already registered for %@", ident);
+    }
     if ([pluginClass conformsToProtocol: @protocol(NAInternetProtocolDecoder)])
     {
       NSLog(@"class is-a internet protocol decoder for protocol %d",
@@ -97,6 +143,21 @@ static NAPluginController *gController = nil;
     return YES;
   }
   return NO;
+}
+
+- (NAPlugin *) pluginForProtocol: (NSString *) aProt
+{
+  // FIXME, walk tree.
+  NSEnumerator *e = [plugins objectEnumerator];
+  NAPlugin *p;
+  while ((p = [e nextObject]) != nil)
+  {
+    if ([[p name] isEqualToString: aProt])
+    {
+      return p;
+    }
+  }
+  return nil;
 }
 
 @end

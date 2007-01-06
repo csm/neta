@@ -44,6 +44,7 @@ which carries forward this exception.  */
 #include <stdint.h>
 #include <netinet/in.h>
 #define ETHER_ADDR_LEN 6
+#define ETHER_HEADER_LEN (2 * ETHER_ADDR_LEN + 2)
 
 #define ETHER_IP   0x0800
 #define ETHER_IPv6 0x86DD
