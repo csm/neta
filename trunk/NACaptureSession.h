@@ -22,6 +22,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 #import <Cocoa/Cocoa.h>
 #import "NANetworkDevice.h"
 #import "NACapturedPacket.h"
+#import "NADecodedPacket.h"
+#import "NAEthernetDecoder.h"
+#import "NAPluginController.h"
+#import "NAPlugin.h"
+#import "NAProtocolDecoder.h"
+#import "NADecodedItem.h"
 
 #import <pcap.h>
 #import <stdio.h>
@@ -51,6 +57,8 @@ typedef enum
   BOOL offline;
   BOOL finished;
   int maxCapture;
+  
+  NSMutableDictionary *decodedPackets;
 }
 
 // Initialize for a "live" capture session. The specified device will
@@ -90,6 +98,8 @@ typedef enum
 
 // Save the capture to the specified URL.
 - (void) saveToURL: (NSURL *) anUrl error: (NSError **) outError;
+
+- (NADecodedPacket *) decodedPacketAtIndex: (int) index;
 
 @end
 

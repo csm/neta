@@ -7,6 +7,9 @@
 //
 
 #import "NetUnmodernIPv6Decoder.h"
+#import "NAProtocols.h"
+#import "NAInternetAddress.h"
+#import "NADecodedItem.h"
 
 
 @implementation NetUnmodernIPv6Decoder
@@ -16,9 +19,30 @@
   return kNAProtocolIdentityIPv6;
 }
 
++ (NSArray *) parentProtocols
+{
+  // Has no parent protocols (link layer above).
+  return nil;
+}
+
 - (NSArray *) decodeData: (NSData *) theData
 {
-  return [NSArray array]; // FIXME
+  na_ip6 *ip6 = (na_ip6 *) [theData bytes];
+  return [NSArray arrayWithObjects:
+    [NADecodedItem itemWithName: @"ip6.length"
+                          value: [NSNumber numberWithInt: ip6->ip6_len]],
+    [NADecodedItem itemWithName: @"ip6.next"
+                          value: [NSString stringWithFormat: @"0x%02x",
+                            ip6->ip6_next]],
+    [NADecodedItem itemWithName: @"ip6.hop"
+                          value: [NSNumber numberWithInt: ip6->ip6_hop]],
+    [NADecodedItem itemWithName: @"ip6.src"
+                          value: [NAInternetAddress addressWithType: IPv6
+                                                              bytes: &(ip6->ip6_src)]],
+    [NADecodedItem itemWithName: @"ip6.dst"
+                          value: [NAInternetAddress addressWithType: IPv6
+                                                              bytes: &(ip6->ip6_dst)]],
+    nil]; // FIXME
 }
 
 - (NSString *) description

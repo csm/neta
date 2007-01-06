@@ -21,7 +21,7 @@
   return @"tcp";
 }
 
-- (NSArray *) parentProtocols
++ (NSArray *) parentProtocols
 {
   return [NSArray arrayWithObjects: kNAProtocolIdentityIP,
     kNAProtocolIdentityIPv6, nil];

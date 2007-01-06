@@ -47,6 +47,13 @@
 		70351CED0B4C3E200091D42A /* NAPlugin.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70351CEB0B4C3E200091D42A /* NAPlugin.h */; };
 		70351CEE0B4C3E200091D42A /* NAPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 70351CEC0B4C3E200091D42A /* NAPlugin.m */; };
 		70351D3A0B4C5B2D0091D42A /* PlugIn.icns in Resources */ = {isa = PBXBuildFile; fileRef = 70351D390B4C5B2D0091D42A /* PlugIn.icns */; };
+		70351DFD0B4C8EC30091D42A /* NAEthernetDecoder.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70351DFC0B4C8EC20091D42A /* NAEthernetDecoder.h */; };
+		70351E080B4C999C0091D42A /* NAPluginRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 70351E060B4C999C0091D42A /* NAPluginRegistry.h */; };
+		70351E090B4C999C0091D42A /* NAPluginRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 70351E070B4C999C0091D42A /* NAPluginRegistry.m */; };
+		70351E1A0B4F11AA0091D42A /* NADecodedPacket.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70351E180B4F11A90091D42A /* NADecodedPacket.h */; };
+		70351E1B0B4F11AA0091D42A /* NADecodedPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 70351E190B4F11AA0091D42A /* NADecodedPacket.m */; };
+		70351F530B4F31CC0091D42A /* NADecodedItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 70351F510B4F31CC0091D42A /* NADecodedItem.h */; };
+		70351F540B4F31CC0091D42A /* NADecodedItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 70351F520B4F31CC0091D42A /* NADecodedItem.m */; };
 		70AEB0C70B4B139F007D1494 /* NATCPProtocolDecoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 70AEB0C60B4B139F007D1494 /* NATCPProtocolDecoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70BB753D0B3E060A00334A9E /* NAFiltersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BB753C0B3E060A00334A9E /* NAFiltersView.m */; };
 		70E7194E0B3E3C37000EC368 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70E719190B3E3C37000EC368 /* Security.framework */; };
@@ -130,6 +137,8 @@
 				700BD6C00B4B0E92006D9F18 /* NAPlugin.framework in CopyFiles */,
 				70351BAE0B4B21150091D42A /* NAPluginController.h in CopyFiles */,
 				70351CED0B4C3E200091D42A /* NAPlugin.h in CopyFiles */,
+				70351DFD0B4C8EC30091D42A /* NAEthernetDecoder.h in CopyFiles */,
+				70351E1A0B4F11AA0091D42A /* NADecodedPacket.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +231,13 @@
 		70351CEB0B4C3E200091D42A /* NAPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAPlugin.h; sourceTree = "<group>"; };
 		70351CEC0B4C3E200091D42A /* NAPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAPlugin.m; sourceTree = "<group>"; };
 		70351D390B4C5B2D0091D42A /* PlugIn.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlugIn.icns; sourceTree = "<group>"; };
+		70351DFC0B4C8EC20091D42A /* NAEthernetDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAEthernetDecoder.h; sourceTree = "<group>"; };
+		70351E060B4C999C0091D42A /* NAPluginRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAPluginRegistry.h; sourceTree = "<group>"; };
+		70351E070B4C999C0091D42A /* NAPluginRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAPluginRegistry.m; sourceTree = "<group>"; };
+		70351E180B4F11A90091D42A /* NADecodedPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NADecodedPacket.h; sourceTree = "<group>"; };
+		70351E190B4F11AA0091D42A /* NADecodedPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NADecodedPacket.m; sourceTree = "<group>"; };
+		70351F510B4F31CC0091D42A /* NADecodedItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NADecodedItem.h; sourceTree = "<group>"; };
+		70351F520B4F31CC0091D42A /* NADecodedItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NADecodedItem.m; sourceTree = "<group>"; };
 		70AEB0C60B4B139F007D1494 /* NATCPProtocolDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NATCPProtocolDecoder.h; sourceTree = "<group>"; };
 		70BB753B0B3E060A00334A9E /* NAFiltersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAFiltersView.h; sourceTree = "<group>"; };
 		70BB753C0B3E060A00334A9E /* NAFiltersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAFiltersView.m; sourceTree = "<group>"; };
@@ -372,6 +388,9 @@
 				70351BAD0B4B21150091D42A /* NAPluginController.m */,
 				70351CEB0B4C3E200091D42A /* NAPlugin.h */,
 				70351CEC0B4C3E200091D42A /* NAPlugin.m */,
+				70351DFC0B4C8EC20091D42A /* NAEthernetDecoder.h */,
+				70351E180B4F11A90091D42A /* NADecodedPacket.h */,
+				70351E190B4F11AA0091D42A /* NADecodedPacket.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -424,6 +443,10 @@
 				70AEB0C60B4B139F007D1494 /* NATCPProtocolDecoder.h */,
 				70351C680B4B40ED0091D42A /* NAAbstractInternetProtocolDecoder.h */,
 				70351C690B4B40ED0091D42A /* NAAbstractInternetProtocolDecoder.m */,
+				70351E060B4C999C0091D42A /* NAPluginRegistry.h */,
+				70351E070B4C999C0091D42A /* NAPluginRegistry.m */,
+				70351F510B4F31CC0091D42A /* NADecodedItem.h */,
+				70351F520B4F31CC0091D42A /* NADecodedItem.m */,
 			);
 			name = "PlugIn Support";
 			sourceTree = "<group>";
@@ -496,6 +519,8 @@
 				70AEB0C70B4B139F007D1494 /* NATCPProtocolDecoder.h in Headers */,
 				70351B300B4B142E0091D42A /* NAInternetProtocolDecoder.h in Headers */,
 				70351C6A0B4B40ED0091D42A /* NAAbstractInternetProtocolDecoder.h in Headers */,
+				70351E080B4C999C0091D42A /* NAPluginRegistry.h in Headers */,
+				70351F530B4F31CC0091D42A /* NADecodedItem.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -749,6 +774,8 @@
 				700BD6A80B4B0C27006D9F18 /* NAInternetAddress.m in Sources */,
 				700BD6DF0B4B0FA6006D9F18 /* NAUtils.m in Sources */,
 				70351C6B0B4B40ED0091D42A /* NAAbstractInternetProtocolDecoder.m in Sources */,
+				70351E090B4C999C0091D42A /* NAPluginRegistry.m in Sources */,
+				70351F540B4F31CC0091D42A /* NADecodedItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -811,6 +838,7 @@
 				700BD6850B4AEE57006D9F18 /* NAPluginDocument.m in Sources */,
 				70351BAF0B4B21150091D42A /* NAPluginController.m in Sources */,
 				70351CEE0B4C3E200091D42A /* NAPlugin.m in Sources */,
+				70351E1B0B4F11AA0091D42A /* NADecodedPacket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1127,6 +1155,8 @@
 					Foundation,
 					"-framework",
 					AppKit,
+					"-framework",
+					NAPlugin,
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = IPv6Decoder;
@@ -1151,6 +1181,8 @@
 					Foundation,
 					"-framework",
 					AppKit,
+					"-framework",
+					NAPlugin,
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = IPv6Decoder;

@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+#import "NAPlugin.h"
 
 @interface NAPluginController : NSObject
 {
@@ -17,5 +17,6 @@
 
 + (NAPluginController *) controller;
 - (BOOL) loadPluginWithPath: (NSString *) aPath;
+- (NAPlugin *) pluginForProtocol: (NSString *) aProt;
 
 @end
