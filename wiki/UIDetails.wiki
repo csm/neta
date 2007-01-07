@@ -1,5 +1,9 @@
 #summary UI discussion
 
+= General =
+
+Customizable layout, like Wireshark? (i.e., different placements of the three panes).
+
 = Packets table =
 
 Probably a straightforward NSTableView, with columns for 
@@ -16,6 +20,8 @@ Copy here will copy the whole captured packet. Multiple selection will copy mult
 I'm thinking just similar to Wireshark here: one line per protocol level, and the disclosure triangle expands the details for that protocol. This should be a straightforward data model for NSOutlineView.
 
 Parts are selectable, and copy here selects those parts of the packet.
+
+Also, selecting a line in this view selects the same parts of the packet in the hex view below.
 
 = Packet detail hex =
 
