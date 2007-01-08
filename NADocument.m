@@ -47,6 +47,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
     [c setEnabled: NO];
     [self redoFilterViews];
     plugins = [NAPluginController controller];
+    boldOutlineFont = [NSFont fontWithName: @"Helvetica Bold"
+                                      size: 11];
+    [boldOutlineFont retain];
+    outlineKeyStyle = [[NSMutableParagraphStyle alloc] init];
+    [outlineKeyStyle setAlignment: NSRightTextAlignment];
+    [outlineKeyStyle setLineBreakMode: NSLineBreakByTruncatingTail];
   }
   return self;
 }
@@ -110,7 +116,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
              ofType: (NSString *) aType
               error: (NSError **) outError
 {
-  return NO;
+  if (captureSession == nil)
+  {
+    return NO;
+  }
+  return [captureSession saveToURL: anUrl
+                             error: outError];
 }
 
 // Sheets
@@ -120,6 +131,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 #pragma unused(arg)
 //  NSLog(@"loadingProgressPanel is %@", loadingProgressPanel);
 //  NSLog(@"mainWindow is %@", mainWindow);
+  [loadingProgress startAnimation: self];
   [NSApp beginSheet: loadingProgressPanel
      modalForWindow: mainWindow
       modalDelegate: nil
@@ -213,7 +225,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 {
   [NSApp endSheet: capturePanel];
   [capturePanel orderOut: self];
-  [captureDevices release];  
+  [captureDevices release];
 }
 
 - (IBAction) stopCapture: (id) sender
@@ -379,7 +391,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
     [capturingProgress setMaxValue: maxPackets];
     [capturingProgress setDoubleValue: 0.0];
   }
-  [capturingProgress animate: self];
+  [capturingProgress startAnimation: self];
   [capturingNumber setIntValue: 0];
   [NSApp beginSheet: capturingPanel
      modalForWindow: mainWindow
@@ -590,13 +602,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
   {
     [capturingProgress setDoubleValue: (double) cap];
   }
+  else
+  {
+    [capturingProgress animate: self];
+  }
   
   if ([captureSession liveCaptureFinished])
   {
     [NSApp endSheet: capturingPanel];
+    [capturingProgress stopAnimation: self];
     [capturingPanel orderOut: self];
     [captureSession loadTempFile];
 
+    [loadingProgress startAnimation: self];
     [NSApp beginSheet: loadingProgressPanel
        modalForWindow: mainWindow
         modalDelegate: nil
@@ -739,6 +757,49 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 
 // NSOutlineViewDataSource protocol.
 
+static NSString *
+fetch_plugin_id (NSString *key)
+{
+  NSArray *split = [key componentsSeparatedByString: @"."];
+  if ([split count] > 0)
+  {
+    NSString *ret = [split objectAtIndex: 0];
+    if ([ret length] > 0)
+    {
+      return [split objectAtIndex: 0];
+    }
+  }
+  return key;
+}
+
+- (NSString *) localizeProtocolKey: (NSString *) aKey
+{
+  NSString *prot = fetch_plugin_id(aKey);
+  NSBundle *bundle = nil;
+  NSString *table = [prot stringByAppendingString: @"ProtocolKeys"];
+  if ([prot isEqualToString: @"eth"])
+  {
+    bundle = [NSBundle mainBundle];
+  }
+  else
+  {
+    NAPlugin *plugin = [plugins pluginForProtocol: prot];
+    if (plugin != nil)
+    {
+      bundle = [plugin bundle];
+    }
+  }
+  
+  if (bundle != nil)
+  {
+    return [bundle localizedStringForKey: aKey
+                                   value: nil
+                                   table: table];
+  }
+  
+  return aKey;
+}
+
 - (id) outlineView: (NSOutlineView *) outlineView
              child: (int) index
             ofItem: (id) item
@@ -815,7 +876,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
     NSLog(@"warning! invalid item object: %@", item);
     return nil;
   }
-
+  
   if ([[item value] isKindOfClass: [NSArray class]])
   {
     if ([[tableColumn identifier] isEqual: @"Left"])
@@ -824,7 +885,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
     }
     else if ([[tableColumn identifier] isEqual: @"Right"])
     {
-      return [item name];
+      NSString *name = [self localizeProtocolKey: [item name]];
+      NSAttributedString *as =
+        [[NSAttributedString alloc] initWithString: name
+                                        attributes: [NSDictionary dictionaryWithObject: boldOutlineFont
+                                                                                forKey: NSFontAttributeName]];
+      return [as autorelease];
     }
     return @"???";
   }
@@ -832,7 +898,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
   {
     if ([[tableColumn identifier] isEqual: @"Left"])
     {
-      return [item name];
+      NSString *name = [self localizeProtocolKey: [item name]];
+      NSDictionary *attr = [NSDictionary dictionaryWithObjectsAndKeys:
+        boldOutlineFont, NSFontAttributeName, outlineKeyStyle,
+        NSParagraphStyleAttributeName, nil];
+      NSAttributedString *as =
+      [[NSAttributedString alloc] initWithString: name
+                                      attributes: attr];
+      return [as autorelease];
     }
     else if ([[tableColumn identifier] isEqual: @"Right"])
     {
@@ -854,6 +927,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
   {
     NSLog(@"ending sheet %@...", loadingProgressPanel);
     //[NSApp stopModal];
+    [loadingProgress stopAnimation: self];
     [NSApp endSheet: loadingProgressPanel];
     [loadingProgressPanel orderOut: self];
     //[[NSRunLoop currentRunLoop] cancelPerformSelector: @selector(loop:)

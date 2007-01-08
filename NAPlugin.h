@@ -12,15 +12,18 @@
 @interface NAPlugin : NSObject
 {
   @private
+  NSBundle *pluginBundle;
   Class pluginClass;
   NSString *name;
   NSMutableDictionary *children;
 }
 
 - (id) initWithClass: (Class) aClass
-                name: (NSString *) aName;
+                name: (NSString *) aName
+              bundle: (NSBundle *) aBundle;
 - (void) addChild: (NAPlugin *) aPlugin;
 - (Class) pluginClass;
+- (NSBundle *) bundle;
 - (NSString *) name;
 - (NAPlugin *) childForName: (NSString *) aName;
 - (id) newInstance;

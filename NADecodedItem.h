@@ -15,6 +15,8 @@
   @private
   NSString *name;
   id value;
+  unsigned offset;
+  unsigned length;
 }
 
 // Initialize this item. The name describes the item's contents, and the value
@@ -25,10 +27,16 @@
 // NADecodedItems. Otherwise, the description method will be called on the
 // value when displayed.
 - (id) initWithName: (NSString *) aName
-              value: (id) aValue;
+              value: (id) aValue
+             offset: (unsigned) anOffset
+             length: (unsigned) aLength;
 + (NADecodedItem *) itemWithName: (NSString *) aName
-                           value: (id) aValue;
+                           value: (id) aValue
+                          offset: (unsigned) anOffset
+                          length: (unsigned) aLength;
 - (NSString *) name;
 - (id) value;
+- (unsigned) offset;
+- (unsigned) length;
 
 @end

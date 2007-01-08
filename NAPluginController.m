@@ -125,7 +125,8 @@ static NAPluginController *gController = nil;
       return NO;
     const NAProtocolID *ident = [pluginClass identifier];
     NAPlugin *plugin = [[NAPlugin alloc] initWithClass: pluginClass
-                                                  name: ident];
+                                                  name: ident
+                                                bundle: bundle];
     if ([aDict objectForKey: ident] == nil)
     {
       [aDict setObject: plugin

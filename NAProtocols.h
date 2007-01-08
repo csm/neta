@@ -60,6 +60,11 @@ typedef struct na_ethernet
 #define IP_HLEN(ip)    ((((ip).ip_vl) & 0x0f) << 2)
 #define IP_VERSION(ip) (((ip).ip_vl) >> 4)
 
+#define IP_FLAG_DF(ip) ((ntohs((ip).ip_ffoff) >> 10) & 0x1)
+#define IP_FLAG_MF(ip) ((ntohs((ip).ip_ffoff) >>  9) & 0x1)
+
+#define IP_FOFF(ip) (ntohs((ip).ip_ffoff) & 0x1F)
+
 #define IP_OPTIONS_LEN(ip) (IP_HLEN(ip) - 20)
 #define IP_GET_OPTIONS(ip) (&(ip) + 20)
 
@@ -82,7 +87,9 @@ typedef struct na_ip
   /* Follows: data, variable-length after variable-length options. */
 } na_ip;
 
-#define IP6_VERSION(ip)  ((ip).ip6_vcl >> 28);
+#define IP6_VERSION(ip)  (ntohl((ip).ip6_vcl) >> 28)
+#define IP6_CLASS(ip)    ((ntohl((ip).ip6_vcl) >> 20) & 0xFF)
+#define IP6_LABEL(ip)    (ntohl((ip).ip6_vcl) & 0xFFFFF)
 
 typedef struct na_ip6
 {

@@ -1,0 +1,12 @@
+/* Localized strings for IPv6 decoder. */
+
+ip6 = "Internet Protocol, version 6";
+
+ip6.version = "Version";
+ip6.class = "Traffic Class";
+ip6.label = "Flow Label";
+ip6.length = "Length";
+ip6.next = "Next Header";
+ip6.hop = "Hop Limit";
+ip6.src = "Source Address";
+ip6.dst = "Destination Address";
