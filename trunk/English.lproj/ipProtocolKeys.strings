@@ -1,0 +1,18 @@
+/* Localized strings for IPv4 decoder. */
+
+ip = "Internet Protocol, Version 4";
+
+ip.version = "Version";
+ip.hlen = "Header Length";
+ip.tos = "Type of Service";
+ip.tlen = "Total Length";
+ip.id = "Identifier";
+ip.flags = "Flags";
+ip.flags.df = "Don't Fragment";
+ip.flags.mf = "More Fragments";
+ip.foff = "Fragment Offset";
+ip.ttl = "Time to Live";
+ip.prot = "Protocol";
+ip.checksum = "Header Checksum";
+ip.src = "Source Address";
+ip.dst = "Destination Address";

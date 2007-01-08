@@ -13,6 +13,8 @@
 
 - (id) initWithName: (NSString *) aName
               value: (id) aValue
+             offset: (unsigned) anOffset
+             length: (unsigned) aLength
 {
   if ((self = [super init]) != nil)
   {
@@ -22,6 +24,8 @@
     {
       [value retain];
     }
+    offset = anOffset;
+    length = aLength;
   }
   
   return self;
@@ -29,9 +33,13 @@
 
 + (NADecodedItem *) itemWithName: (NSString *) aName
                            value: (id) aValue
+                          offset: (unsigned) anOffset
+                          length: (unsigned) aLength
 {
   NADecodedItem *item = [[NADecodedItem alloc] initWithName: aName
-                                                      value: aValue];
+                                                      value: aValue
+                                                     offset: anOffset
+                                                     length: aLength];
   if (item != nil)
   {
     [item autorelease];
@@ -51,7 +59,8 @@
 
 - (NSString *) description
 {
-  return [NSString stringWithFormat: @"%@: %@", name, value];
+  return [NSString stringWithFormat: @"%@(%u,%u): %@", name, offset, length,
+    value];
 }
 
 - (void) dealloc

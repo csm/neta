@@ -54,6 +54,10 @@
 		70351E1B0B4F11AA0091D42A /* NADecodedPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 70351E190B4F11AA0091D42A /* NADecodedPacket.m */; };
 		70351F530B4F31CC0091D42A /* NADecodedItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 70351F510B4F31CC0091D42A /* NADecodedItem.h */; };
 		70351F540B4F31CC0091D42A /* NADecodedItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 70351F520B4F31CC0091D42A /* NADecodedItem.m */; };
+		703521B20B52F19F0091D42A /* ethProtocolKeys.strings in Resources */ = {isa = PBXBuildFile; fileRef = 703521B10B52F19F0091D42A /* ethProtocolKeys.strings */; };
+		703522450B52F5C70091D42A /* ip6ProtocolKeys.strings in Resources */ = {isa = PBXBuildFile; fileRef = 703522440B52F5C70091D42A /* ip6ProtocolKeys.strings */; };
+		7035224D0B52F60B0091D42A /* tcpProtocolKeys.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7035224C0B52F60B0091D42A /* tcpProtocolKeys.strings */; };
+		703522570B52F63E0091D42A /* ipProtocolKeys.strings in Resources */ = {isa = PBXBuildFile; fileRef = 703522560B52F63E0091D42A /* ipProtocolKeys.strings */; };
 		70AEB0C70B4B139F007D1494 /* NATCPProtocolDecoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 70AEB0C60B4B139F007D1494 /* NATCPProtocolDecoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70BB753D0B3E060A00334A9E /* NAFiltersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BB753C0B3E060A00334A9E /* NAFiltersView.m */; };
 		70E7194E0B3E3C37000EC368 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70E719190B3E3C37000EC368 /* Security.framework */; };
@@ -238,6 +242,10 @@
 		70351E190B4F11AA0091D42A /* NADecodedPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NADecodedPacket.m; sourceTree = "<group>"; };
 		70351F510B4F31CC0091D42A /* NADecodedItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NADecodedItem.h; sourceTree = "<group>"; };
 		70351F520B4F31CC0091D42A /* NADecodedItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NADecodedItem.m; sourceTree = "<group>"; };
+		703521AD0B52F1970091D42A /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/ethProtocolKeys.strings; sourceTree = "<group>"; };
+		7035223C0B52F5B30091D42A /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/ip6ProtocolKeys.strings; sourceTree = "<group>"; };
+		703522480B52F6050091D42A /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/tcpProtocolKeys.strings; sourceTree = "<group>"; };
+		703522500B52F62F0091D42A /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/ipProtocolKeys.strings; sourceTree = "<group>"; };
 		70AEB0C60B4B139F007D1494 /* NATCPProtocolDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NATCPProtocolDecoder.h; sourceTree = "<group>"; };
 		70BB753B0B3E060A00334A9E /* NAFiltersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAFiltersView.h; sourceTree = "<group>"; };
 		70BB753C0B3E060A00334A9E /* NAFiltersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAFiltersView.m; sourceTree = "<group>"; };
@@ -342,9 +350,9 @@
 		2A37F4AAFDCFA73011CA2CEA /* Network Analyzer */ = {
 			isa = PBXGroup;
 			children = (
+				70351B4D0B4B16AC0091D42A /* IPDecoder */,
 				70351CA10B4B43FD0091D42A /* IPv6Decoder */,
 				70351C150B4B3E3E0091D42A /* TCPDecoder */,
-				70351B4D0B4B16AC0091D42A /* IPDecoder Classes */,
 				700BD6910B4AEF97006D9F18 /* PlugIn Support */,
 				70E719EB0B3E6060000EC368 /* Capture Helper */,
 				70303E800B3A07680034D4FA /* Unit Tests */,
@@ -417,6 +425,7 @@
 				2A37F4B4FDCFA73011CA2CEA /* NADocument.nib */,
 				8D15AC360486D014006FF6A4 /* Info.plist */,
 				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
+				703521B10B52F19F0091D42A /* ethProtocolKeys.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -470,18 +479,20 @@
 			name = "Unit Tests";
 			sourceTree = "<group>";
 		};
-		70351B4D0B4B16AC0091D42A /* IPDecoder Classes */ = {
+		70351B4D0B4B16AC0091D42A /* IPDecoder */ = {
 			isa = PBXGroup;
 			children = (
+				703520F30B52E00A0091D42A /* Resources */,
 				70351B4E0B4B16EC0091D42A /* NetUnmodernIPProtocolDecoder.h */,
 				70351B4F0B4B16EC0091D42A /* NetUnmodernIPProtocolDecoder.m */,
 			);
-			name = "IPDecoder Classes";
+			name = IPDecoder;
 			sourceTree = "<group>";
 		};
 		70351C150B4B3E3E0091D42A /* TCPDecoder */ = {
 			isa = PBXGroup;
 			children = (
+				7035216D0B52E4560091D42A /* Resources */,
 				70351C210B4B3ED70091D42A /* NetUnmodernTCPDecoder.h */,
 				70351C220B4B3ED70091D42A /* NetUnmodernTCPDecoder.m */,
 			);
@@ -491,10 +502,35 @@
 		70351CA10B4B43FD0091D42A /* IPv6Decoder */ = {
 			isa = PBXGroup;
 			children = (
+				703520D40B52DD160091D42A /* Resources */,
 				70351CAB0B4B449F0091D42A /* NetUnmodernIPv6Decoder.h */,
 				70351CAC0B4B449F0091D42A /* NetUnmodernIPv6Decoder.m */,
 			);
 			name = IPv6Decoder;
+			sourceTree = "<group>";
+		};
+		703520D40B52DD160091D42A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				703522440B52F5C70091D42A /* ip6ProtocolKeys.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		703520F30B52E00A0091D42A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				703522560B52F63E0091D42A /* ipProtocolKeys.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		7035216D0B52E4560091D42A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7035224C0B52F60B0091D42A /* tcpProtocolKeys.strings */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		70E719EB0B3E6060000EC368 /* Capture Helper */ = {
@@ -699,6 +735,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				703522570B52F63E0091D42A /* ipProtocolKeys.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -706,6 +743,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7035224D0B52F60B0091D42A /* tcpProtocolKeys.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -713,6 +751,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				703522450B52F5C70091D42A /* ip6ProtocolKeys.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -732,6 +771,7 @@
 				7030429C0B3B827D0034D4FA /* FilterView.nib in Resources */,
 				700BD6360B4AE97B006D9F18 /* COPYING in Resources */,
 				70351D3A0B4C5B2D0091D42A /* PlugIn.icns in Resources */,
+				703521B20B52F19F0091D42A /* ethProtocolKeys.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -918,6 +958,38 @@
 				2A37F4BAFDCFA73011CA2CEA /* English */,
 			);
 			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		703521B10B52F19F0091D42A /* ethProtocolKeys.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				703521AD0B52F1970091D42A /* English */,
+			);
+			name = ethProtocolKeys.strings;
+			sourceTree = "<group>";
+		};
+		703522440B52F5C70091D42A /* ip6ProtocolKeys.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7035223C0B52F5B30091D42A /* English */,
+			);
+			name = ip6ProtocolKeys.strings;
+			sourceTree = "<group>";
+		};
+		7035224C0B52F60B0091D42A /* tcpProtocolKeys.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				703522480B52F6050091D42A /* English */,
+			);
+			name = tcpProtocolKeys.strings;
+			sourceTree = "<group>";
+		};
+		703522560B52F63E0091D42A /* ipProtocolKeys.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				703522500B52F62F0091D42A /* English */,
+			);
+			name = ipProtocolKeys.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

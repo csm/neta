@@ -69,6 +69,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
   AuthorizationRef pcapAuth;
   
   NAPluginController *plugins;
+  NSFont *boldOutlineFont;
+  NSMutableParagraphStyle *outlineKeyStyle;
 }
 
 // Actions.
@@ -119,6 +121,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 - (NSArray *) toolbarAllowedItemIdentifiers: (NSToolbar *) toolbar;
 - (NSArray *) toolbarDefaultItemIdentifiers: (NSToolbar *) toolbar;
 - (BOOL) validateToolbarItem: (NSToolbarItem *) anItem;
+- (NSString *) localizeProtocolKey: (NSString *) aKey;
 
 // NSTableViewDataSource
 

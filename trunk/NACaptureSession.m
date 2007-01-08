@@ -306,7 +306,7 @@ session_do_loop (u_char *user, const struct pcap_pkthdr *h,
   state = READING_PCAP_FILE;
 }
 
-- (void) saveToURL: (NSURL *) anUrl
+- (BOOL) saveToURL: (NSURL *) anUrl
              error: (NSError **) outError
 {
   if (![anUrl isFileURL])
@@ -314,7 +314,7 @@ session_do_loop (u_char *user, const struct pcap_pkthdr *h,
     *outError = [[NSError alloc] initWithDomain: NSURLErrorDomain
                                            code: NSURLErrorBadURL
                                        userInfo: nil];
-    return;
+    return NO;
   }
   
   const char *path = [[anUrl path] cStringUsingEncoding: NSISOLatin1StringEncoding];
@@ -324,7 +324,7 @@ session_do_loop (u_char *user, const struct pcap_pkthdr *h,
     *outError = [[NSError alloc] initWithDomain: NSPOSIXErrorDomain
                                            code: errno
                                        userInfo: nil];
-    return;
+    return NO;
   }
 
   pcap_dump_flush (dumper);
@@ -335,7 +335,7 @@ session_do_loop (u_char *user, const struct pcap_pkthdr *h,
                                            code: errno
                                        userInfo: nil];
     fclose (file);
-    return;
+    return NO;
   }
   
   char buffer[4096];
@@ -359,6 +359,7 @@ session_do_loop (u_char *user, const struct pcap_pkthdr *h,
   fflush (file);
   fclose (file);
   fclose (readtmp);
+  return YES;
 }
 
 static NSString *
@@ -399,19 +400,29 @@ ethertype (uint16_t type)
     na_ethernet *ethernet = (na_ethernet *) [capData bytes];
     NSArray *etherDec = [NSArray arrayWithObjects:
       [NADecodedItem itemWithName: @"eth.dst"
-                            value: eth2str(ethernet->ether_dst)],
+                            value: eth2str(ethernet->ether_dst)
+                           offset: 0
+                           length: ETHER_ADDR_LEN],
       [NADecodedItem itemWithName: @"eth.src"
-                            value: eth2str(ethernet->ether_src)],
+                            value: eth2str(ethernet->ether_src)
+                           offset: ETHER_ADDR_LEN
+                           length: ETHER_ADDR_LEN],
       [NADecodedItem itemWithName: @"eth.type"
                             value: [NSString stringWithFormat: @"0x%04x %@",
                               ntohs(ethernet->ether_type),
-                              ethertype(ntohs(ethernet->ether_type)) ]],
+                              ethertype(ntohs(ethernet->ether_type))]
+                           offset: 2 * ETHER_ADDR_LEN
+                           length: sizeof(ethernet->ether_type)],
       [NADecodedItem itemWithName: @"eth.data"
                             value: [NSString stringWithFormat: @"(%d bytes)",
-                              [capData length] - ETHER_HEADER_LEN]],
+                              [capData length] - ETHER_HEADER_LEN]
+                           offset: ETHER_HEADER_LEN
+                           length: [capData length] - ETHER_HEADER_LEN],
       nil];
-    NADecodedItem *item = [NADecodedItem itemWithName: @"Ethernet"
-                                                value: etherDec];
+    NADecodedItem *item = [NADecodedItem itemWithName: @"eth"
+                                                value: etherDec
+                                               offset: 0
+                                               length: [capData length]];
     [dec addObject: item];
     
     switch (ntohs(ethernet->ether_type))
@@ -428,8 +439,10 @@ ethertype (uint16_t type)
           NSArray *ipdec = [d decodeData: ipdata];
           if (ipdec != nil)
           {
-            item = [NADecodedItem itemWithName: @"Internet Protocol, version 4"
-                                         value: ipdec];
+            item = [NADecodedItem itemWithName: @"ip"
+                                         value: ipdec
+                                        offset: ETHER_HEADER_LEN
+                                        length: [ipdata length]];
             NSLog(@"IPv4 decoded item: %@", item);
             [dec addObject: item];
           }
@@ -451,8 +464,10 @@ ethertype (uint16_t type)
           NSArray *ipdec = [d decodeData: ip6data];
           if (ipdec != nil)
           {
-            item = [NADecodedItem itemWithName: @"Internet Protocol, version 6"
-                                         value: ipdec ];
+            item = [NADecodedItem itemWithName: @"ip6"
+                                         value: ipdec
+                                        offset: ETHER_HEADER_LEN
+                                        length: [ip6data length]];
             NSLog(@"IPv6 decoded item %@", item);
             [dec addObject: item];
           }

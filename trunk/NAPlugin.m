@@ -13,12 +13,14 @@
 
 - (id) initWithClass: (Class) aClass
                 name: (NSString *) aName
+              bundle: (NSBundle *) aBundle
 {
   if ((self = [super init]) != nil)
   {
     pluginClass = aClass;
     name = [[NSString alloc] initWithString: aName];
     children = [[NSMutableDictionary alloc] init];
+    pluginBundle = [aBundle retain];
   }
   
   return self;
@@ -27,6 +29,11 @@
 - (Class) pluginClass
 {
   return pluginClass;
+}
+
+- (NSBundle *) bundle
+{
+  return pluginBundle;
 }
 
 - (NSString *) name

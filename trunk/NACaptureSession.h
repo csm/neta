@@ -97,7 +97,7 @@ typedef enum
 - (void) loadTempFile;
 
 // Save the capture to the specified URL.
-- (void) saveToURL: (NSURL *) anUrl error: (NSError **) outError;
+- (BOOL) saveToURL: (NSURL *) anUrl error: (NSError **) outError;
 
 - (NADecodedPacket *) decodedPacketAtIndex: (int) index;
 

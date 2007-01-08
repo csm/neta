@@ -1,0 +1,8 @@
+/* Localized protocol key names. */
+
+eth = "Ethernet";
+
+eth.src = "Source Address";
+eth.dst = "Destination Address";
+eth.type = "Type";
+eth.data = "Data";
