@@ -225,7 +225,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 {
   [NSApp endSheet: capturePanel];
   [capturePanel orderOut: self];
-  [captureDevices release];
 }
 
 - (IBAction) stopCapture: (id) sender
