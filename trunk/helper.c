@@ -71,7 +71,7 @@ main (int argc, char **argv)
   pcap_t *pcap;
   pcap_dumper_t *dumper;
   int i = 0, stdin_fileno, tmpfd;
-  FILE *tmpfile;
+  /* FILE *tmpfile; */
   char tmpname[sizeof TMPFILENAME + 1];
   int capturing = 1;
   int running = 1;
@@ -129,9 +129,9 @@ main (int argc, char **argv)
     pcap_close (pcap);
     return 1;
   }
-  tmpfile = fdopen (tmpfd, "w+");
+  close (tmpfd);
   
-  dumper = pcap_dump_fopen (pcap, tmpfile);
+  dumper = pcap_dump_open (pcap, tmpname);
   if (dumper == NULL)
   {
     syslog (LOG_LEVEL, "pcap_dump_fopen: %s", pcap_geterr (pcap));

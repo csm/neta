@@ -58,10 +58,4 @@ which carries forward this exception.  */
 // 'protocol' header field; in IPv6, it is the 'next header' field.
 + (int) protocolNumber;
 
-// Decode a packet.
-- (NSArray *) decodeData: (NSData *) theData
-                  source: (NAInternetAddress *) aSource
-             destination: (NAInternetAddress *) aDestination
-                 version: (NAInternetAddressType) aType;
-
 @end

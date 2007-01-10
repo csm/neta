@@ -161,4 +161,9 @@ static NAPluginController *gController = nil;
   return nil;
 }
 
+- (NSArray *) plugins
+{
+  return plugins;
+}
+
 @end

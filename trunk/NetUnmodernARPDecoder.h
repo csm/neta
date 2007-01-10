@@ -1,8 +1,8 @@
 //
-//  NetUnmodernIPv6Decoder.h
+//  NetUnmodernARPDecoder.h
 //  Network Analyzer
 //
-//  Created by C. Scott Marshall on 1/2/07.
+//  Created by C. Scott Marshall on 1/8/07.
 //  Copyright 2007 __MyCompanyName__. All rights reserved.
 //
 
@@ -10,7 +10,8 @@
 #import "NAProtocolDecoder.h"
 #import "NAEthernetDecoder.h"
 
-@interface NetUnmodernIPv6Decoder : NSObject < NAProtocolDecoder, NAEthernetDecoder >
+
+@interface NetUnmodernARPDecoder : NSObject < NAProtocolDecoder, NAEthernetDecoder >
 {
   NSData *current;
 }

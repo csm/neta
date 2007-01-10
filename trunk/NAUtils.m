@@ -230,4 +230,35 @@ visible_char (unsigned char code)
   return [NSString stringWithString: str];
 }
 
++ (NSString *) toHexString: (char *) theBytes
+                    length: (int) theLength
+                 separator: (NSString *) aSep
+{
+  return [NAUtils toHexString: [NSData dataWithBytes: theBytes
+                                              length: theLength]
+                    separator: aSep];
+}
+
++ (NSString *) toHexString: (NSData *) theData
+                 separator: (NSString *) aSep
+{
+  const int n = [theData length];
+  char *b = [theData bytes];
+  NSMutableString *str = [NSMutableString string];
+  int i;
+  for (i = 0; i < n; i++)
+  {
+    if (i == n - 1 || aSep == nil)
+    {
+      [str appendFormat: @"%02x", b[i] & 0xFF];
+    }
+    else
+    {
+      [str appendFormat: @"%02x%@", b[i] & 0xFF, aSep];
+    }
+  }
+  
+  return [NSString stringWithString: str];
+}
+
 @end

@@ -1,3 +1,21 @@
 /* Localized protocol keys. */
 
 tcp = "Transmission Control Protocol";
+
+tcp.src = "Source Port";
+tcp.dst = "Destination Port";
+tcp.seq = "Sequence Number";
+tcp.ack = "Acknowledgement Number";
+tcp.doff = "Data Offset";
+tcp.flags = "Flags"
+tcp.flags.cwr = "CWR";
+tcp.flags.ece = "ECE";
+tcp.flags.urg = "URG";
+tcp.flags.ack = "ACK";
+tcp.flags.psh = "PSH";
+tcp.flags.rst = "RST";
+tcp.flags.syn = "SYN";
+tcp.flags.fin = "FIN";
+tcp.window = "Window Size";
+tcp.checksum = "Checksum";
+tcp.urg = "Urgent Pointer";

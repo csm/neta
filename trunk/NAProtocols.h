@@ -102,9 +102,33 @@ typedef struct na_ip6
   char ip6_data[1]; /* variable-length */
 } na_ip6;
 
+#define ARP_SHA(arp)  ((arp).arp_sha)
+#define ARP_SPA(arp)  (ARP_SHA(arp) + (arp).arp_hlen)
+#define ARP_THA(arp)  (ARP_SPA(arp) + (arp).arp_plen)
+#define ARP_TPA(arp)  (ARP_THA(arp) + (arp).arp_hlen)
+
+typedef struct na_arp
+{
+  uint16_t arp_htype;
+  uint16_t arp_ptype;
+  uint8_t  arp_hlen;
+  uint8_t  arp_plen;
+  uint16_t arp_operation;
+  char arp_sha[1]; // hlen; follows: spa[plen], tha[hlen], tpa[plen].
+} na_arp;
+
 // #define TCP_DATA_LEN(tcp) ((tcp)
-#define TCP_DATA_OFFSET(tcp) (((tcp).tcp_doff >> 4) << 2);
+#define TCP_DATA_OFFSET(tcp) (((tcp).tcp_doff >> 4) << 2)
 #define TCP_DATA(tcp) (&(tcp) + TCP_DATA_OFFSET(tcp))
+
+#define TCP_FLAG_CWR 0x80
+#define TCP_FLAG_ECE 0x40
+#define TCP_FLAG_URG 0x20
+#define TCP_FLAG_ACK 0x10
+#define TCP_FLAG_PSH 0x08
+#define TCP_FLAG_RST 0x04
+#define TCP_FLAG_SYN 0x02
+#define TCP_FLAG_FIN 0x01
 
 typedef struct na_tcp
 {

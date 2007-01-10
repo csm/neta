@@ -72,6 +72,15 @@ typedef NSString NAProtocolID;
 //
 + (NSArray *) parentProtocols;
 
-- (NSArray *) decodeData: (NSData *) theData;
+- (void) setData: (NSData *) theData;
+- (NSString *) summarize;
+- (NSArray *) decode;
+- (BOOL) validateChild: (Class) aClass;
+- (NSData *) payload;
+- (unsigned) headerLength;
+
++ (BOOL) match: (NSData *) theData;
+
++ (NSString *) pluginInfo;
 
 @end

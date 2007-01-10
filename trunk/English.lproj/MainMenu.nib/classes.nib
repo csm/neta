@@ -1,4 +1,17 @@
 {
-    IBClasses = ({CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }); 
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            CLASS = NAController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                left = NSTableColumn; 
+                plugins = NSOutlineView; 
+                pluginsPanel = NSWindow; 
+                right = NSTableColumn; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
     IBVersion = 1; 
 }
