@@ -16,6 +16,7 @@
   Class pluginClass;
   NSString *name;
   NSMutableDictionary *children;
+  id instance;
 }
 
 - (id) initWithClass: (Class) aClass
@@ -26,6 +27,7 @@
 - (NSBundle *) bundle;
 - (NSString *) name;
 - (NAPlugin *) childForName: (NSString *) aName;
-- (id) newInstance;
+- (NSArray *) children;
+- (id) getInstance;
 
 @end

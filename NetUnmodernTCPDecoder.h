@@ -12,6 +12,7 @@
 
 @interface NetUnmodernTCPDecoder : NAAbstractInternetProtocolDecoder
 {
+  NSData *current;
 }
 
 @end

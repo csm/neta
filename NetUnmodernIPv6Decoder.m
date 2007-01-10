@@ -10,6 +10,7 @@
 #import "NAProtocols.h"
 #import "NAInternetAddress.h"
 #import "NADecodedItem.h"
+#import "NAInternetProtocolDecoder.h"
 
 
 @implementation NetUnmodernIPv6Decoder
@@ -25,9 +26,46 @@
   return nil;
 }
 
-- (NSArray *) decodeData: (NSData *) theData
+- (id) init
 {
-  na_ip6 *ip6 = (na_ip6 *) [theData bytes];
+  if ((self = [super init]) != nil)
+  {
+    current = nil;
+  }
+  
+  return self;
+}
+
+- (void) setData: (NSData *) theData
+{
+  if (current != nil)
+  {
+    [current release];
+  }
+  current = [[NSData alloc] itihWithData: theData];
+}
+
+- (NSString *) summarize
+{
+  if (current == nil)
+  {
+    return nil;
+  }
+  na_ip6 *ip6 = (na_ip6 *) [current bytes];
+  return [NSString stringWithFormat: @"Internet Protocol, version 6; source: %@, destination: %@",
+    [NAInternetAddress addressWithType: IPv6
+                                 bytes: &(ip6->ip6_src)],
+    [NAInternetAddress addressWithType: IPv6
+                                 bytes: &(ip6->ip6_dst)]];
+}
+
+- (NSArray *) decode
+{
+  if (current == nil)
+  {
+    return nil;
+  }
+  na_ip6 *ip6 = (na_ip6 *) [current bytes];
   return [NSArray arrayWithObjects:
     [NADecodedItem itemWithName: @"ip6.version"
                           value: [NSNumber numberWithInt: IP6_VERSION(*ip6)]
@@ -64,12 +102,53 @@
                                                               bytes: &(ip6->ip6_dst)]
                          offset: offsetof(struct na_ip6, ip6_src)
                          length: sizeof(ip6->ip6_dst)],
-    nil]; // FIXME
+    nil];
+}
+
+- (BOOL) validateChild: (Class) aClass
+{
+  if (current == nil)
+  {
+    return NO;
+  }
+  na_ip6 *ip6 = (na_ip6 *) [current bytes];
+  if ([aClass conformsToProtocol: @protocol(NAInternetProtocolDecoder)])
+  {
+    return ip6->ip6_next == [aClass protocolNumber];
+  }
+  return NO;
+}
+
+- (NSData *) payload
+{
+  if (current == nil)
+  {
+    return nil;
+  }
+  
+  na_ip6 *ip6 = (na_ip6 *) [current bytes];
+  return [NSData dataWithBytes: ip6->ip6_data
+                        length: ntohs(ip6->ip6_len)];
+}
+
+- (unsigned) headerLength
+{
+  return offsetof(struct na_ip6, ip6_data);
 }
 
 - (NSString *) description
 {
   return @"Internet Protocol, version 6";
+}
+
++ (NSString *) pluginInfo
+{
+  return @"Internet Protocol, version 6 decoder. Copyright © 2006–2007 Casey Marshall";
+}
+
++ (int) etherType
+{
+  return kNAEthernetIPv6Protocol;
 }
 
 @end

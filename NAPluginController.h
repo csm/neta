@@ -16,7 +16,7 @@
 }
 
 + (NAPluginController *) controller;
-- (BOOL) loadPluginWithPath: (NSString *) aPath;
 - (NAPlugin *) pluginForProtocol: (NSString *) aProt;
+- (NSArray *) plugins;
 
 @end

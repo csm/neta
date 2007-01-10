@@ -1,0 +1,13 @@
+/* ARP strings. */
+
+arp = "Address Resolution Protocol";
+
+arp.htype = "Hardware Type";
+arp.ptype = "Protocol Type";
+arp.hlen = "Hardware Length";
+arp.plen = "Protocol Length";
+arp.op = "Operation";
+arp.sha = "Sender Hardware Address";
+arp.spa = "Sender Protocol Address";
+arp.tha = "Target Hardware Address";
+arp.tpa = "Target Protocol Address";

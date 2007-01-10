@@ -43,10 +43,10 @@
 
 - (void) addChild: (NAPlugin *) aPlugin
 {
-  NSString *name = [aPlugin name];
-  if ([children objectForKey: name] == nil)
+  NSString *n = [aPlugin name];
+  if ([children objectForKey: n] == nil)
   {
-    [children setObject: aPlugin forKey: name];
+    [children setObject: aPlugin forKey: n];
   }
 }
 
@@ -55,9 +55,18 @@
   return [children objectForKey: aName];
 }
 
-- (id) newInstance
+- (NSArray *) children
 {
-  return [[pluginClass alloc] init];
+  return [children allValues];
+}
+
+- (id) getInstance
+{
+  if (instance == nil)
+  {
+    instance = [[pluginClass alloc] init];
+  }
+  return instance;
 }
 
 - (NSString *) description

@@ -425,57 +425,61 @@ ethertype (uint16_t type)
                                                length: [capData length]];
     [dec addObject: item];
     
-    switch (ntohs(ethernet->ether_type))
+    short ether_type = ntohs(ethernet->ether_type);
+    NSArray *root_plugins = [[NAPluginController controller] plugins];
+    NSEnumerator *e = [root_plugins objectEnumerator];
+    NAPlugin *plugin;
+    id decoder = nil;
+    while ((plugin = [e nextObject]) != nil)
     {
-      case kNAEthernetIPProtocol:
+      Class clazz = [plugin pluginClass];
+      if ([clazz respondsToSelector: @selector(etherType)]
+          && [clazz etherType] == ether_type)
       {
-        NAPlugin *ipplug = [[NAPluginController controller] pluginForProtocol: @"ip"];
-        NSLog(@"ipplug = %@", ipplug);
-        if (ipplug != nil)
-        {
-          id d = [ipplug newInstance];
-          NSData *ipdata = [NSData dataWithBytes: ethernet->ether_data
-                                          length: [capData length] - ETHER_HEADER_LEN];
-          NSArray *ipdec = [d decodeData: ipdata];
-          if (ipdec != nil)
-          {
-            item = [NADecodedItem itemWithName: @"ip"
-                                         value: ipdec
-                                        offset: ETHER_HEADER_LEN
-                                        length: [ipdata length]];
-            NSLog(@"IPv4 decoded item: %@", item);
-            [dec addObject: item];
-          }
-          [d release];
-        }
-        break;
-      }
-
-      case kNAEthernetIPv6Protocol:
-      {
-        NAPlugin *ip6plug = [[NAPluginController controller] pluginForProtocol:
-          @"ip6" ];
-        NSLog(@"ip6plug %@", ip6plug);
-        if (ip6plug != nil)
-        {
-          id d = [ip6plug newInstance];
-          NSData *ip6data = [NSData dataWithBytes: ethernet->ether_data
-                                          length: [capData length] - ETHER_HEADER_LEN];
-          NSArray *ipdec = [d decodeData: ip6data];
-          if (ipdec != nil)
-          {
-            item = [NADecodedItem itemWithName: @"ip6"
-                                         value: ipdec
-                                        offset: ETHER_HEADER_LEN
-                                        length: [ip6data length]];
-            NSLog(@"IPv6 decoded item %@", item);
-            [dec addObject: item];
-          }
-          [d release];
-        }
+        decoder = [plugin getInstance];
         break;
       }
     }
+    
+    NSData *payload = [NSData dataWithBytes: ethernet->ether_data
+                                     length: [capData length] - ETHER_HEADER_LEN];
+    int headerLength = ETHER_HEADER_LEN;
+    while (decoder != nil)
+    {
+      [decoder setData: payload];
+      NSArray *d = [decoder decode];
+      if (d != nil)
+      {
+        [dec addObject: [NADecodedItem itemWithName: [plugin name]
+                                              value: d
+                                             offset: headerLength
+                                             length: [payload length]]];
+      }
+      
+      payload = [decoder payload];
+      if (payload == nil)
+      {
+        [decoder release];
+        break;
+      }
+
+      NSArray *children = [plugin children];
+      NSEnumerator *e = [children objectEnumerator];
+      NAPlugin *child;
+      id nextDecoder = nil;
+      while ((child = [e nextObject]) != nil)
+      {
+        if ([decoder validateChild: [child pluginClass]])
+        {
+          plugin = child;
+          nextDecoder = [plugin getInstance];
+        }
+      }
+
+      [decoder release];
+      decoder = nextDecoder;
+    }
+
     NSLog(@"decoded packet layers (%d): %@", index, dec);
     packet = [[NADecodedPacket alloc] initWithIndex: index
                                              layers: dec];

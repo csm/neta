@@ -11,6 +11,7 @@
 #import "NAInternetAddress.h"
 #import "NAPluginRegistry.h"
 #import "NADecodedItem.h"
+#import "NAInternetProtocolDecoder.h"
 
 @implementation NetUnmodernIPProtocolDecoder
 
@@ -25,14 +26,47 @@
   return nil;
 }
 
-- (NSArray *) decodeData: (NSData *) theData
+- (id) init
 {
-  na_ip *ip = (na_ip *) [theData bytes];
+  if ((self = [super init]) != nil)
+  {
+    current = nil;
+  }
+
+  return self;
+}
+
+- (void) setData: (NSData *) theData
+{
+  if (current != nil)
+  {
+    [current release];
+  }
+  current = [[NSData alloc] initWithData: theData];
+}
+
+- (NSString *) summarize
+{
+  if (current == nil)
+  {
+    return nil;
+  }
+  na_ip *ip = (na_ip *) [current bytes];
+  return [NSString stringWithFormat: @"Internet Protocol, version 4; source: %@, destination: %@",
+    [NAInternetAddress addressWithType: IPv4
+                                 bytes: &(ip->ip_src)],
+    [NAInternetAddress addressWithType: IPv4
+                                 bytes: &(ip->ip_dst)]];  
+}
+
+- (NSArray *) decode
+{
+  na_ip *ip = (na_ip *) [current bytes];
   NAInternetAddress *src = [NAInternetAddress addressWithType: IPv4
                                                         bytes: &(ip->ip_src)];
   NAInternetAddress *dst = [NAInternetAddress addressWithType: IPv4
                                                         bytes: &(ip->ip_dst)];
-  int len = [theData length] - IP_HLEN(*ip);
+  int len = [current length] - IP_HLEN(*ip);
   NSData *ipData = [NSData dataWithBytes: IP_GET_DATA(*ip) length: len];
   
   NSArray *ip_flags = [NSArray arrayWithObjects:
@@ -98,9 +132,56 @@
     nil ]; // FIXME
 }
 
+- (BOOL) validateChild: (Class) aClass
+{
+  if (current == nil)
+  {
+    return NO;
+  }
+  na_ip *ip = (na_ip *) [current bytes];
+  if ([aClass conformsToProtocol: @protocol(NAInternetProtocolDecoder)])
+  {
+    return ip->ip_prot == [aClass protocolNumber];
+  }
+  return NO;
+}
+
+- (NSData *) payload
+{
+  if (current == nil)
+  {
+    return nil;
+  }
+
+  na_ip *ip = (na_ip *) [current bytes];
+  return [NSData dataWithBytes: IP_GET_DATA(*ip)
+                        length: IP_DATA_LEN(*ip)];
+}
+
+- (unsigned) headerLength
+{
+  if (current == nil)
+  {
+    return 0;
+  }
+  
+  na_ip *ip = (na_ip *) [current bytes];
+  return IP_HLEN(*ip);
+}
+
 - (NSString *) description
 {
   return @"Internet Protocol, version 4";
+}
+
++ (NSString *) pluginInfo
+{
+  return @"Internet Protocol decoder. Copyright © 2006–2007 Casey Marshall";
+}
+
++ (int) etherType
+{
+  return kNAEthernetIPProtocol;
 }
 
 @end

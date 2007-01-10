@@ -1,26 +1,18 @@
 /* NAController */
 
 #import <Cocoa/Cocoa.h>
+#import "NAPluginController.h"
 
 @interface NAController : NSObject
 {
-    IBOutlet id mainWindow;
-    IBOutlet id packetDetail;
-    IBOutlet id packetHex;
-    IBOutlet id packetsTable;
-    IBOutlet id statusLabel;
-    
-    NSToolbar *toolbar;
+  IBOutlet NSOutlineView *plugins;
+  IBOutlet NSWindow *pluginsPanel;
+  IBOutlet NSTableColumn *left;
+  IBOutlet NSTableColumn *right;
+  
+  NAPluginController *pluginController;
+  NAPlugin *rootPlugin;
 }
-
-- (void) awakeFromNib;
-
-// NSTableViewDataSource
-
-- (int) numberOfRowsInTableView: (NSTableView *) aTableView;
-- (id) tableView: (NSTableView *) aTableView
- objectValueForTableColumn: (NSTableColumn *) aTableColumn
-             row: (int) rowIndex;
 
 // NSOutlineViewDataSource
 

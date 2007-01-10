@@ -44,8 +44,8 @@ which carries forward this exception.  */
 #import <Cocoa/Cocoa.h>
 
 
-@interface NAUtils : NSObject {
-
+@interface NAUtils : NSObject
+{
 }
 
 // Format the given bytes like `hexdump -C', that is, print out the
@@ -59,5 +59,11 @@ which carries forward this exception.  */
 // the final line.
 + (NSString *) hexdump: (char *) theBytes length: (unsigned) theLength;
 + (NSString *) hexdump: (NSData *) theData;
+
++ (NSString *) toHexString: (char *) theBytes
+                    length: (int) theLength
+                 separator: (NSString *) aSep;
++ (NSString *) toHexString: (NSData *) theData
+                 separator: (NSString *) aSep;
 
 @end

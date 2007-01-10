@@ -12,6 +12,7 @@
 
 @interface NetUnmodernIPProtocolDecoder : NSObject < NAProtocolDecoder, NAEthernetDecoder >
 {
+  NSData *current;
 }
 
 @end
