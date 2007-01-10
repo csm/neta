@@ -140,8 +140,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
   }
   
   na_ip6 *ip6 = (na_ip6 *) [current bytes];
+  int len = ntohs(ip6->ip6_len);
+  if (len > [current length] - [self headerLength])
+  {
+    len = [current length] - [self headerLength];
+  }
   return [NSData dataWithBytes: ip6->ip6_data
-                        length: ntohs(ip6->ip6_len)];
+                        length: len];
 }
 
 - (unsigned) headerLength
@@ -154,9 +159,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
   return @"Internet Protocol, version 6";
 }
 
++ (BOOL) match: (NSData *) theData
+{
+  return NO;
+}
+
 + (NSString *) pluginInfo
 {
-  return @"Internet Protocol, version 6 decoder. Copyright © 2006–2007 Casey Marshall";
+  return @"Internet Protocol, version 6 decoder. Copyright (C) 2006-2007 Casey Marshall";
 }
 
 + (int) etherType

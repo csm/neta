@@ -87,7 +87,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
   return @"?";
 }
 
-- (NSArray *) decodeData: (NSData *) theData
+- (NSArray *) decode
 {
   if (current == nil)
   {
@@ -120,33 +120,31 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
                          length: sizeof(arp->arp_operation)],
     [NADecodedItem itemWithName: @"arp.sha"
                           value: [NAUtils toHexString: ARP_SHA(*arp)
-                                              length: ntohs(arp->arp_hlen)
+                                              length: arp->arp_hlen
                                            separator: @":"]
                          offset: offsetof(struct na_arp, arp_sha)
-                         length: ntohs(arp->arp_hlen)],
+                         length: arp->arp_hlen],
     [NADecodedItem itemWithName: @"arp.spa"
                           value: [NAUtils toHexString: ARP_SPA(*arp)
-                                              length: ntohs(arp->arp_plen)
+                                              length: arp->arp_plen
                                            separator: @":"]
                          offset: (offsetof(struct na_arp, arp_sha)
-                                  + ntohs(arp->arp_hlen))
-                         length: ntohs(arp->arp_plen)],
+                                  + arp->arp_hlen)
+                         length: arp->arp_plen],
     [NADecodedItem itemWithName: @"arp.tha"
                           value: [NAUtils toHexString: ARP_THA(*arp)
-                                              length: ntohs(arp->arp_hlen)
+                                              length: arp->arp_hlen
                                            separator: @":"]
                          offset: (offsetof(struct na_arp, arp_sha)
-                                  + ntohs(arp->arp_hlen)
-                                  + ntohs(arp->arp_plen))
-                         length: ntohs(arp->arp_hlen)],
+                                  + arp->arp_hlen + arp->arp_plen)
+                         length: arp->arp_hlen],
     [NADecodedItem itemWithName: @"arp.tpa"
                           value: [NAUtils toHexString: ARP_TPA(*arp)
-                                              length: ntohs(arp->arp_plen)
+                                              length: arp->arp_plen
                                            separator: @":"]
                          offset: (offsetof(struct na_arp, arp_sha)
-                                  + (2 * ntohs(arp->arp_hlen))
-                                  + ntohs(arp->arp_plen))
-                         length: ntohs(arp->arp_plen)],
+                                  + (2 * arp->arp_hlen) + arp->arp_plen)
+                         length: arp->arp_plen],
     nil];
 }
 

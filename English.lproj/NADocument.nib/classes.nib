@@ -16,6 +16,7 @@
             }; 
             SUPERCLASS = NSDocument; 
         }, 
+        {CLASS = NAOutlineView; LANGUAGE = ObjC; SUPERCLASS = NSOutlineView; }, 
         {CLASS = NAPCAPFilterView; LANGUAGE = ObjC; SUPERCLASS = NSView; }
     ); 
     IBVersion = 1; 
