@@ -446,6 +446,7 @@ ethertype (uint16_t type)
     int headerLength = ETHER_HEADER_LEN;
     while (decoder != nil)
     {
+      NSLog(@"decoder setData %@", decoder);
       [decoder setData: payload];
       NSArray *d = [decoder decode];
       if (d != nil)
@@ -459,7 +460,6 @@ ethertype (uint16_t type)
       payload = [decoder payload];
       if (payload == nil)
       {
-        [decoder release];
         break;
       }
 
@@ -473,10 +473,11 @@ ethertype (uint16_t type)
         {
           plugin = child;
           nextDecoder = [plugin getInstance];
+          break;
         }
       }
 
-      [decoder release];
+      NSLog(@"nextDecoder is %@", nextDecoder);
       decoder = nextDecoder;
     }
 

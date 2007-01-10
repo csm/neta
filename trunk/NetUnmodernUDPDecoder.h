@@ -1,4 +1,4 @@
-/* NetUnmodernIPProtocolDecoder.h -- internet protocol decoder.
+/* NetUnmodernUDPDecoder.h -- UDP decoder.
    Copyright (C) 2007  Casey Marshall <casey.s.marshall@gmail.com>
 
 This file is a part of Network Analyzer.
@@ -20,10 +20,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 
 
 #import <Cocoa/Cocoa.h>
-#import "NAProtocolDecoder.h"
-#import "NAEthernetDecoder.h"
+#import "NAInternetProtocolDecoder.h"
 
-@interface NetUnmodernIPProtocolDecoder : NSObject < NAProtocolDecoder, NAEthernetDecoder >
+
+@interface NetUnmodernUDPDecoder : NSObject < NAInternetProtocolDecoder >
 {
   NSData *current;
 }

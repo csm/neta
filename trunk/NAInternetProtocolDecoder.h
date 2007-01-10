@@ -46,6 +46,7 @@ which carries forward this exception.  */
 #import "NAProtocolDecoder.h"
 
 #define kNAInternetProtocolNumberTCP 6
+#define kNAInternetProtocolNumberUDP 17
 
 // This is a specialization of NAProtocolDecoder with additional support
 // for the Internet Protocol, version 4 or 6. If a decoder conforms to this
