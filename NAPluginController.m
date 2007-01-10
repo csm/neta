@@ -67,14 +67,14 @@ static NAPluginController *gController = nil;
     }
     
     NSLog(@"paths: %@", paths);
-    NSMutableDictionary *d = [NSMutableDictionary dictionary];
+    pluginsMap = [[NSMutableDictionary alloc] init];
     e = [paths objectEnumerator];
     while ((s = [e nextObject]) != nil)
     {
-      [self loadPluginWithPath: s intoDictionary: d];
+      [self loadPluginWithPath: s];
     }
     
-    e = [[d allValues] objectEnumerator];
+    e = [[pluginsMap allValues] objectEnumerator];
     NAPlugin *p;
     while ((p = [e nextObject]) != nil)
     {
@@ -94,7 +94,7 @@ static NAPluginController *gController = nil;
       NSString *parentName;
       while ((parentName = [pe nextObject]) != nil)
       {
-        NAPlugin *parent = [d objectForKey: parentName];
+        NAPlugin *parent = [pluginsMap objectForKey: parentName];
         if (parent != nil)
         {
           [parent addChild: p];
@@ -114,7 +114,6 @@ static NAPluginController *gController = nil;
 }
 
 - (BOOL) loadPluginWithPath: (NSString *) aPath
-             intoDictionary: (NSMutableDictionary *) aDict
 {
   NSLog(@"loading bundle %@", aPath);
   NSBundle *bundle = [NSBundle bundleWithPath: aPath];
@@ -127,10 +126,14 @@ static NAPluginController *gController = nil;
     NAPlugin *plugin = [[NAPlugin alloc] initWithClass: pluginClass
                                                   name: ident
                                                 bundle: bundle];
-    if ([aDict objectForKey: ident] == nil)
+#if DEBUG
+    NSLog(@"loaded plugin %@ for protocol %@ from bundle %@",
+          plugin, ident, bundle);
+#endif // DEBUG
+    if ([pluginsMap objectForKey: ident] == nil)
     {
-      [aDict setObject: plugin
-                forKey: ident];
+      [pluginsMap setObject: plugin
+                     forKey: ident];
     }
     else
     {
@@ -148,22 +151,15 @@ static NAPluginController *gController = nil;
 
 - (NAPlugin *) pluginForProtocol: (NSString *) aProt
 {
-  // FIXME, walk tree.
-  NSEnumerator *e = [plugins objectEnumerator];
-  NAPlugin *p;
-  while ((p = [e nextObject]) != nil)
-  {
-    if ([[p name] isEqualToString: aProt])
-    {
-      return p;
-    }
-  }
-  return nil;
+#if DEBUG
+  NSLog(@"pluginForProtocol: %@", aProt);
+#endif // DEBUG
+  return [pluginsMap objectForKey: aProt];
 }
 
 - (NSArray *) plugins
 {
-  return plugins;
+  return [NSArray arrayWithArray: plugins];
 }
 
 @end

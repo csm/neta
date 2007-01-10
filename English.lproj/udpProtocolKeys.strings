@@ -1,0 +1,9 @@
+/* UDP decoder protocol keys. */
+
+udp = "User Datagram Protocol";
+
+udp.src = "Source Port";
+udp.dst = "Destination Port";
+udp.len = "Length";
+udp.checksum = "Checksum";
+udp.data = "Data";

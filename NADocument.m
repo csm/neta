@@ -789,6 +789,11 @@ fetch_plugin_id (NSString *key)
     }
   }
   
+#ifdef DEBUG
+  NSLog(@"localizing %@ with bundle %@ and table %@", aKey, bundle,
+        table);
+#endif // DEBUG
+  
   if (bundle != nil)
   {
     return [bundle localizedStringForKey: aKey

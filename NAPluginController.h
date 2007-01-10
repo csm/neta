@@ -12,11 +12,13 @@
 @interface NAPluginController : NSObject
 {
   @private
+  NSMutableDictionary *pluginsMap;
   NSMutableArray *plugins;
 }
 
 + (NAPluginController *) controller;
 - (NAPlugin *) pluginForProtocol: (NSString *) aProt;
+- (BOOL) loadPluginWithPath: (NSString *) aPath;
 - (NSArray *) plugins;
 
 @end
