@@ -167,8 +167,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
   }
 
   na_ip *ip = (na_ip *) [current bytes];
-  return [NSData dataWithBytes: IP_GET_DATA(*ip)
-                        length: IP_DATA_LEN(*ip)];
+  int len = IP_DATA_LEN(*ip);
+  if (len > [current length] - IP_HLEN(*ip))
+  {
+    len = [current length] - IP_HLEN(*ip);
+  }
+  NSData *ret = [NSData dataWithBytes: IP_GET_DATA(*ip)
+                               length: len];
+#if DEBUG
+  NSLog(@"returning payload data %@ (length is %d)", ret, len);
+#endif // DEBUG
+  return ret;
 }
 
 - (unsigned) headerLength

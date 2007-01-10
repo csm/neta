@@ -68,8 +68,8 @@ typedef struct na_ethernet
 #define IP_OPTIONS_LEN(ip) (IP_HLEN(ip) - 20)
 #define IP_GET_OPTIONS(ip) (&(ip) + 20)
 
-#define IP_DATA_LEN(ip) ((ip).ip_len - IP_HLEN(ip))
-#define IP_GET_DATA(ip) (&(ip) + IP_HLEN(ip))
+#define IP_DATA_LEN(ip) (ntohs((ip).ip_len) - IP_HLEN(ip))
+#define IP_GET_DATA(ip) ((ip).ip_options + IP_HLEN(ip) - 20)
 
 typedef struct na_ip
 {

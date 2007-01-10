@@ -397,6 +397,15 @@ ethertype (uint16_t type)
     NACapturedPacket *cap = [packets objectAtIndex: index];
     NSMutableArray *dec = [NSMutableArray array];
     NSData *capData = [cap packet];
+
+    [dec addObject:
+      [NADecodedItem itemWithName: @""
+                            value: [NSString stringWithFormat:
+                              @"Captured packet %d. %d bytes captured, %d on wire.",
+                              index, [capData length], [cap length]]
+                           offset: 0
+                           length: [capData length]]];
+    
     na_ethernet *ethernet = (na_ethernet *) [capData bytes];
     NSArray *etherDec = [NSArray arrayWithObjects:
       [NADecodedItem itemWithName: @"eth.dst"
