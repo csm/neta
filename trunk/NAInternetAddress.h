@@ -49,7 +49,7 @@ typedef enum NAInternetAddressType
   IPv6     // Internet protocol, version 6
 } NAInternetAddressType;
 
-@interface NAInternetAddress : NSObject
+@interface NAInternetAddress : NSObject < NSCopying >
 {
   NAInternetAddressType type;
   char *address;

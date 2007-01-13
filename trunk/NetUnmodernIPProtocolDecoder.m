@@ -25,6 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 #import "NAPluginRegistry.h"
 #import "NADecodedItem.h"
 #import "NAInternetProtocolDecoder.h"
+#import "NADNSCache.h"
 
 
 @implementation NetUnmodernIPProtocolDecoder
@@ -101,7 +102,27 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
                          offset: offsetof(struct na_ip, ip_ffoff)
                          length: sizeof(ip->ip_ffoff)],
     nil];
-    
+  
+  NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
+  NSString *srcHost = [src description];
+  if ([d boolForKey: @"reverseLookup"])
+  {
+    NSString *s = [[NADNSCache cache] hostForAddress: src];
+    if (s != nil)
+    {
+      srcHost = [NSString stringWithFormat: @"%@ (%@)", s, srcHost];
+    }
+  }
+  NSString *dstHost = [dst description];
+  if ([d boolForKey: @"reverseLookup"])
+  {
+    NSString *s = [[NADNSCache cache] hostForAddress: dst];
+    if (s != nil)
+    {
+      dstHost = [NSString stringWithFormat: @"%@ (%@)", s, dstHost];
+    }
+  }
+  
   return [NSArray arrayWithObjects:
     [NADecodedItem itemWithName: @"ip.version"
                           value: [NSNumber numberWithInt: IP_VERSION(*ip)]
@@ -144,11 +165,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
                          offset: offsetof(struct na_ip, ip_csum)
                          length: sizeof(ip->ip_csum)],
     [NADecodedItem itemWithName: @"ip.src"
-                          value: src
+                          value: srcHost
                          offset: offsetof(struct na_ip, ip_src)
                          length: sizeof(ip->ip_src)],
     [NADecodedItem itemWithName: @"ip.dst"
-                          value: dst
+                          value: dstHost
                          offset: offsetof(struct na_ip, ip_dst)
                          length: sizeof(ip->ip_dst)],
     nil ]; // FIXME

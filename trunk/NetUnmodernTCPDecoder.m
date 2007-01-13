@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 #import "NetUnmodernTCPDecoder.h"
 #import "NAProtocols.h"
 #import "NADecodedItem.h"
+#import "NADNSCache.h"
 
 @implementation NetUnmodernTCPDecoder
 
@@ -116,12 +117,22 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
   NSString *src = nil;
   if (currentSrc != nil)
   {
-    if ([currentSrc type] == IPv4)
+    NSString *srcHost = [[NADNSCache cache] hostForAddress: currentSrc];
+    if (srcHost != nil)
+    {
+      src = [NSString stringWithFormat: @"%@:%d", srcHost,
+        ntohs(tcp->tcp_sport)];
+    }
+    else if ([currentSrc type] == IPv4)
+    {
       src = [NSString stringWithFormat: @"%@:%d", currentSrc,
         ntohs(tcp->tcp_sport)];
+    }
     else
+    {
       src = [NSString stringWithFormat: @"[%@]:%d", currentSrc,
         ntohs(tcp->tcp_sport)];
+    }
   }
   else
   {
@@ -130,12 +141,22 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
   NSString *dst = nil;
   if (currentDst != nil)
   {
-    if ([currentDst type] == IPv4)
+    NSString *dstHost = [[NADNSCache cache] hostForAddress: currentDst];
+    if (dstHost != nil)
+    {
+      dst = [NSString stringWithFormat: @"%@:%d", dstHost,
+        ntohs(tcp->tcp_dport)];
+    }
+    else if ([currentDst type] == IPv4)
+    {
       dst = [NSString stringWithFormat: @"%@:%d", currentDst,
         ntohs(tcp->tcp_dport)];
+    }
     else
+    {
       dst = [NSString stringWithFormat: @"[%@]:%d", currentDst,
         ntohs(tcp->tcp_dport)];
+    }
   }
   else
   {
