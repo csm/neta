@@ -87,6 +87,13 @@ which carries forward this exception.  */
                       bytes: [anAddr bytes]];
 }
 
+// NSCopying
+
+- (id) copyWithZone: (NSZone *) zone
+{
+  return [[NAInternetAddress allocWithZone: zone] initWithAddress: self];
+}
+
 + (NAInternetAddress *) addressWithType: (NAInternetAddressType) aType
                                   bytes: (char *) theBytes
 {
@@ -168,6 +175,40 @@ which carries forward this exception.  */
   }
   
   return @""; // NOT REACHED.
+}
+
+- (unsigned) hash
+{
+  if (type == IPv4)
+  {
+    return *((uint32_t *) address);
+  }
+  else
+  {
+    uint32_t *x = (uint32_t *) address;
+    return 0x80000000 | (x[0] ^ x[1] ^ x[2] ^ x[3]);
+  }
+}
+
+- (BOOL) isEqual: (id) obj
+{
+  if (obj == nil || ![obj isKindOfClass: [NAInternetAddress class]])
+  {
+    return NO;
+  }
+
+  NAInternetAddress *that = obj;
+  if (type != [that type])
+  {
+    return NO;
+  }
+  
+  if (memcmp (address, [that bytes], (type == IPv4) ? 4 : 16) != 0)
+  {
+    return NO;
+  }
+  
+  return YES;
 }
 
 @end

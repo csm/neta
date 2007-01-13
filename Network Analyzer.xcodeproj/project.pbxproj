@@ -22,6 +22,8 @@
 		700C73410B5816540083B786 /* NetUnmodernICMPDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 700C73400B5816540083B786 /* NetUnmodernICMPDecoder.m */; };
 		700C73470B5816750083B786 /* icmpProtocolKeys.strings in Resources */ = {isa = PBXBuildFile; fileRef = 700C73460B5816750083B786 /* icmpProtocolKeys.strings */; };
 		700C73D40B5839E10083B786 /* NAIP.h in Headers */ = {isa = PBXBuildFile; fileRef = 700C73D20B5839E10083B786 /* NAIP.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		700C76020B5868420083B786 /* NADNSCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 700C76000B5868420083B786 /* NADNSCache.h */; };
+		700C76030B5868420083B786 /* NADNSCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 700C76010B5868420083B786 /* NADNSCache.m */; };
 		70303E7B0B3A03CF0034D4FA /* NANetworkDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 70303E760B3A03CF0034D4FA /* NANetworkDevice.m */; };
 		70303E8E0B3A07BD0034D4FA /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70303E8D0B3A07BD0034D4FA /* SenTestingKit.framework */; };
 		70303E9D0B3A07E30034D4FA /* NAUtilsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 70303E920B3A07E30034D4FA /* NAUtilsTest.m */; };
@@ -218,6 +220,8 @@
 		700C73400B5816540083B786 /* NetUnmodernICMPDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetUnmodernICMPDecoder.m; sourceTree = "<group>"; };
 		700C73420B58166D0083B786 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/icmpProtocolKeys.strings; sourceTree = "<group>"; };
 		700C73D20B5839E10083B786 /* NAIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAIP.h; sourceTree = "<group>"; };
+		700C76000B5868420083B786 /* NADNSCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NADNSCache.h; sourceTree = "<group>"; };
+		700C76010B5868420083B786 /* NADNSCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NADNSCache.m; sourceTree = "<group>"; };
 		70303E700B3A03CF0034D4FA /* NAConstants.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NAConstants.h; sourceTree = "<group>"; };
 		70303E730B3A03CF0034D4FA /* NAInternetAddress.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NAInternetAddress.h; sourceTree = "<group>"; };
 		70303E740B3A03CF0034D4FA /* NAInternetAddress.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NAInternetAddress.m; sourceTree = "<group>"; };
@@ -550,6 +554,8 @@
 				700C73170B56D53D0083B786 /* NADecodedPacketSummary.h */,
 				700C73180B56D53D0083B786 /* NADecodedPacketSummary.m */,
 				700C73D20B5839E10083B786 /* NAIP.h */,
+				700C76000B5868420083B786 /* NADNSCache.h */,
+				700C76010B5868420083B786 /* NADNSCache.m */,
 			);
 			name = "PlugIn Support";
 			sourceTree = "<group>";
@@ -716,6 +722,7 @@
 				70351F530B4F31CC0091D42A /* NADecodedItem.h in Headers */,
 				700C73190B56D53D0083B786 /* NADecodedPacketSummary.h in Headers */,
 				700C73D40B5839E10083B786 /* NAIP.h in Headers */,
+				700C76020B5868420083B786 /* NADNSCache.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1057,6 +1064,7 @@
 				70351E090B4C999C0091D42A /* NAPluginRegistry.m in Sources */,
 				70351F540B4F31CC0091D42A /* NADecodedItem.m in Sources */,
 				700C731A0B56D53D0083B786 /* NADecodedPacketSummary.m in Sources */,
+				700C76030B5868420083B786 /* NADNSCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
