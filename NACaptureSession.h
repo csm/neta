@@ -59,6 +59,7 @@ typedef enum
   int maxCapture;
   
   NSMutableDictionary *decodedPackets;
+  NSMutableDictionary *summaries;
 }
 
 // Initialize for a "live" capture session. The specified device will
@@ -99,6 +100,7 @@ typedef enum
 // Save the capture to the specified URL.
 - (BOOL) saveToURL: (NSURL *) anUrl error: (NSError **) outError;
 
+- (NADecodedPacketSummary *) summaryAtIndex: (int) index;
 - (NADecodedPacket *) decodedPacketAtIndex: (int) index;
 
 @end

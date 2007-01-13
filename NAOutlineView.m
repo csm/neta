@@ -25,16 +25,20 @@
   for (i = 1; i < n; i++)
   {
     NSRect rect = [self rectOfRow: i];
+    rect.size.width -= 4;
+    rect.origin.x += 4;
     id item = [self itemAtRow: i];
     if ([self isExpandable: item])
     {
       [c2 set];
       NSRectFill(rect);
+      NSRect rect2 = rect;
       float indent = [self indentationPerLevel] * [self levelForRow: i];
-      rect.origin.x += indent + 1;
-      rect.size.width -= indent + 1;
+      rect2.origin.x += indent + 1;
+      rect2.size.width -= indent + 1;
+      rect2.size.height -= 1;
       [c1 set];
-      NSRectFill(rect);
+      NSRectFill(rect2);
     }
     else
     {
@@ -48,7 +52,7 @@
     [c1 set];
     for (j = 0; j < [self levelForRow: i]; j++)
     {
-      rect.origin.x = j * [self indentationPerLevel] + 1;
+      rect.origin.x = j * [self indentationPerLevel] + 5;
       NSRectFill(rect);
     }
   }

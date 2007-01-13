@@ -26,6 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 #import "NADecodedItem.h"
 #import "NAInternetProtocolDecoder.h"
 
+
 @implementation NetUnmodernIPProtocolDecoder
 
 + (const NAProtocolID *) identifier
@@ -58,18 +59,26 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
   current = [[NSData alloc] initWithData: theData];
 }
 
-- (NSString *) summarize
+- (NADecodedPacketSummary *) summarize
 {
   if (current == nil)
   {
     return nil;
   }
   na_ip *ip = (na_ip *) [current bytes];
-  return [NSString stringWithFormat: @"Internet Protocol, version 4; source: %@, destination: %@",
+  NSString *src = [NSString stringWithFormat: @"%@",
     [NAInternetAddress addressWithType: IPv4
-                                 bytes: &(ip->ip_src)],
+                                 bytes: &(ip->ip_src)]];
+  NSString *dst = [NSString stringWithFormat: @"%@",
     [NAInternetAddress addressWithType: IPv4
-                                 bytes: &(ip->ip_dst)]];  
+                                 bytes: &(ip->ip_dst)]];
+  NSString *summary = [NSString stringWithFormat:
+    @"Internet Protocol, version 4; source: %@, destination: %@",
+    src, dst];
+  return [NADecodedPacketSummary summaryWithSource: src
+                                       destination: dst
+                                          protocol: @"IPv4"
+                                           summary: summary];
 }
 
 - (NSArray *) decode
@@ -198,12 +207,34 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 
 + (NSString *) pluginInfo
 {
-  return @"Internet Protocol decoder. Copyright © 2006–2007 Casey Marshall";
+  return @"Internet Protocol decoder. Copyright (C) 2006-2007 Casey Marshall";
 }
 
 + (int) etherType
 {
   return kNAEthernetIPProtocol;
+}
+
+- (NAInternetAddress *) ipSource
+{
+  if (current == nil)
+  {
+    return nil;
+  }
+  na_ip *ip = (na_ip *) [current bytes];
+  return [NAInternetAddress addressWithType: IPv4
+                                      bytes: &(ip->ip_src)];
+}
+
+- (NAInternetAddress *) ipDestination
+{
+  if (current == nil)
+  {
+    return nil;
+  }
+  na_ip *ip = (na_ip *) [current bytes];
+  return [NAInternetAddress addressWithType: IPv4
+                                      bytes: &(ip->ip_dst)];
 }
 
 @end

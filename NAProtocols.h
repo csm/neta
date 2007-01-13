@@ -103,9 +103,9 @@ typedef struct na_ip6
 } na_ip6;
 
 #define ARP_SHA(arp)  ((arp).arp_sha)
-#define ARP_SPA(arp)  (ARP_SHA(arp) + (arp).arp_hlen)
-#define ARP_THA(arp)  (ARP_SPA(arp) + (arp).arp_plen)
-#define ARP_TPA(arp)  (ARP_THA(arp) + (arp).arp_hlen)
+#define ARP_SPA(arp)  ((char *) (ARP_SHA(arp) + (arp).arp_hlen))
+#define ARP_THA(arp)  ((char *) (ARP_SPA(arp) + (arp).arp_plen))
+#define ARP_TPA(arp)  ((char *) (ARP_THA(arp) + (arp).arp_hlen))
 
 typedef struct na_arp
 {
@@ -153,4 +153,10 @@ typedef struct na_udp
   uint16_t udp_csum;
   char udp_data[1]; // actually udp_length - 8 bytes.
 } na_udp;
- 
+
+typedef struct na_icmp
+{
+  uint8_t icmp_type;
+  uint8_t icmp_code;
+  uint16_t icmp_csum;
+} na_icmp;

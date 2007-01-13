@@ -55,10 +55,13 @@ typedef enum NAInternetAddressType
   char *address;
 }
 
-- (id) initWithType: (NAInternetAddressType) aType bytes: (char *) theBytes;
+- (id) initWithType: (NAInternetAddressType) aType
+              bytes: (char *) theBytes;
+- (id) initWithAddress: (NAInternetAddress *) anAddr;
 
 + (NAInternetAddress *) addressWithType: (NAInternetAddressType) aType
-  bytes: (char *) theBytes;
+                                  bytes: (char *) theBytes;
++ (NAInternetAddress *) addressWithAddress: (NAInternetAddress *) anAddr;
 
 - (NAInternetAddressType) type;
 - (char *) bytes;

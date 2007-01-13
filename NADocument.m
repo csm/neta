@@ -723,13 +723,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
   }
   id identifier = [aTableColumn identifier];
   NACapturedPacket *packet = [captureSession capturedPacketForIndex: rowIndex];
+  NADecodedPacketSummary *summary = [captureSession summaryAtIndex: rowIndex];
   if ([@"number" isEqual: identifier])
   {
     return [NSNumber numberWithInt: rowIndex + 1];
   }
   if ([@"time" isEqual: identifier])
   {
-    return [NSNumber numberWithDouble: [packet seconds]];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970: [packet seconds]];
+    return [date description];
   }
   if ([@"length" isEqual: identifier])
   {
@@ -737,19 +739,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
   }
   if ([@"source" isEqual: identifier])
   {
-    return @"?";
+    return [summary source];
   }
   if ([@"destination" isEqual: identifier])
   {
-    return @"?";
+    return [summary destination];
   }
   if ([@"protocol" isEqual: identifier])
   {
-    return @"?";
+    return [summary protocol];
   }
   if ([@"description" isEqual: identifier])
   {
-    return [packet description];
+    return [summary summary];
   }
   return @"XXX";
 }

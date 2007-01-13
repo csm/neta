@@ -56,35 +56,67 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
   current = [[NSData alloc] initWithData: theData];
 }
 
-- (NSString *) summarize
+- (NADecodedPacketSummary *) summarize
 {
   if (current == nil)
   {
     return nil;
   }
-  
+
   na_arp *arp = (na_arp *) [current bytes];
-  if (arp->arp_operation == 1)
+  NSString *srch = [NAUtils toHexString: ARP_SHA(*arp)
+                                 length: arp->arp_hlen
+                              separator: @":"];
+  NSString *srcp = nil;
+  if (arp->arp_plen == 4)
   {
-    return [NSString stringWithFormat: @"who-has %@ tell %@",
-      [NAUtils toHexString: ARP_TPA(*arp)
-                    length: arp->arp_plen
-                 separator: @":"],
-      [NAUtils toHexString: ARP_SPA(*arp)
-                    length: arp->arp_plen
-                 separator: @":"]];
+    srcp = [NSString stringWithFormat: @"%d.%d.%d.%d",
+      ARP_SPA(*arp)[0] & 0xFF, ARP_SPA(*arp)[1] & 0xFF,
+      ARP_SPA(*arp)[2] & 0xFF, ARP_SPA(*arp)[3] & 0xFF];
   }
-  else if (arp->arp_operation == 2)
+  else
   {
-    return [NSString stringWithFormat: @"%@ is-at %@",
-      [NAUtils toHexString: ARP_SPA(*arp)
-                    length: arp->arp_plen
-                 separator: @":"],
-      [NAUtils toHexString: ARP_SHA(*arp)
-                    length: arp->arp_hlen
-                 separator: @":"]];
+    srcp = [NAUtils toHexString: ARP_SPA(*arp)
+                         length: arp->arp_plen
+                      separator: @":"];
   }
-  return @"?";
+
+  NSString *dsth = [NAUtils toHexString: ARP_THA(*arp)
+                                 length: arp->arp_hlen
+                              separator: @":"];
+  NSString *dstp = nil;
+  if (arp->arp_plen == 4)
+  {
+    dstp = [NSString stringWithFormat: @"%d.%d.%d.%d",
+      ARP_TPA(*arp)[0] & 0xFF, ARP_TPA(*arp)[1] & 0xFF,
+      ARP_TPA(*arp)[2] & 0xFF, ARP_TPA(*arp)[3] & 0xFF];
+  }
+  else
+  {
+    dstp = [NAUtils toHexString: ARP_TPA(*arp)
+                         length: arp->arp_plen
+                      separator: @":"];
+  }
+  NSString *desc = nil;
+  if (ntohs(arp->arp_operation) == 1)
+  {
+    desc = [NSString stringWithFormat: @"who-has %@ tell %@",
+      dstp, srch];
+  }
+  else if (ntohs(arp->arp_operation) == 2)
+  {
+    desc = [NSString stringWithFormat: @"%@ is-at %@",
+      srcp, srch];
+  }
+  else
+  {
+    desc = [NSString stringWithFormat: @"ARP operation %d",
+      ntohs(arp->arp_operation)];
+  }
+  return [NADecodedPacketSummary summaryWithSource: srch
+                                       destination: dsth
+                                          protocol: @"ARP"
+                                           summary: desc];
 }
 
 - (NSArray *) decode

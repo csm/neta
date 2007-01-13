@@ -46,6 +46,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
   if ((self = [super init]) != nil)
   {
     current = nil;
+    currentSrc = nil;
+    currentDst = nil;
   }
 
   return self;
@@ -57,18 +59,96 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
   {
     [current release];
   }
+  if (currentSrc != nil)
+  {
+    [currentSrc release];
+    currentSrc = nil;
+  }
+  if (currentDst != nil)
+  {
+    [currentDst release];
+    currentDst = nil;
+  }
   current = [[NSData alloc] initWithData: theData];
 }
 
-- (NSString *) summarize
+- (void) setSource: (NAInternetAddress *) aSource
+       destination: (NAInternetAddress *) aDestination
+{
+  if (currentSrc != nil)
+  {
+    [currentSrc release];
+    currentSrc = nil;
+  }
+  if (currentDst != nil)
+  {
+    [currentDst release];
+    currentDst = nil;
+  }
+  
+  if (aSource != nil)
+  {
+    currentSrc = [[NAInternetAddress alloc] initWithAddress: aSource];
+  }
+  else
+  {
+    currentSrc = nil;
+  }
+  
+  if (aDestination != nil)
+  {
+    currentDst = [[NAInternetAddress alloc] initWithAddress: aDestination];
+  }
+  else
+  {
+    currentDst = nil;
+  }
+}
+
+- (NADecodedPacketSummary *) summarize
 {
   if (current == nil)
   {
     return nil;
   }
+
   na_tcp *tcp = (na_tcp *) [current bytes];
-  return [NSString stringWithFormat: @"Source port: %d; Destination port: %d",
+  NSString *src = nil;
+  if (currentSrc != nil)
+  {
+    if ([currentSrc type] == IPv4)
+      src = [NSString stringWithFormat: @"%@:%d", currentSrc,
+        ntohs(tcp->tcp_sport)];
+    else
+      src = [NSString stringWithFormat: @"[%@]:%d", currentSrc,
+        ntohs(tcp->tcp_sport)];
+  }
+  else
+  {
+    src = [NSString stringWithFormat: @"%d", ntohs(tcp->tcp_sport)];
+  }
+  NSString *dst = nil;
+  if (currentDst != nil)
+  {
+    if ([currentDst type] == IPv4)
+      dst = [NSString stringWithFormat: @"%@:%d", currentDst,
+        ntohs(tcp->tcp_dport)];
+    else
+      dst = [NSString stringWithFormat: @"[%@]:%d", currentDst,
+        ntohs(tcp->tcp_dport)];
+  }
+  else
+  {
+    dst = [NSString stringWithFormat: @"%d", ntohs(tcp->tcp_dport)];
+  }
+  NSString *desc = [NSString stringWithFormat:
+    @"Source port: %d; Destination port: %d",
     ntohs(tcp->tcp_sport), ntohs(tcp->tcp_dport)];
+  
+  return [NADecodedPacketSummary summaryWithSource: src
+                                       destination: dst
+                                          protocol: @"TCP"
+                                           summary: desc];
 }
 
 - (NSArray *) decode
@@ -185,7 +265,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 
 + (NSString *) pluginInfo
 {
-  return @"Transmission Control Protocol decoder. Copyright © 2006–2007 Casey Marshall";
+  return @"Transmission Control Protocol decoder. Copyright (C) 2006-2007 Casey Marshall";
 }
 
 @end
