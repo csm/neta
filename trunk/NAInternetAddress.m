@@ -81,12 +81,23 @@ which carries forward this exception.  */
   return self;
 }
 
+- (id) initWithAddress: (NAInternetAddress *) anAddr
+{
+  return [self initWithType: [anAddr type]
+                      bytes: [anAddr bytes]];
+}
+
 + (NAInternetAddress *) addressWithType: (NAInternetAddressType) aType
                                   bytes: (char *) theBytes
 {
   NAInternetAddress *address = [[NAInternetAddress alloc] initWithType: aType
                                                                  bytes: theBytes];
   return [address autorelease];
+}
+
++ (NAInternetAddress *) addressWithAddress: (NAInternetAddress *) anAddr
+{
+  return [[[NAInternetAddress alloc] initWithAddress: anAddr] autorelease];
 }
 
 - (NAInternetAddressType) type
@@ -106,13 +117,7 @@ which carries forward this exception.  */
       break;
       
     case IPv6:
-      b = malloc (16);
-      if (b = NULL)
-      {
-        [NSException raise: NASystemError format: @"malloc failed: %s",
-          strerror(errno) ];
-      }
-      memcpy (b, address, 16);
+      len = 16;
       break;
   }
   

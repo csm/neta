@@ -23,6 +23,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 #import "NAConstants.h"
 #import "NAProtocols.h"
 #import "NADecodedItem.h"
+#import "NAIP.h"
+#import "NAInternetProtocolDecoder.h"
+#import "NAUtils.h"
 
 #import <stdio.h>
 #import <errno.h>
@@ -82,6 +85,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
       [self release];
       return nil;
     }
+    summaries = [[NSMutableDictionary alloc] init];
   }
   
   return self;
@@ -112,6 +116,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
       [self release];
       return nil;
     }
+    summaries = [[NSMutableDictionary alloc] init];
     
     if (![anUrl isFileURL])
     {
@@ -389,6 +394,112 @@ ethertype (uint16_t type)
   }
 }
 
+- (NADecodedPacketSummary *) summaryAtIndex: (int) index
+{
+#if DEBUG
+  NSLog(@"summaryAtIndex: %d", index);
+#endif // DEBUG
+  NADecodedPacketSummary *summary = nil;
+  if ((summary = [summaries objectForKey: [NSNumber numberWithInt: index]]) == nil)
+  {
+    NSLog(@"no cached summary @ index %d", index);
+    NACapturedPacket *cap = [packets objectAtIndex: index];
+    NSData *capData = [cap packet];
+    na_ethernet *ethernet = (na_ethernet *) [capData bytes];
+    NSData *payload = [NSData dataWithBytes: ethernet->ether_data
+                                     length: [capData length] - ETHER_HEADER_LEN];
+    int headerLength = ETHER_HEADER_LEN;
+    int ether_type = ntohs(ethernet->ether_type);
+    NSArray *root_plugins = [[NAPluginController controller] plugins];
+    NSEnumerator *e = [root_plugins objectEnumerator];
+    NAPlugin *plugin;
+    id decoder = nil;
+
+    while ((plugin = [e nextObject]) != nil)
+    {
+      Class clazz = [plugin pluginClass];
+      if ([clazz respondsToSelector: @selector(etherType)]
+          && [clazz etherType] == ether_type)
+      {
+        decoder = [plugin getInstance];
+        break;
+      }
+    }
+
+    NAInternetAddress *ipSrc = nil;
+    NAInternetAddress *ipDst = nil;
+    while (decoder != nil)
+    {
+#if DEBUG
+      NSLog(@"summarize trying decoder %@", decoder);
+#endif // DEBUG
+      [decoder setData: payload];
+      if ([decoder conformsToProtocol: @protocol(NAInternetProtocolDecoder)])
+      {
+        [decoder setSource: ipSrc
+               destination: ipDst];
+      }
+      summary = [decoder summarize];
+      if ([decoder conformsToProtocol: @protocol(NAIP)])
+      {
+        ipSrc = [decoder ipSource];
+        ipDst = [decoder ipDestination];
+      }
+      else
+      {
+        
+      }
+      payload = [decoder payload];
+      if (payload == nil)
+      {
+        break;
+      }
+      
+      NSArray *children = [plugin children];
+      NSEnumerator *e = [children objectEnumerator];
+      NAPlugin *child;
+      id nextDecoder = nil;
+      while ((child = [e nextObject]) != nil)
+      {
+        if ([decoder validateChild: [child pluginClass]])
+        {
+          plugin = child;
+          nextDecoder = [plugin getInstance];
+          break;
+        }
+      }
+      
+#if DEBUG
+      NSLog(@"nextDecoder is %@", nextDecoder);
+#endif // DEBUG
+      decoder = nextDecoder;
+    }
+    
+    if (summary == nil)
+    {
+      NSString *src = [NAUtils toHexString: ethernet->ether_src
+                                    length: ETHER_ADDR_LEN
+                                 separator: @":"];
+      NSString *dst = [NAUtils toHexString: ethernet->ether_dst
+                                    length: ETHER_ADDR_LEN
+                                 separator: @":"];
+      NSString *sum = [NSString stringWithFormat: @"Source: %@; Destination: %@",
+        src, dst];
+      summary = [NADecodedPacketSummary summaryWithSource: src
+                                              destination: dst
+                                                 protocol: @"Ethernet"
+                                                  summary: sum];
+    }
+
+#if DEBUG
+    NSLog(@"summary[%d]: %@", index, summary);
+#endif // DEBUG
+    [summaries setObject: summary
+                  forKey: [NSNumber numberWithInt: index]];
+  }
+  return summary;
+}
+
 - (NADecodedPacket *) decodedPacketAtIndex: (int) index
 {
   NADecodedPacket *packet = nil;
@@ -434,7 +545,7 @@ ethertype (uint16_t type)
                                                length: [capData length]];
     [dec addObject: item];
     
-    short ether_type = ntohs(ethernet->ether_type);
+    int ether_type = ntohs(ethernet->ether_type);
     NSArray *root_plugins = [[NAPluginController controller] plugins];
     NSEnumerator *e = [root_plugins objectEnumerator];
     NAPlugin *plugin;

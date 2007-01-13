@@ -55,21 +55,30 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
   {
     [current release];
   }
-  current = [[NSData alloc] itihWithData: theData];
+  current = [[NSData alloc] initWithData: theData];
 }
 
-- (NSString *) summarize
+- (NADecodedPacketSummary *) summarize
 {
   if (current == nil)
   {
     return nil;
   }
   na_ip6 *ip6 = (na_ip6 *) [current bytes];
-  return [NSString stringWithFormat: @"Internet Protocol, version 6; source: %@, destination: %@",
-    [NAInternetAddress addressWithType: IPv6
-                                 bytes: &(ip6->ip6_src)],
-    [NAInternetAddress addressWithType: IPv6
-                                 bytes: &(ip6->ip6_dst)]];
+  NSString *src = [[NAInternetAddress addressWithType: IPv6
+                                                bytes: &(ip6->ip6_src)]
+    description];
+  NSString *dst = [[NAInternetAddress addressWithType: IPv6
+                                                bytes: &(ip6->ip6_dst)]
+    description];
+  NSString *desc = [NSString stringWithFormat:
+    @"Internet Protocol, version 6; source: %@, destination: %@",
+    src, dst];
+  
+  return [NADecodedPacketSummary summaryWithSource: src
+                                       destination: dst
+                                          protocol: @"IPv6"
+                                           summary: desc];
 }
 
 - (NSArray *) decode
@@ -172,6 +181,30 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 + (int) etherType
 {
   return kNAEthernetIPv6Protocol;
+}
+
+- (NAInternetAddress *) ipSource
+{
+  if (current == nil)
+  {
+    NSLog(@"WARNING no current packet (method source)");
+    return nil;
+  }
+  na_ip6 *ip6 = (na_ip6 *) [current bytes];
+  return [NAInternetAddress addressWithType: IPv6
+                                      bytes: &(ip6->ip6_src)];
+}
+
+- (NAInternetAddress *) ipDestination
+{
+  if (current == nil)
+  {
+    NSLog(@"WARNING no current packet (method destination)");
+    return nil;
+  }
+  na_ip6 *ip6 = (na_ip6 *) [current bytes];
+  return [NAInternetAddress addressWithType: IPv6
+                                      bytes: &(ip6->ip6_dst)];
 }
 
 @end

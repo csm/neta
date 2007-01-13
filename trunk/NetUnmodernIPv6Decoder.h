@@ -22,8 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 #import <Cocoa/Cocoa.h>
 #import "NAProtocolDecoder.h"
 #import "NAEthernetDecoder.h"
+#import "NAIP.h"
 
-@interface NetUnmodernIPv6Decoder : NSObject < NAProtocolDecoder, NAEthernetDecoder >
+@interface NetUnmodernIPv6Decoder : NSObject < NAProtocolDecoder, NAEthernetDecoder, NAIP >
 {
   NSData *current;
 }

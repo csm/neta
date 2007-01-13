@@ -45,6 +45,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
   if ((self = [super init]) != nil)
   {
     current = nil;
+    source = nil;
+    dest = nil;
   }
   
   return self;
@@ -56,10 +58,53 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
   {
     [current release];
   }
+  if (source != nil)
+  {
+    [source release];
+    source = nil;
+  }
+  if (dest != nil)
+  {
+    [dest release];
+    dest = nil;
+  }
   current = [[NSData alloc] initWithData: theData];
 }
 
-- (NSString *) summarize
+- (void) setSource: (NAInternetAddress *) aSource
+       destination: (NAInternetAddress *) aDest
+{
+  if (source != nil)
+  {
+    [source release];
+    source = nil;
+  }
+  if (dest != nil)
+  {
+    [dest release];
+    dest = nil;
+  }
+  
+  if (aSource != nil)
+  {
+    source = [[NAInternetAddress alloc] initWithAddress: aSource];
+  }
+  else
+  {
+    source = nil;
+  }
+  
+  if (aDest != nil)
+  {
+    dest = [[NAInternetAddress alloc] initWithAddress: aDest];
+  }
+  else
+  {
+    dest = nil;
+  }
+}
+
+- (NADecodedPacketSummary *) summarize
 {
   if (current == nil)
   {
@@ -67,10 +112,45 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
   }
   
   na_udp *udp = (na_udp *) [current bytes];
-  return [NSString stringWithFormat:
-    @"User datagram protocol; source port: %d; destination port: %d",
-    ntohs(udp->udp_sport),
-    ntohs(udp->udp_dport)];
+  NSString *src = nil;
+  if (source != nil)
+  {
+    if ([source type] == IPv4)
+    {
+      src = [NSString stringWithFormat: @"%@:%d", source, ntohs(udp->udp_sport)];
+    }
+    else
+    {
+      src = [NSString stringWithFormat: @"[%@]:%d", source, ntohs(udp->udp_sport)];      
+    }
+  }
+  else
+  {
+    src = [NSString stringWithFormat: @"%d", ntohs(udp->udp_sport)];
+  }
+  NSString *dst = nil;
+  if (dest != nil)
+  {
+    if ([dest type] == IPv4)
+    {
+      dst = [NSString stringWithFormat: @"%@:%d", dest, ntohs(udp->udp_dport)];
+    }
+    else
+    {
+      dst = [NSString stringWithFormat: @"[%@]:%d", dest, ntohs(udp->udp_dport)];      
+    }
+  }
+  else
+  {
+    dst = [NSString stringWithFormat: @"%d", ntohs(udp->udp_dport)];
+  }
+  NSString *desc = [NSString stringWithFormat:
+    @"User datagram protocol; source: %@; destination: %@", src, dst];
+  
+  return [NADecodedPacketSummary summaryWithSource: src
+                                       destination: dst
+                                          protocol: @"UDP"
+                                           summary: desc];
 }
 
 - (NSArray *) decode

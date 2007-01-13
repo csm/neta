@@ -41,6 +41,7 @@ this exception also makes it possible to release a modified version
 which carries forward this exception.  */
 
 #import <Cocoa/Cocoa.h>
+#import "NADecodedPacketSummary.h"
 
 typedef NSString NAProtocolID;
 
@@ -72,10 +73,31 @@ typedef NSString NAProtocolID;
 //
 + (NSArray *) parentProtocols;
 
+// Sets the current data to decode. This is always called before any call
+// to summarize, decode, validateChild, payload, or headerLength.
+// Implementations SHOULD still verify that it has been called before performing
+// any of the mentioned methods.
+//
+// The receiver should not retain the argument; instead, you should make
+// a copy of the given data, releasing the previous one from a prior call
+// to setData:, if appropriate.
 - (void) setData: (NSData *) theData;
-- (NSString *) summarize;
+
+// Produce a summary of the current packet. The return value should be added
+// to the autorelease pool, if not constant.
+- (NADecodedPacketSummary *) summarize;
+
+// Decode a packet. Each element of the array must be a NADecodedItem, and if
+// the value of any item is an NSArray, each element of that array must also
+// be a NADecodedItem.
 - (NSArray *) decode;
+
+// Validate that aClass is an appropriate recipient for decoding this packet's
+// payload.
 - (BOOL) validateChild: (Class) aClass;
+
+// Return the payload, or nil if this packet does not have any well-defined
+// payload that can be decoded by another decoder.
 - (NSData *) payload;
 - (unsigned) headerLength;
 

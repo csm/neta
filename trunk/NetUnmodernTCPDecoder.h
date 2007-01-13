@@ -26,6 +26,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 @interface NetUnmodernTCPDecoder : NAAbstractInternetProtocolDecoder
 {
   NSData *current;
+  NAInternetAddress *currentSrc;
+  NAInternetAddress *currentDst;
 }
 
 @end

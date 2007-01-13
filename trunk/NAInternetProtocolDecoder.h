@@ -59,4 +59,10 @@ which carries forward this exception.  */
 // 'protocol' header field; in IPv6, it is the 'next header' field.
 + (int) protocolNumber;
 
+// Sets the Internet address of the containing IP packet. Implementations
+// of this protocol are free to use this information when building summaries
+// or decoding packets.
+- (void) setSource: (NAInternetAddress *) aSource
+       destination: (NAInternetAddress *) aDestination;
+
 @end
