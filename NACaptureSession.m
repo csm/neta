@@ -402,7 +402,9 @@ ethertype (uint16_t type)
   NADecodedPacketSummary *summary = nil;
   if ((summary = [summaries objectForKey: [NSNumber numberWithInt: index]]) == nil)
   {
+#if DEBUG
     NSLog(@"no cached summary @ index %d", index);
+#endif // DEBUG
     NACapturedPacket *cap = [packets objectAtIndex: index];
     NSData *capData = [cap packet];
     na_ethernet *ethernet = (na_ethernet *) [capData bytes];

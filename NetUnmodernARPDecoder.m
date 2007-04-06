@@ -197,7 +197,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 
 + (NSString *) pluginInfo
 {
-  return @"Address Resolution Protocol decoder. Copyright 2007 Casey Marshall.";
+  return @"Address Resolution Protocol decoder. Copyright (C) 2007 Casey Marshall.";
 }
 
 + (int) etherType
