@@ -833,8 +833,10 @@ fetch_plugin_id (NSString *key)
   }
   
   id val = [[item value] objectAtIndex: index];
+#if DEBUG
   NSLog(@"outlineView:%@ child: %d ofItem: %@ returns %@", outlineView,
         index, item, val);
+#endif // DEBUG
   return [[item value] objectAtIndex: index];
 }
 

@@ -568,7 +568,9 @@ ethertype (uint16_t type)
     int headerLength = ETHER_HEADER_LEN;
     while (decoder != nil)
     {
+#if DEBUG
       NSLog(@"decoder setData %@", decoder);
+#endif // DEBUG
       [decoder setData: payload];
       NSArray *d = [decoder decode];
       if (d != nil)
@@ -599,11 +601,15 @@ ethertype (uint16_t type)
         }
       }
 
+#if DEBUG
       NSLog(@"nextDecoder is %@", nextDecoder);
+#endif // DEBUG
       decoder = nextDecoder;
     }
 
+#if DEBUG
     NSLog(@"decoded packet layers (%d): %@", index, dec);
+#endif // DEBUG
     packet = [[NADecodedPacket alloc] initWithIndex: index
                                              layers: dec];
     [decodedPackets setObject: [packet autorelease]

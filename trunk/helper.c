@@ -117,6 +117,27 @@ main (int argc, char **argv)
     return 1;
   }
   
+  if (strlen (expr))
+  {
+    struct bpf_program filter;
+    if (pcap_compile (pcap, &filter, expr, 1, 0xFFFFFFFF) != 0)
+    {
+      char *e = pcap_geterr (pcap);
+      syslog (LOG_LEVEL, "pcap_compile: %s", e);
+      printf ("- %s\n", e);
+      fflush (stdout);
+      return 1;
+    }
+    if (pcap_setfilter (pcap, &filter) != 0)
+    {
+      char *e = pcap_geterr (pcap);
+      syslog (LOG_LEVEL, "pcap_setfilter: %s", e);
+      printf ("- %s\n", e);
+      fflush (stdout);
+      return 1;
+    }
+  }
+  
   syslog (LOG_LEVEL, "ids: %d %d %d %d", getuid(), geteuid(),
           getgid(), getegid());
   
