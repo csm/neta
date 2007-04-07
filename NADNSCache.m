@@ -34,7 +34,9 @@ static NADNSCache *gCache = nil;
 - (NSString *) hostForAddress: (NAInternetAddress *) anAddress
 {
   NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
+#if DEBUG
   NSLog(@"user defaults %@", d);
+#endif // DEBUG
   if (![d boolForKey: @"reverseLookup"])
   {
     return nil;
