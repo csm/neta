@@ -66,6 +66,8 @@
 		703524D70B5328BD0091D42A /* arpProtocolKeys.strings in Resources */ = {isa = PBXBuildFile; fileRef = 703524D60B5328BD0091D42A /* arpProtocolKeys.strings */; };
 		703524EA0B5329630091D42A /* ARPDecoder.naplugin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 703524CA0B53283E0091D42A /* ARPDecoder.naplugin */; };
 		7035256B0B533D4E0091D42A /* NAEthernetDecoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 70351DFC0B4C8EC20091D42A /* NAEthernetDecoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7050ED910BC78E1F0065F95D /* NAPacketHexView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7050ED8F0BC78E1F0065F95D /* NAPacketHexView.h */; };
+		7050ED920BC78E1F0065F95D /* NAPacketHexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7050ED900BC78E1F0065F95D /* NAPacketHexView.m */; };
 		709920550B557DE9004EA2E8 /* NAOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 709920530B557DE9004EA2E8 /* NAOutlineView.m */; };
 		70AEB0C70B4B139F007D1494 /* NATCPProtocolDecoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 70AEB0C60B4B139F007D1494 /* NATCPProtocolDecoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70BB753D0B3E060A00334A9E /* NAFiltersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BB753C0B3E060A00334A9E /* NAFiltersView.m */; };
@@ -174,6 +176,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				700BD6C00B4B0E92006D9F18 /* NAPlugin.framework in CopyFiles */,
+				7050ED910BC78E1F0065F95D /* NAPacketHexView.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +299,8 @@
 		703524CB0B5328890091D42A /* NetUnmodernARPDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetUnmodernARPDecoder.h; sourceTree = "<group>"; };
 		703524CC0B5328890091D42A /* NetUnmodernARPDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetUnmodernARPDecoder.m; sourceTree = "<group>"; };
 		703524D20B5328B60091D42A /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/arpProtocolKeys.strings; sourceTree = "<group>"; };
+		7050ED8F0BC78E1F0065F95D /* NAPacketHexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAPacketHexView.h; sourceTree = "<group>"; };
+		7050ED900BC78E1F0065F95D /* NAPacketHexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAPacketHexView.m; sourceTree = "<group>"; };
 		709920520B557DE9004EA2E8 /* NAOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NAOutlineView.h; sourceTree = "<group>"; };
 		709920530B557DE9004EA2E8 /* NAOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NAOutlineView.m; sourceTree = "<group>"; };
 		70AEB0C60B4B139F007D1494 /* NATCPProtocolDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NATCPProtocolDecoder.h; sourceTree = "<group>"; };
@@ -493,6 +498,8 @@
 				70351E190B4F11AA0091D42A /* NADecodedPacket.m */,
 				7035239F0B530A120091D42A /* NAController.m */,
 				703523A00B530A120091D42A /* NAController.h */,
+				7050ED8F0BC78E1F0065F95D /* NAPacketHexView.h */,
+				7050ED900BC78E1F0065F95D /* NAPacketHexView.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1154,6 +1161,7 @@
 				70351E1B0B4F11AA0091D42A /* NADecodedPacket.m in Sources */,
 				703523A10B530A120091D42A /* NAController.m in Sources */,
 				709920550B557DE9004EA2E8 /* NAOutlineView.m in Sources */,
+				7050ED920BC78E1F0065F95D /* NAPacketHexView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

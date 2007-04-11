@@ -128,20 +128,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
     }
     
     const char *path = [[anUrl path] cStringUsingEncoding: NSUTF8StringEncoding];
-    FILE *savefile = fopen (path, "r");
-    if (savefile == NULL)
-    {
-      *outError = [[NSError alloc] initWithDomain: NSPOSIXErrorDomain
-                                             code: errno
-                                         userInfo: nil];
-      NSLog(@"fopen: %s: %s", path, strerror (errno));
-      [self release];
-      return nil;
-    }
-
     char errbuf[PCAP_ERRBUF_SIZE];
     errbuf[0] = '\0';
-    device = pcap_fopen_offline (savefile, errbuf);
+    device = pcap_open_offline (path, errbuf);
     
     if (device == NULL)
     {

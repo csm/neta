@@ -261,4 +261,24 @@ visible_char (unsigned char code)
   return [NSString stringWithString: str];
 }
 
++ (NSString *) visibleString: (char *) theBytes
+                      length: (int) theLength
+{
+  return [NAUtils visibleString: [NSData dataWithBytes: theBytes
+                                                length: theLength]];
+}
+
++ (NSString *) visibleString: (NSData *) theData
+{
+  const int n = [theData length];
+  const char *b = [theData bytes];
+  NSMutableString *str = [NSMutableString string];
+  int i;
+  for (i = 0; i < n; i++)
+  {
+    [str appendFormat: @"%c", visible_char (b[i])];
+  }
+  return [NSString stringWithString: str];
+}
+
 @end
