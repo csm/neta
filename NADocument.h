@@ -25,13 +25,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 #import "NAPCAPFilterViewContainer.h"
 #import "NAFiltersView.h"
 #import "NAPluginController.h"
+#import "NAPacketHexView.h"
 
 @interface NADocument : NSDocument < NACaptureSessionCallback, NAFilterCallback >
 {
   IBOutlet NSOutlineView *packetDetail;
-  IBOutlet NSTextView *packetHex;
+  //IBOutlet NSTextView *packetHex;
   IBOutlet NSTableView *packetsTable;
-  IBOutlet NSTextField *statusLine;
+  //IBOutlet NSTextField *statusLine;
   IBOutlet NSWindow *mainWindow;
   
   IBOutlet NSPanel *loadingProgressPanel;
@@ -61,6 +62,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
   IBOutlet NSTextField *capturingNumber;
   IBOutlet NSProgressIndicator *capturingProgress;
   IBOutlet NSButton *capturingStop;
+
+  IBOutlet NAPacketHexView *packetHex;
+  IBOutlet NSTextView *packetViewOffset;
+  IBOutlet NSTextView *packetViewHex;
+  IBOutlet NSTextView *packetViewVisible;
+  
+  IBOutlet NSScrollView *packetViewOffsetContainer;
+  IBOutlet NSScrollView *packetViewHexContainer;
+  IBOutlet NSScrollView *packetViewVisibleContainer;
 
   NACaptureSession *captureSession;
   //SubviewTableViewController *filterTableController;

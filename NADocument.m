@@ -79,6 +79,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
          selector: @selector(packetsTableNotify:)
              name: NSTableViewSelectionDidChangeNotification
            object: packetsTable];
+  
+  [packetViewOffset setVerticallyResizable: YES];
+  [packetView setVerticallyResizable: YES];
+  [packetView setVerticallyResizable: YES];
+  [[packetViewOffset textContainer] setHeightTracksTextView: YES];
+  [[packetViewHex textContainer] setHeightTracksTextView: YES];
+  [[packetViewVisible textContainer] setHeightTracksTextView: YES];
 }
 
 - (BOOL) readFromURL: (NSURL *) anUrl
@@ -203,17 +210,100 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 
 - (void) packetsTableNotify: (NSNotification *) n
 {
-  NSTextStorage *ts = [packetHex textStorage];
+  //NSTextStorage *ts = [packetHex textStorage];
+  //int index = [packetsTable selectedRow];
+  //if (index >= 0)
+  //{
+  //  NACapturedPacket *packet = [captureSession capturedPacketForIndex: index];
+  //  [[ts mutableString] setString: [NAUtils hexdump: [packet packet]]];
+  //}
+  //else
+  //{
+  //  [[ts mutableString] setString: @" "];
+  //}
+
+  NSData *packet = nil;
   int index = [packetsTable selectedRow];
   if (index >= 0)
   {
-    NACapturedPacket *packet = [captureSession capturedPacketForIndex: index];
-    [[ts mutableString] setString: [NAUtils hexdump: [packet packet]]];
+    NACapturedPacket *p = [captureSession capturedPacketForIndex: index];
+    packet = [p packet];
   }
-  else
+  NSTextStorage *offsets = [packetViewOffset textStorage];
+  NSTextStorage *hex = [packetViewHex textStorage];
+  NSTextStorage *visible = [packetViewVisible textStorage];
+  NSMutableString *offsetsString = [offsets mutableString];
+  NSMutableString *hexString = [hex mutableString];
+  NSMutableString *visibleString = [visible mutableString];
+  
+  [offsets beginEditing];
+  [hex beginEditing];
+  [visible beginEditing];
+  [offsetsString setString: @" "];
+  [hexString setString: @" "];
+  [visibleString setString: @" "];
+  int lines = 1;
+  if (packet != nil)
   {
-    [[ts mutableString] setString: @" "];
+    lines = 0;
+    bool first = true;
+    int i;
+    for (i = 0; i < [packet length]; i += 16)
+    {
+      int remain = [packet length] - i;
+      NSData *subseq = [packet subdataWithRange:
+        NSMakeRange(i, (remain > 16) ? 16 : remain)];
+      if (first)
+      {
+        [offsetsString setString: [NSString stringWithFormat: @"%08x\n", i]];
+        [hexString setString: [NAUtils toHexString: subseq
+                                         separator: @" "]];
+        [hexString appendString: @"\n"];
+        [visibleString setString: [NAUtils visibleString: subseq]];
+        [visibleString appendString: @"\n"];
+      }
+      else
+      {
+        [offsetsString appendString: [NSString stringWithFormat: @"%08x\n", i]];
+        [hexString appendString: [NAUtils toHexString: subseq
+                                            separator: @" "]];
+        [hexString appendString: @"\n"];
+        [visibleString appendString: [NAUtils visibleString: subseq]];
+        [visibleString appendString: @"\n"];
+      }
+      first = false;
+    }
+    
+    if (first)
+      [offsetsString setString: [NSString stringWithFormat: @"%08x\n",
+        [packet length]]];
+    else
+      [offsetsString appendString: [NSString stringWithFormat: @"%08x\n",
+        [packet length]]];
   }
+  [offsets endEditing];
+  [hex endEditing];
+  [visible endEditing];
+  
+  [packetViewOffset sizeToFit];
+  [packetViewHex sizeToFit];
+  [packetViewVisible sizeToFit];
+
+  NSSize textSize = [[packetViewOffset textContainer] containerSize];
+  NSRect rect = [packetHex frame];
+  NSLog(@"packetHex view %@ bounds x:%f y:%f w:%f h:%f new h:%f", packetHex,
+        rect.origin.x, rect.origin.y, rect.size.width, rect.size.height,
+        textSize.height);
+  rect.size.height = textSize.height;
+  [packetHex setFrame: rect];
+  
+  NSRect b = [packetViewOffset bounds];
+  NSRect f = [packetViewOffset frame];
+  NSLog(@"offsets bounds (%f, %f) @ (%f, %f)", b.size.width, b.size.height,
+        b.origin.x, b.origin.y);
+  NSLog(@"offsets frame  (%f, %f) @ (%f, %f)", f.size.width, f.size.height,
+        f.origin.x, f.origin.y);
+  
   [packetDetail reloadData];
 }
 

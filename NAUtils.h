@@ -66,4 +66,8 @@ which carries forward this exception.  */
 + (NSString *) toHexString: (NSData *) theData
                  separator: (NSString *) aSep;
 
++ (NSString *) visibleString: (char *) theBytes
+                      length: (int) theLength;
++ (NSString *) visibleString: (NSData *) theData;
+
 @end
