@@ -116,4 +116,16 @@
   return nil;
 }
 
+- (IBAction) showLicense: (id) sender
+{
+  NSBundle *bundle = [NSBundle mainBundle];
+  NSString *path = [bundle pathForResource: @"Copying"
+                                    ofType: @"rtf"];
+  if (path != nil)
+  {
+    [licenseTextView readRTFDFromFile: path];
+    [licensePanel makeKeyAndOrderFront: self];
+  }
+}
+
 @end

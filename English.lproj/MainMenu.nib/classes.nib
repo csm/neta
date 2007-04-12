@@ -2,10 +2,13 @@
     IBClasses = (
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
+            ACTIONS = {showLicense = id; }; 
             CLASS = NAController; 
             LANGUAGE = ObjC; 
             OUTLETS = {
                 left = NSTableColumn; 
+                licensePanel = NSPanel; 
+                licenseTextView = NSTextView; 
                 plugins = NSOutlineView; 
                 pluginsPanel = NSWindow; 
                 right = NSTableColumn; 
