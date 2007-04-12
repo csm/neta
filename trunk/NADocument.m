@@ -53,6 +53,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
     outlineKeyStyle = [[NSMutableParagraphStyle alloc] init];
     [outlineKeyStyle setAlignment: NSRightTextAlignment];
     [outlineKeyStyle setLineBreakMode: NSLineBreakByTruncatingTail];
+    
+    amChangingSelection = NO;
   }
   return self;
 }
@@ -79,13 +81,22 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
          selector: @selector(packetsTableNotify:)
              name: NSTableViewSelectionDidChangeNotification
            object: packetsTable];
+  [nc addObserver: self
+         selector: @selector(changePacketHexSelection:)
+             name: NSTextViewDidChangeSelectionNotification
+           object: packetViewHex];
+  [nc addObserver: self
+         selector: @selector(changePacketHexSelection:)
+             name: NSTextViewDidChangeSelectionNotification
+           object: packetViewVisible];
   
   [packetViewOffset setVerticallyResizable: YES];
-  [packetView setVerticallyResizable: YES];
-  [packetView setVerticallyResizable: YES];
-  [[packetViewOffset textContainer] setHeightTracksTextView: YES];
-  [[packetViewHex textContainer] setHeightTracksTextView: YES];
-  [[packetViewVisible textContainer] setHeightTracksTextView: YES];
+  [packetViewHex setVerticallyResizable: YES];
+  [packetViewVisible setVerticallyResizable: YES];
+  
+  [packetViewOffsetContainer setOuterView: packetHexMainView];
+  [packetViewHexContainer setOuterView: packetHexMainView];
+  [packetViewVisibleContainer setOuterView: packetHexMainView];
 }
 
 - (BOOL) readFromURL: (NSURL *) anUrl
@@ -285,26 +296,91 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
   [hex endEditing];
   [visible endEditing];
   
+  NSSize minsize = [packetViewOffset minSize];
+  minsize.height = 0;
+  [packetViewOffset setMinSize: minsize];
+  minsize = [packetViewHex minSize];
+  minsize.height = 0;
+  [packetViewHex setMinSize: minsize];
+  minsize = [packetViewVisible minSize];
+  minsize.height = 0;
+  [packetViewHex setMinSize: minsize];  
+
   [packetViewOffset sizeToFit];
   [packetViewHex sizeToFit];
   [packetViewVisible sizeToFit];
 
-  NSSize textSize = [[packetViewOffset textContainer] containerSize];
+  NSSize textSize = [packetViewOffset bounds].size;
   NSRect rect = [packetHex frame];
-  NSLog(@"packetHex view %@ bounds x:%f y:%f w:%f h:%f new h:%f", packetHex,
-        rect.origin.x, rect.origin.y, rect.size.width, rect.size.height,
-        textSize.height);
   rect.size.height = textSize.height;
   [packetHex setFrame: rect];
   
-  NSRect b = [packetViewOffset bounds];
-  NSRect f = [packetViewOffset frame];
-  NSLog(@"offsets bounds (%f, %f) @ (%f, %f)", b.size.width, b.size.height,
-        b.origin.x, b.origin.y);
-  NSLog(@"offsets frame  (%f, %f) @ (%f, %f)", f.size.width, f.size.height,
-        f.origin.x, f.origin.y);
-  
   [packetDetail reloadData];
+}
+
+- (void) changePacketHexSelection: (NSNotification *) n
+{
+  if (amChangingSelection)
+  {
+    return;
+  }
+  @try
+  {
+    amChangingSelection = YES;
+
+    // Mapping selected ranges to byte ranges (and back again):
+    //  
+    // In the hex view, any index i corresponds to selection index i*3,
+    // since each byte is represented by either 'XX ', or 'XX\n'.
+    //
+    // In the visible chars view, any index i corresponds to selection
+    // index i+(i/16), since each line of 16 is terminated by a \n.
+  
+    if ([n object] == packetViewHex)
+    {
+      NSArray *selected = [packetViewHex selectedRanges];
+      NSMutableArray *toSelect = [NSMutableArray array];
+      NSEnumerator *e = [selected objectEnumerator];
+      id obj;
+      while ((obj = [e nextObject]) != nil)
+      {
+        NSValue *value = obj;
+        NSRange range = [value rangeValue];
+        NSLog(@"mapping range %d, %d", range.location, range.length);
+        unsigned int end = range.location + range.length;
+        range.location = (range.location / 3);
+        range.location += (range.location / 16);
+        end = ((end + 2) / 3);
+        end += (end / 16);
+        range.length = end - range.location;
+        NSLog(@"to range %d, %d", range.location, range.length);
+        [toSelect addObject: [NSValue valueWithRange: range]];
+      }
+      [packetViewVisible setSelectedRanges: toSelect];
+    }
+    else if ([n object] == packetViewVisible)
+    {
+      NSArray *selected = [packetViewVisible selectedRanges];
+      NSMutableArray *toSelect = [NSMutableArray array];
+      NSEnumerator *e = [selected objectEnumerator];
+      id obj;
+      while ((obj = [e nextObject]) != nil)
+      {
+        NSValue *value = obj;
+        NSRange range = [value rangeValue];
+        unsigned int end = range.location + range.length;
+        range.location = (range.location - (range.location / 17)) * 3;
+        end = (end - (end / 17)) * 3 - 1;
+        range.length = end - range.location;
+        [toSelect addObject: [NSValue valueWithRange: range]];
+      }
+      [packetViewHex setSelectedRanges: toSelect];
+    }
+  }
+  @finally
+  {
+    amChangingSelection = NO;
+  }
 }
 
 // Actions

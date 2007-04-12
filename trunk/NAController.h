@@ -9,6 +9,8 @@
   IBOutlet NSWindow *pluginsPanel;
   IBOutlet NSTableColumn *left;
   IBOutlet NSTableColumn *right;
+  IBOutlet NSPanel *licensePanel;
+  IBOutlet NSTextView *licenseTextView;
   
   NAPluginController *pluginController;
   NAPlugin *rootPlugin;
@@ -26,5 +28,7 @@
 - (id) outlineView: (NSOutlineView *) outlineView
  objectValueForTableColumn: (NSTableColumn *) tableColumn
             byItem: (id) item;
+
+- (IBAction) showLicense: (id) sender;
 
 @end

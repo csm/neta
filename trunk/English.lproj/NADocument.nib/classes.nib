@@ -39,12 +39,13 @@
                 numPacketsEnabled = NSButton; 
                 packetDetail = NSOutlineView; 
                 packetHex = NAPacketHexView; 
+                packetHexMainView = NSScrollView; 
                 packetViewHex = NSTextView; 
-                packetViewHexContainer = NSScrollView; 
+                packetViewHexContainer = NAInnerScrollView; 
                 packetViewOffset = NSTextView; 
-                packetViewOffsetContainer = NSScrollView; 
+                packetViewOffsetContainer = NAInnerScrollView; 
                 packetViewVisible = NSTextView; 
-                packetViewVisibleContainer = NSScrollView; 
+                packetViewVisibleContainer = NAInnerScrollView; 
                 packetsTable = NSTableView; 
                 promiscuous = NSButton; 
                 snapLength = NSTextField; 
@@ -52,6 +53,7 @@
             }; 
             SUPERCLASS = NSDocument; 
         }, 
+        {CLASS = NAInnerScrollView; LANGUAGE = ObjC; SUPERCLASS = NSScrollView; }, 
         {CLASS = NAOutlineView; LANGUAGE = ObjC; SUPERCLASS = NSOutlineView; }, 
         {CLASS = NAPCAPFilterView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
         {CLASS = NAPacketHexView; LANGUAGE = ObjC; SUPERCLASS = NSView; }

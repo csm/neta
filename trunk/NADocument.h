@@ -26,6 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 #import "NAFiltersView.h"
 #import "NAPluginController.h"
 #import "NAPacketHexView.h"
+#import "NAInnerScrollView.h"
 
 @interface NADocument : NSDocument < NACaptureSessionCallback, NAFilterCallback >
 {
@@ -68,10 +69,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
   IBOutlet NSTextView *packetViewHex;
   IBOutlet NSTextView *packetViewVisible;
   
-  IBOutlet NSScrollView *packetViewOffsetContainer;
-  IBOutlet NSScrollView *packetViewHexContainer;
-  IBOutlet NSScrollView *packetViewVisibleContainer;
+  IBOutlet NAInnerScrollView *packetViewOffsetContainer;
+  IBOutlet NAInnerScrollView *packetViewHexContainer;
+  IBOutlet NAInnerScrollView *packetViewVisibleContainer;
 
+  IBOutlet NSScrollView *packetHexMainView;
+  
   NACaptureSession *captureSession;
   //SubviewTableViewController *filterTableController;
   NSArray *captureDevices;
@@ -81,6 +84,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
   NAPluginController *plugins;
   NSFont *boldOutlineFont;
   NSMutableParagraphStyle *outlineKeyStyle;
+  
+  BOOL amChangingSelection;
 }
 
 // Actions.
@@ -113,6 +118,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 
 - (void) beginOfflineSheet: (id) arg;
 - (void) packetsTableNotify: (NSNotification *) n;
+- (void) changePacketHexSelection: (NSNotification *) n;
 - (void) showCaptureSheet: (id) sender;
 
 // Live capture loop method.

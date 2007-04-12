@@ -68,6 +68,9 @@
 		7035256B0B533D4E0091D42A /* NAEthernetDecoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 70351DFC0B4C8EC20091D42A /* NAEthernetDecoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7050ED910BC78E1F0065F95D /* NAPacketHexView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7050ED8F0BC78E1F0065F95D /* NAPacketHexView.h */; };
 		7050ED920BC78E1F0065F95D /* NAPacketHexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7050ED900BC78E1F0065F95D /* NAPacketHexView.m */; };
+		708BA33F0BCCCE0E0017C491 /* Copying.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 708BA33E0BCCCE0E0017C491 /* Copying.rtf */; };
+		708BA3A20BCDBC780017C491 /* NAInnerScrollView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 708BA3A00BCDBC780017C491 /* NAInnerScrollView.h */; };
+		708BA3A30BCDBC780017C491 /* NAInnerScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 708BA3A10BCDBC780017C491 /* NAInnerScrollView.m */; };
 		709920550B557DE9004EA2E8 /* NAOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 709920530B557DE9004EA2E8 /* NAOutlineView.m */; };
 		70AEB0C70B4B139F007D1494 /* NATCPProtocolDecoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 70AEB0C60B4B139F007D1494 /* NATCPProtocolDecoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70BB753D0B3E060A00334A9E /* NAFiltersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BB753C0B3E060A00334A9E /* NAFiltersView.m */; };
@@ -177,6 +180,7 @@
 			files = (
 				700BD6C00B4B0E92006D9F18 /* NAPlugin.framework in CopyFiles */,
 				7050ED910BC78E1F0065F95D /* NAPacketHexView.h in CopyFiles */,
+				708BA3A20BCDBC780017C491 /* NAInnerScrollView.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +305,9 @@
 		703524D20B5328B60091D42A /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/arpProtocolKeys.strings; sourceTree = "<group>"; };
 		7050ED8F0BC78E1F0065F95D /* NAPacketHexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAPacketHexView.h; sourceTree = "<group>"; };
 		7050ED900BC78E1F0065F95D /* NAPacketHexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAPacketHexView.m; sourceTree = "<group>"; };
+		708BA33E0BCCCE0E0017C491 /* Copying.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Copying.rtf; sourceTree = "<group>"; };
+		708BA3A00BCDBC780017C491 /* NAInnerScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAInnerScrollView.h; sourceTree = "<group>"; };
+		708BA3A10BCDBC780017C491 /* NAInnerScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAInnerScrollView.m; sourceTree = "<group>"; };
 		709920520B557DE9004EA2E8 /* NAOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NAOutlineView.h; sourceTree = "<group>"; };
 		709920530B557DE9004EA2E8 /* NAOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NAOutlineView.m; sourceTree = "<group>"; };
 		70AEB0C60B4B139F007D1494 /* NATCPProtocolDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NATCPProtocolDecoder.h; sourceTree = "<group>"; };
@@ -500,6 +507,8 @@
 				703523A00B530A120091D42A /* NAController.h */,
 				7050ED8F0BC78E1F0065F95D /* NAPacketHexView.h */,
 				7050ED900BC78E1F0065F95D /* NAPacketHexView.m */,
+				708BA3A00BCDBC780017C491 /* NAInnerScrollView.h */,
+				708BA3A10BCDBC780017C491 /* NAInnerScrollView.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -516,6 +525,7 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				708BA33E0BCCCE0E0017C491 /* Copying.rtf */,
 				70351D390B4C5B2D0091D42A /* PlugIn.icns */,
 				700BD6350B4AE97B006D9F18 /* COPYING */,
 				7030406B0B3B2EC30034D4FA /* ToolbarCapture.tiff */,
@@ -1026,6 +1036,7 @@
 				700BD6360B4AE97B006D9F18 /* COPYING in Resources */,
 				70351D3A0B4C5B2D0091D42A /* PlugIn.icns in Resources */,
 				703521B20B52F19F0091D42A /* ethProtocolKeys.strings in Resources */,
+				708BA33F0BCCCE0E0017C491 /* Copying.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1162,6 +1173,7 @@
 				703523A10B530A120091D42A /* NAController.m in Sources */,
 				709920550B557DE9004EA2E8 /* NAOutlineView.m in Sources */,
 				7050ED920BC78E1F0065F95D /* NAPacketHexView.m in Sources */,
+				708BA3A30BCDBC780017C491 /* NAInnerScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
