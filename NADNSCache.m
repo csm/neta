@@ -20,6 +20,7 @@ static NADNSCache *gCache = nil;
   {
     gCache = [[NADNSCache alloc] init];
   }
+  return gCache;
 }
 
 - (id) init
