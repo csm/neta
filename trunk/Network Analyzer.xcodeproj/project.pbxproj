@@ -221,7 +221,7 @@
 		700BD69A0B4B02F5006D9F18 /* NAProtocolDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAProtocolDecoder.h; sourceTree = "<group>"; };
 		700C73170B56D53D0083B786 /* NADecodedPacketSummary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NADecodedPacketSummary.h; sourceTree = "<group>"; };
 		700C73180B56D53D0083B786 /* NADecodedPacketSummary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NADecodedPacketSummary.m; sourceTree = "<group>"; };
-		700C73310B58159C0083B786 /* ICMPDecoder.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ICMPDecoder.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		700C73310B58159C0083B786 /* ICMPDecoder.naplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ICMPDecoder.naplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		700C73320B58159C0083B786 /* ICMPDecoder-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "ICMPDecoder-Info.plist"; sourceTree = "<group>"; };
 		700C733F0B5816540083B786 /* NetUnmodernICMPDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetUnmodernICMPDecoder.h; sourceTree = "<group>"; };
 		700C73400B5816540083B786 /* NetUnmodernICMPDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetUnmodernICMPDecoder.m; sourceTree = "<group>"; };
@@ -438,7 +438,7 @@
 				70351CA60B4B44240091D42A /* IPv6Decoder.naplugin */,
 				703524CA0B53283E0091D42A /* ARPDecoder.naplugin */,
 				70CCBE750B54BB4700645A2B /* UDPDecoder.naplugin */,
-				700C73310B58159C0083B786 /* ICMPDecoder.bundle */,
+				700C73310B58159C0083B786 /* ICMPDecoder.naplugin */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -778,7 +778,7 @@
 			);
 			name = ICMPDecoder;
 			productName = ICMPDecoder;
-			productReference = 700C73310B58159C0083B786 /* ICMPDecoder.bundle */;
+			productReference = 700C73310B58159C0083B786 /* ICMPDecoder.naplugin */;
 			productType = "com.apple.product-type.bundle";
 		};
 		70303E870B3A07820034D4FA /* Unit Tests */ = {

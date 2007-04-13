@@ -253,10 +253,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
   [offsetsString setString: @" "];
   [hexString setString: @" "];
   [visibleString setString: @" "];
-  int lines = 1;
   if (packet != nil)
   {
-    lines = 0;
     bool first = true;
     int i;
     for (i = 0; i < [packet length]; i += 16)
@@ -310,6 +308,22 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
   [packetViewHex sizeToFit];
   [packetViewVisible sizeToFit];
 
+  // XXX I don't know what's going on here.
+  @try
+  {
+    amChangingSelection = YES;
+    [packetViewHex setSelectedRange: NSMakeRange(1, 0)];
+    [packetViewVisible setSelectedRange: NSMakeRange(1, 0)];
+  }
+  @catch (NSException *x)
+  {
+    NSLog(@"ignoring exception %@", x);
+  }
+  @finally
+  {
+    amChangingSelection = NO;
+  }
+  
   NSSize textSize = [packetViewOffset bounds].size;
   NSRect rect = [packetHex frame];
   rect.size.height = textSize.height;
@@ -352,11 +366,29 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
         range.location += (range.location / 16);
         end = ((end + 2) / 3);
         end += (end / 16);
-        range.length = end - range.location;
+        if (range.length != 0)
+          range.length = end - range.location;
         NSLog(@"to range %d, %d", range.location, range.length);
-        [toSelect addObject: [NSValue valueWithRange: range]];
+        if (!(range.location < 0 || range.length < 0
+            || range.location + range.length > [[packetViewVisible textStorage] length]))
+          [toSelect addObject: [NSValue valueWithRange: range]];
       }
-      [packetViewVisible setSelectedRanges: toSelect];
+      e = [toSelect objectEnumerator];
+      NSLog(@"selecting:");
+      while ((obj = [e nextObject]) != nil)
+      {
+        NSRange r = [((NSValue *) obj) rangeValue];
+        NSLog (@"  %d, %d", r.location, r.length);
+      }
+      @try
+      {
+        if ([toSelect count] > 0)
+          [packetViewVisible setSelectedRanges: toSelect];
+      }
+      @catch (NSException *x)
+      {
+        NSLog (@"ignore %@", x);
+      }
     }
     else if ([n object] == packetViewVisible)
     {
@@ -372,9 +404,26 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
         range.location = (range.location - (range.location / 17)) * 3;
         end = (end - (end / 17)) * 3 - 1;
         range.length = end - range.location;
-        [toSelect addObject: [NSValue valueWithRange: range]];
+        if (!(range.location < 0 || range.length < 0
+            || range.location + range.length > [[packetViewHex textStorage] length]))
+          [toSelect addObject: [NSValue valueWithRange: range]];
       }
-      [packetViewHex setSelectedRanges: toSelect];
+      e = [toSelect objectEnumerator];
+      NSLog(@"selecting:");
+      while ((obj = [e nextObject]) != nil)
+      {
+        NSRange r = [((NSValue *) obj) rangeValue];
+        NSLog (@"  %d, %d", r.location, r.length);
+      }
+      @try
+      {
+        if ([toSelect count] > 0)
+          [packetViewHex setSelectedRanges: toSelect];
+      }
+      @catch (NSException *x)
+      {
+        NSLog (@"ignore %@", x);
+      }
     }
   }
   @finally
