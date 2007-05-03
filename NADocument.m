@@ -717,6 +717,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
   [self redoFilterViews];
 }
 
+- (void) changeCurrentFilter: (id) sender
+{
+  // XXX
+}
+
 // Delegated filter view actions
 
 - (void) redoFilterViews
@@ -885,6 +890,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
     [item setLabel: @"Save"];
     [item setPaletteLabel: @"Save"];
   }
+  else if ([itemIdentifier isEqual: NAToolbarSearchIdentifier])
+  {
+    [item setLabel: @"Filter"];
+    [item setPaletteLabel: @"Filter"];
+    [item setView: searchFieldView];
+    NSRect frame = [searchFieldView frame];
+    [item setMinSize: frame.size];
+    [item setMaxSize: frame.size];
+    //[item setTarget: self];
+    //[item setAction: @selector(changeCurrentFilter:)];
+    //[item setEnabled: YES];
+  }
   
   return [item autorelease];
 }
@@ -896,14 +913,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
     NSToolbarFlexibleSpaceItemIdentifier,
     NSToolbarCustomizeToolbarItemIdentifier,
     NAToolbarCaptureIdentifier,
-    NAToolbarSaveIdentifier, nil ];
+    NAToolbarSaveIdentifier,
+    NAToolbarSearchIdentifier,
+    nil ];
 }
 
 - (NSArray *) toolbarDefaultItemIdentifiers: (NSToolbar *) toolbar
 {
   return [NSArray arrayWithObjects: NAToolbarCaptureIdentifier,
-    NAToolbarSaveIdentifier,
-    NSToolbarFlexibleSpaceItemIdentifier, nil ];
+    NSToolbarFlexibleSpaceItemIdentifier,
+    NAToolbarSearchIdentifier,
+    nil ];
 }
 
 - (BOOL) validateToolbarItem: (NSToolbarItem *) anItem
@@ -1025,6 +1045,13 @@ fetch_plugin_id (NSString *key)
              child: (int) index
             ofItem: (id) item
 {
+  if (outlineView == sidebar)
+  {
+    if (item == nil)
+      return [NSString stringWithString: @"Entire Capture"];
+    return nil;
+  }
+  
   if ([packetsTable selectedRow] < 0 || captureSession == nil)
   {
     return nil;
@@ -1058,12 +1085,20 @@ fetch_plugin_id (NSString *key)
 - (BOOL) outlineView: (NSOutlineView *) outlineView
     isItemExpandable: (id) item
 {
+  if (outlineView == sidebar)
+    return NO; // FIXME;
   return [[item value] isKindOfClass: [NSArray class]];
 }
 
 - (int) outlineView: (NSOutlineView *) outlineView
  numberOfChildrenOfItem: (id) item
 {
+  if (outlineView == sidebar)
+  {
+    if (item == nil)
+      return 1;
+    return 0; // FIXME
+  }
   if ([packetsTable selectedRow] < 0 || captureSession == nil)
   {
     return 0;
@@ -1090,6 +1125,10 @@ fetch_plugin_id (NSString *key)
  objectValueForTableColumn: (NSTableColumn *) tableColumn
             byItem: (id) item
 {
+  if (outlineView == sidebar)
+  {
+    return [NSString stringWithString: @"Entire Capture"];
+  }
   if ([packetsTable selectedRow] < 0 || captureSession == nil)
   {
     return nil;

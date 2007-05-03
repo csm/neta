@@ -66,6 +66,15 @@
 		703524D70B5328BD0091D42A /* arpProtocolKeys.strings in Resources */ = {isa = PBXBuildFile; fileRef = 703524D60B5328BD0091D42A /* arpProtocolKeys.strings */; };
 		703524EA0B5329630091D42A /* ARPDecoder.naplugin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 703524CA0B53283E0091D42A /* ARPDecoder.naplugin */; };
 		7035256B0B533D4E0091D42A /* NAEthernetDecoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 70351DFC0B4C8EC20091D42A /* NAEthernetDecoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		703EDBA10BE2C3BA0032DBB3 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 703EDBA00BE2C3BA0032DBB3 /* plus.png */; };
+		703EDBA30BE2C3C80032DBB3 /* minus.png in Resources */ = {isa = PBXBuildFile; fileRef = 703EDBA20BE2C3C80032DBB3 /* minus.png */; };
+		703EDBA60BE2C5820032DBB3 /* NASplitView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 703EDBA40BE2C5820032DBB3 /* NASplitView.h */; };
+		703EDBA70BE2C5820032DBB3 /* NASplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 703EDBA50BE2C5820032DBB3 /* NASplitView.m */; };
+		703EDBAA0BE2C6050032DBB3 /* NASidebarOutlineView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 703EDBA80BE2C6050032DBB3 /* NASidebarOutlineView.h */; };
+		703EDBAB0BE2C6050032DBB3 /* NASidebarOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 703EDBA90BE2C6050032DBB3 /* NASidebarOutlineView.m */; };
+		703EDBAE0BE2C60F0032DBB3 /* NASidebarButtonsView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 703EDBAC0BE2C60F0032DBB3 /* NASidebarButtonsView.h */; };
+		703EDBAF0BE2C60F0032DBB3 /* NASidebarButtonsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 703EDBAD0BE2C60F0032DBB3 /* NASidebarButtonsView.m */; };
+		703EDF180BE959D10032DBB3 /* button-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 703EDF170BE959D10032DBB3 /* button-bg.png */; };
 		7050ED910BC78E1F0065F95D /* NAPacketHexView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7050ED8F0BC78E1F0065F95D /* NAPacketHexView.h */; };
 		7050ED920BC78E1F0065F95D /* NAPacketHexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7050ED900BC78E1F0065F95D /* NAPacketHexView.m */; };
 		708BA33F0BCCCE0E0017C491 /* Copying.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 708BA33E0BCCCE0E0017C491 /* Copying.rtf */; };
@@ -181,6 +190,9 @@
 				700BD6C00B4B0E92006D9F18 /* NAPlugin.framework in CopyFiles */,
 				7050ED910BC78E1F0065F95D /* NAPacketHexView.h in CopyFiles */,
 				708BA3A20BCDBC780017C491 /* NAInnerScrollView.h in CopyFiles */,
+				703EDBA60BE2C5820032DBB3 /* NASplitView.h in CopyFiles */,
+				703EDBAA0BE2C6050032DBB3 /* NASidebarOutlineView.h in CopyFiles */,
+				703EDBAE0BE2C60F0032DBB3 /* NASidebarButtonsView.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,7 +233,7 @@
 		700BD69A0B4B02F5006D9F18 /* NAProtocolDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAProtocolDecoder.h; sourceTree = "<group>"; };
 		700C73170B56D53D0083B786 /* NADecodedPacketSummary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NADecodedPacketSummary.h; sourceTree = "<group>"; };
 		700C73180B56D53D0083B786 /* NADecodedPacketSummary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NADecodedPacketSummary.m; sourceTree = "<group>"; };
-		700C73310B58159C0083B786 /* ICMPDecoder.naplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ICMPDecoder.naplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		700C73310B58159C0083B786 /* ICMPDecoder.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ICMPDecoder.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		700C73320B58159C0083B786 /* ICMPDecoder-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "ICMPDecoder-Info.plist"; sourceTree = "<group>"; };
 		700C733F0B5816540083B786 /* NetUnmodernICMPDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetUnmodernICMPDecoder.h; sourceTree = "<group>"; };
 		700C73400B5816540083B786 /* NetUnmodernICMPDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetUnmodernICMPDecoder.m; sourceTree = "<group>"; };
@@ -303,6 +315,15 @@
 		703524CB0B5328890091D42A /* NetUnmodernARPDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetUnmodernARPDecoder.h; sourceTree = "<group>"; };
 		703524CC0B5328890091D42A /* NetUnmodernARPDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetUnmodernARPDecoder.m; sourceTree = "<group>"; };
 		703524D20B5328B60091D42A /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/arpProtocolKeys.strings; sourceTree = "<group>"; };
+		703EDBA00BE2C3BA0032DBB3 /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
+		703EDBA20BE2C3C80032DBB3 /* minus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = minus.png; sourceTree = "<group>"; };
+		703EDBA40BE2C5820032DBB3 /* NASplitView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NASplitView.h; sourceTree = "<group>"; };
+		703EDBA50BE2C5820032DBB3 /* NASplitView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NASplitView.m; sourceTree = "<group>"; };
+		703EDBA80BE2C6050032DBB3 /* NASidebarOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NASidebarOutlineView.h; sourceTree = "<group>"; };
+		703EDBA90BE2C6050032DBB3 /* NASidebarOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NASidebarOutlineView.m; sourceTree = "<group>"; };
+		703EDBAC0BE2C60F0032DBB3 /* NASidebarButtonsView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NASidebarButtonsView.h; sourceTree = "<group>"; };
+		703EDBAD0BE2C60F0032DBB3 /* NASidebarButtonsView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NASidebarButtonsView.m; sourceTree = "<group>"; };
+		703EDF170BE959D10032DBB3 /* button-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-bg.png"; sourceTree = "<group>"; };
 		7050ED8F0BC78E1F0065F95D /* NAPacketHexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAPacketHexView.h; sourceTree = "<group>"; };
 		7050ED900BC78E1F0065F95D /* NAPacketHexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAPacketHexView.m; sourceTree = "<group>"; };
 		708BA33E0BCCCE0E0017C491 /* Copying.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Copying.rtf; sourceTree = "<group>"; };
@@ -438,7 +459,7 @@
 				70351CA60B4B44240091D42A /* IPv6Decoder.naplugin */,
 				703524CA0B53283E0091D42A /* ARPDecoder.naplugin */,
 				70CCBE750B54BB4700645A2B /* UDPDecoder.naplugin */,
-				700C73310B58159C0083B786 /* ICMPDecoder.naplugin */,
+				700C73310B58159C0083B786 /* ICMPDecoder.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -478,6 +499,12 @@
 		2A37F4ABFDCFA73011CA2CEA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				703EDBA40BE2C5820032DBB3 /* NASplitView.h */,
+				703EDBA50BE2C5820032DBB3 /* NASplitView.m */,
+				703EDBA80BE2C6050032DBB3 /* NASidebarOutlineView.h */,
+				703EDBA90BE2C6050032DBB3 /* NASidebarOutlineView.m */,
+				703EDBAC0BE2C60F0032DBB3 /* NASidebarButtonsView.h */,
+				703EDBAD0BE2C60F0032DBB3 /* NASidebarButtonsView.m */,
 				709920520B557DE9004EA2E8 /* NAOutlineView.h */,
 				709920530B557DE9004EA2E8 /* NAOutlineView.m */,
 				703040C00B3B3D6A0034D4FA /* NACapturedPacket.h */,
@@ -525,6 +552,9 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				703EDF170BE959D10032DBB3 /* button-bg.png */,
+				703EDBA20BE2C3C80032DBB3 /* minus.png */,
+				703EDBA00BE2C3BA0032DBB3 /* plus.png */,
 				708BA33E0BCCCE0E0017C491 /* Copying.rtf */,
 				70351D390B4C5B2D0091D42A /* PlugIn.icns */,
 				700BD6350B4AE97B006D9F18 /* COPYING */,
@@ -778,7 +808,7 @@
 			);
 			name = ICMPDecoder;
 			productName = ICMPDecoder;
-			productReference = 700C73310B58159C0083B786 /* ICMPDecoder.naplugin */;
+			productReference = 700C73310B58159C0083B786 /* ICMPDecoder.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 		70303E870B3A07820034D4FA /* Unit Tests */ = {
@@ -1037,6 +1067,9 @@
 				70351D3A0B4C5B2D0091D42A /* PlugIn.icns in Resources */,
 				703521B20B52F19F0091D42A /* ethProtocolKeys.strings in Resources */,
 				708BA33F0BCCCE0E0017C491 /* Copying.rtf in Resources */,
+				703EDBA10BE2C3BA0032DBB3 /* plus.png in Resources */,
+				703EDBA30BE2C3C80032DBB3 /* minus.png in Resources */,
+				703EDF180BE959D10032DBB3 /* button-bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1174,6 +1207,9 @@
 				709920550B557DE9004EA2E8 /* NAOutlineView.m in Sources */,
 				7050ED920BC78E1F0065F95D /* NAPacketHexView.m in Sources */,
 				708BA3A30BCDBC780017C491 /* NAInnerScrollView.m in Sources */,
+				703EDBA70BE2C5820032DBB3 /* NASplitView.m in Sources */,
+				703EDBAB0BE2C6050032DBB3 /* NASidebarOutlineView.m in Sources */,
+				703EDBAF0BE2C60F0032DBB3 /* NASidebarButtonsView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

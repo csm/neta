@@ -27,6 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 #import "NAPluginController.h"
 #import "NAPacketHexView.h"
 #import "NAInnerScrollView.h"
+#import "NASidebarOutlineView.h"
 
 @interface NADocument : NSDocument < NACaptureSessionCallback, NAFilterCallback >
 {
@@ -75,6 +76,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 
   IBOutlet NSScrollView *packetHexMainView;
   
+  IBOutlet NASidebarOutlineView *sidebar;
+  
+  IBOutlet NSView *searchFieldView;
+  IBOutlet NSSearchField *searchField;
+  
   NACaptureSession *captureSession;
   //SubviewTableViewController *filterTableController;
   NSArray *captureDevices;
@@ -97,6 +103,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 - (IBAction) selectSnapLength: (id) sender;
 - (IBAction) selectMaxPackets: (id) sender;
 - (IBAction) selectUseFilter: (id) sender;
+- (IBAction) changeCurrentFilter: (id) sender;
 
 // Delegated filter view actions.
 

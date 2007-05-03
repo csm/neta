@@ -1,5 +1,5 @@
-/* NAOutlineView.m -- outline view with blue backgrounds.
-   Copyright (C) 2007  Casey Marshall <casey.s.marshall@gmail.com>
+/* NASidebarButtonsView.h -- add/remove filters UI element.
+   Copyright (C) 2006, 2007  Casey Marshall <casey.s.marshall@gmail.com>
 
 This file is a part of Network Analyzer.
 
@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 
 #import <Cocoa/Cocoa.h>
 
-@interface NAOutlineView : NSOutlineView
+@interface NASidebarButtonsView : NSView
 {
 }
 @end
