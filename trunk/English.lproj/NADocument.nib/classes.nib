@@ -48,6 +48,9 @@
                 packetViewVisibleContainer = NAInnerScrollView; 
                 packetsTable = NSTableView; 
                 promiscuous = NSButton; 
+                searchField = NSSearchField; 
+                searchFieldView = NSView; 
+                sidebar = NASidebarOutlineView; 
                 snapLength = NSTextField; 
                 snapLengthEnabled = NSButton; 
             }; 
@@ -56,7 +59,10 @@
         {CLASS = NAInnerScrollView; LANGUAGE = ObjC; SUPERCLASS = NSScrollView; }, 
         {CLASS = NAOutlineView; LANGUAGE = ObjC; SUPERCLASS = NSOutlineView; }, 
         {CLASS = NAPCAPFilterView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
-        {CLASS = NAPacketHexView; LANGUAGE = ObjC; SUPERCLASS = NSView; }
+        {CLASS = NAPacketHexView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {CLASS = NASidebarButtonsView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {CLASS = NASidebarOutlineView; LANGUAGE = ObjC; SUPERCLASS = NSOutlineView; }, 
+        {CLASS = NASplitView; LANGUAGE = ObjC; SUPERCLASS = NSSplitView; }
     ); 
     IBVersion = 1; 
 }

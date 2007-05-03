@@ -1,5 +1,5 @@
-/* NAOutlineView.m -- outline view with blue backgrounds.
-   Copyright (C) 2007  Casey Marshall <casey.s.marshall@gmail.com>
+/* NASidebarButtonsView.m -- add/remove filters UI element.
+   Copyright (C) 2006, 2007  Casey Marshall <casey.s.marshall@gmail.com>
 
 This file is a part of Network Analyzer.
 
@@ -19,9 +19,30 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 02110-1301  USA  */
 
 
-#import <Cocoa/Cocoa.h>
+#import "NASidebarButtonsView.h"
 
-@interface NAOutlineView : NSOutlineView
+@implementation NASidebarButtonsView
+
+- (id)initWithFrame:(NSRect)frameRect
 {
+	if ((self = [super initWithFrame:frameRect]) != nil) {
+		// Add initialization code here
+	}
+	return self;
 }
+
+- (void)drawRect:(NSRect)rect
+{
+  static NSImage *bgImage = nil;
+  if (bgImage == nil)
+  {
+    bgImage = [[NSImage imageNamed: @"button-bg"] retain];
+  }
+  
+  [bgImage drawInRect: rect
+             fromRect: NSZeroRect
+            operation: NSCompositeCopy
+             fraction: 1.0];
+}
+
 @end

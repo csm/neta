@@ -1,5 +1,6 @@
-/* NAOutlineView.m -- outline view with blue backgrounds.
+/* NASidebarOutlineView.h -- filters list.
    Copyright (C) 2007  Casey Marshall <casey.s.marshall@gmail.com>
+   Parts copyright Timothy Hatcher et al. from the Colloquy project.
 
 This file is a part of Network Analyzer.
 
@@ -21,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 
 #import <Cocoa/Cocoa.h>
 
-@interface NAOutlineView : NSOutlineView
+@interface NASidebarOutlineView : NSOutlineView
 {
 }
 @end
